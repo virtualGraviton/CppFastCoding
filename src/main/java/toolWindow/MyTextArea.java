@@ -1,6 +1,9 @@
 package toolWindow;
 
 
+import com.intellij.openapi.editor.colors.EditorColorsManager;
+import com.intellij.openapi.editor.colors.FontPreferences;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -8,10 +11,17 @@ import java.awt.*;
 
 public class MyTextArea extends JTextArea {
     int rowHeight;
+    String fontType;
+    int fontSize;
 
     MyTextArea() {
-        rowHeight = 18;
+        FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
+        fontType = fontPreferences.getFontFamily();
+        fontSize = fontPreferences.getSize(fontType);
+        rowHeight = (int) (1.5 * fontSize) - 1;
+
         this.setPreferredSize(new Dimension(200, rowHeight + 3));
+        this.setFont(new Font(fontType, Font.PLAIN, fontSize));
         this.setMaximumSize(new Dimension(200, rowHeight + 3));
         MyTextArea self = this;
         this.getDocument().addDocumentListener(new DocumentListener() {

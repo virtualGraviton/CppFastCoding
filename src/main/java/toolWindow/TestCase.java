@@ -64,7 +64,6 @@ public class TestCase extends CPanel {
     }
 
     public void ClearText(ActionEvent e) {
-        this.inputField.setText("");
         this.outputField.setText("");
         this.statLabel.setText("Pending...");
         this.statLabel.setForeground(JBColor.blue);
