@@ -1,4 +1,4 @@
-# CppFastCoding
+# CppFastCoding (For Clion)
 
 ![Build](https://github.com/virtualGraviton/CppFastCoding/workflows/Build/badge.svg)
 
