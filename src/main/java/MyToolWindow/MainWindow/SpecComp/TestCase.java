@@ -1,4 +1,4 @@
-package MyToolWindow.MainWindow;
+package MyToolWindow.MainWindow.SpecComp;
 
 import MyToolWindow.MainWindow.MyComp.MyButton;
 import MyToolWindow.MainWindow.MyComp.MyPanel;

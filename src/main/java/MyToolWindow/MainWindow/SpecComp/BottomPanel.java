@@ -1,4 +1,4 @@
-package MyToolWindow.MainWindow;
+package MyToolWindow.MainWindow.SpecComp;
 
 import MyToolWindow.MainWindow.MyComp.MyButton;
 import MyToolWindow.MainWindow.MyComp.MyPanel;
@@ -31,7 +31,7 @@ public class BottomPanel extends JPanel {
     Project project;
     private static final Logger logger = LoggerFactory.getLogger(BottomPanel.class);
 
-    BottomPanel(Project p) {
+    public BottomPanel(Project p) {
         project = p;
         scrollPane = new JBScrollPane(testCasePanel);
         newButton.addActionListener(this::AddTestCase);

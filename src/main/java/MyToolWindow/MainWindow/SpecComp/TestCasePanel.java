@@ -1,4 +1,4 @@
-package MyToolWindow.MainWindow;
+package MyToolWindow.MainWindow.SpecComp;
 
 import javax.swing.*;
 
