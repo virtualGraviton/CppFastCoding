@@ -9,13 +9,13 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class TestCase extends CPanel {
+public class TestCase extends MyPanel {
     JLabel title;
     public JLabel statLabel = new JLabel("Pending...");
-    CPanel titleRow = new CPanel(BoxLayout.X_AXIS);
+    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
     MyButton clearTextButton = new MyButton("ClearText");
     MyButton deleteButton = new MyButton("DeleteTestCase");
-    CPanel buttonRow = new CPanel(BoxLayout.X_AXIS);
+    MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS);
     JLabel inputLabel = new JLabel("Input:");
     public MyTextArea inputField = new MyTextArea();
     JLabel outputLabel = new JLabel("Output:");
@@ -70,7 +70,7 @@ public class TestCase extends CPanel {
     }
 
     private void Delete(ActionEvent e) {
-        CPanel buttonR = (CPanel) deleteButton.getParent();
+        MyPanel buttonR = (MyPanel) deleteButton.getParent();
         TestCase testCase = (TestCase) buttonR.getParent();
         TestCasePanel gPanel = (TestCasePanel) testCase.getParent();
         gPanel.remove(testCase);

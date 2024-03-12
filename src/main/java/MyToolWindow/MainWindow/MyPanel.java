@@ -4,10 +4,10 @@ import com.intellij.ui.JBColor;
 
 import javax.swing.*;
 
-public class CPanel extends JPanel {
+public class MyPanel extends JPanel {
     int Axis;
 
-    CPanel(int axis) {
+    MyPanel(int axis) {
         Axis = axis;
         this.setLayout(new BoxLayout(this, axis));
         this.setBackground(JBColor.gray);

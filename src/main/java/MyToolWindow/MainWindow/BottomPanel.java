@@ -22,7 +22,7 @@ import java.awt.event.ComponentEvent;
 public class BottomPanel extends JPanel {
     JBScrollPane scrollPane;
     TestCasePanel testCasePanel = new TestCasePanel();
-    CPanel buttonPanel;
+    MyPanel buttonPanel;
     MyButton newButton = new MyButton("New");
     MyButton runButton = new MyButton("Run");
     MyButton clrButton = new MyButton("Clear");
@@ -35,7 +35,7 @@ public class BottomPanel extends JPanel {
         newButton.addActionListener(this::AddTestCase);
         runButton.addActionListener(this::ExeRun);
         clrButton.addActionListener(this::ClearAll);
-        buttonPanel = new CPanel(BoxLayout.Y_AXIS);
+        buttonPanel = new MyPanel(BoxLayout.Y_AXIS);
         buttonPanel.add(newButton);
         buttonPanel.add(runButton);
         buttonPanel.add(clrButton);
