@@ -11,7 +11,7 @@ A plugin for ACMers and OIers with the ability to run multiple test case.
 
 - This plugin is not on the market, please:
 
-  Download the [latest release](https://github.com/virtualGraviton/cppFastCodingTemplate/releases/latest) and install it
+  Download the [latest release](https://github.com/virtualGraviton/CppFastCoding/releases/latest) and install it
   manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
