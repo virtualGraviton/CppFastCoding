@@ -7,7 +7,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.ui.JBColor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import toolWindow.TestCase;
+import MyToolWindow.TestCase;
 
 import java.io.BufferedReader;
 import java.io.File;

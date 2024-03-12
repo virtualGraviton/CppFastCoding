@@ -1,4 +1,4 @@
-package toolWindow;
+package MyToolWindow;
 
 import javax.swing.*;
 

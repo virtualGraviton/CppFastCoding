@@ -1,4 +1,4 @@
-package toolWindow;
+package MyToolWindow;
 
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;

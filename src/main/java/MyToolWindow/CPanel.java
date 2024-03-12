@@ -1,4 +1,4 @@
-package toolWindow;
+package MyToolWindow;
 
 import com.intellij.ui.JBColor;
 

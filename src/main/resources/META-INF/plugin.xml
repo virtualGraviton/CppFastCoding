@@ -13,6 +13,6 @@
         </action>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="CppFastCodingPlugin" anchor="right" factoryClass="toolWindow.MainToolWindow"/>
+        <toolWindow id="CppFastCodingPlugin" anchor="right" factoryClass="MyToolWindow.MainToolWindow"/>
     </extensions>
 </idea-plugin>

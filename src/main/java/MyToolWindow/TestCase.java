@@ -1,4 +1,4 @@
-package toolWindow;
+package MyToolWindow;
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
