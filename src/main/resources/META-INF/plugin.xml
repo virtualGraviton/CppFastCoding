@@ -7,7 +7,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <actions>
-        <action id="sample" class="MyAction.ShowToolWindowAction" text="_Sample Menu" description="Show main window">
+        <action id="ShowMainWindow" class="MyAction.ShowMainWindowAction" text="ShowMainWindow" description="Show main window">
             <add-to-group group-id="MainMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt B"/>
         </action>
