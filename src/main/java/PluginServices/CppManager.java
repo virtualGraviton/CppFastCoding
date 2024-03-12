@@ -1,4 +1,4 @@
-package pluginServices;
+package PluginServices;
 
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
