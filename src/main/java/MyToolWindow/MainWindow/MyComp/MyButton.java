@@ -1,4 +1,4 @@
-package MyToolWindow.MainWindow;
+package MyToolWindow.MainWindow.MyComp;
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class MyButton extends JButton {
 
-    MyButton(String Text) {
+    public MyButton(String Text) {
         super(Text);
         SetFont();
     }

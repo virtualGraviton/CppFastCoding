@@ -1,4 +1,4 @@
-package MyToolWindow.MainWindow;
+package MyToolWindow.MainWindow.MyComp;
 
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
@@ -14,7 +14,7 @@ public class MyTextArea extends JTextArea {
     String fontType;
     int fontSize;
 
-    MyTextArea() {
+    public MyTextArea() {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);

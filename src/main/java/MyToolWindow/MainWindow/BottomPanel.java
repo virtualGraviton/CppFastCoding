@@ -1,5 +1,7 @@
 package MyToolWindow.MainWindow;
 
+import MyToolWindow.MainWindow.MyComp.MyButton;
+import MyToolWindow.MainWindow.MyComp.MyPanel;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;

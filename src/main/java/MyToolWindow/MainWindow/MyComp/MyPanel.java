@@ -1,4 +1,4 @@
-package MyToolWindow.MainWindow;
+package MyToolWindow.MainWindow.MyComp;
 
 import com.intellij.ui.JBColor;
 
@@ -7,7 +7,7 @@ import javax.swing.*;
 public class MyPanel extends JPanel {
     int Axis;
 
-    MyPanel(int axis) {
+    public MyPanel(int axis) {
         Axis = axis;
         this.setLayout(new BoxLayout(this, axis));
         this.setBackground(JBColor.gray);
