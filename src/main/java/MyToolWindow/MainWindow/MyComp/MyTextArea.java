@@ -15,10 +15,7 @@ public class MyTextArea extends JTextArea {
     int fontSize;
 
     public MyTextArea() {
-        FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
-        fontType = fontPreferences.getFontFamily();
-        fontSize = fontPreferences.getSize(fontType);
-        rowHeight = (int) (1.5 * fontSize) - 1;
+        SetFont();
 
         this.setPreferredSize(new Dimension(200, rowHeight + 3));
         this.setFont(new Font(fontType, Font.PLAIN, fontSize));
@@ -58,5 +55,12 @@ public class MyTextArea extends JTextArea {
 
             }
         });
+    }
+
+    private void SetFont() {
+        FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
+        fontType = fontPreferences.getFontFamily();
+        fontSize = fontPreferences.getSize(fontType);
+        rowHeight = (int) (1.5 * fontSize) - 1;
     }
 }
