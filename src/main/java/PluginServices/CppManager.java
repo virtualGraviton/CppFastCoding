@@ -1,5 +1,6 @@
 package PluginServices;
 
+import MyToolWindow.MainWindow.SpecComp.TestCase;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
@@ -7,7 +8,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.ui.JBColor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import MyToolWindow.MainWindow.SpecComp.TestCase;
 
 import java.io.BufferedReader;
 import java.io.File;
