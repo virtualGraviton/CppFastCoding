@@ -25,22 +25,15 @@ public class BottomPanel extends JPanel {
     JBScrollPane scrollPane;
     TestCasePanel testCasePanel = new TestCasePanel();
     MyPanel buttonPanel;
-    MyButton newButton = new MyButton("New");
-    MyButton runButton = new MyButton("Run");
-    MyButton clrButton = new MyButton("Clear");
     Project project;
-    private static final Logger logger = LoggerFactory.getLogger(BottomPanel.class);
 
     public BottomPanel(Project p) {
         project = p;
         scrollPane = new JBScrollPane(testCasePanel);
-        newButton.addActionListener(this::AddTestCase);
-        runButton.addActionListener(this::ExeRun);
-        clrButton.addActionListener(this::ClearAll);
         buttonPanel = new MyPanel(BoxLayout.Y_AXIS);
-        buttonPanel.add(newButton);
-        buttonPanel.add(runButton);
-        buttonPanel.add(clrButton);
+        buttonPanel.add(new SC_NewButton(testCasePanel));
+        buttonPanel.add(new SC_RunButton(project, testCasePanel));
+        buttonPanel.add(new SC_ClrButton(testCasePanel));
 
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         this.add(scrollPane);
@@ -56,42 +49,5 @@ public class BottomPanel extends JPanel {
                 buttonPanel.updateUI();
             }
         });
-    }
-
-    private void ClearAll(ActionEvent e) {
-        for (int i = 0; i < testCasePanel.testCaseNum; i++) {
-            TestCase t = testCasePanel.getTestCase(i);
-            t.ClearText(e);
-        }
-    }
-
-    private void ExeRun(ActionEvent e) {
-        SaveCpp();
-        if (testCasePanel.testCaseNum == 0) {
-            Messages.showMessageDialog("Empty test case.", "Error", Messages.getInformationIcon());
-            return;
-        }
-        CppManager cm = new CppManager(project);
-        if (cm.cppCompile() == cm.CompileFailed) return;
-
-        for (int i = 0; i < testCasePanel.testCaseNum; i++) {
-            cm.cppRun(testCasePanel.getTestCase(i));
-        }
-    }
-
-    public void SaveCpp() {
-        ActionManager actionManager = ActionManager.getInstance();
-        try {
-            AnAction myAction = actionManager.getAction("SaveAll");
-
-            DataContext dataContext = DataManager.getInstance().getDataContext(this);
-            myAction.actionPerformed(AnActionEvent.createFromDataContext("", null, dataContext));
-        } catch (Exception exception) {
-            logger.error("Save Failed", exception);
-        }
-    }
-
-    private void AddTestCase(ActionEvent e) {
-        testCasePanel.addTextCase();
     }
 }
