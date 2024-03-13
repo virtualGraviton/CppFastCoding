@@ -6,15 +6,16 @@
 
     <depends>com.intellij.modules.platform</depends>
     <actions>
-        <action id="ShowMainWindow" class="MyAction.ShowMainWindowAction" text="ShowMainWindow" description="Show main window">
+        <action id="ShowMainWindow" class="MyAction.ShowMainWindowAction" text="ShowMainWindow"
+                description="Show main window">
             <add-to-group group-id="MainMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt B"/>
         </action>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable id="MySettings" displayName="CppFastCoding Settings" groupId="other"
+                                 instance="MyToolWindow.MySettingWindow.MySettings"/>
         <toolWindow id="CppFastCodingPlugin" anchor="right" factoryClass="MyToolWindow.MainWindow.MainToolWindow"/>
-    </extensions>
-    <extensions defaultExtensionNs="com.intellij">
         <notificationGroup displayType="BALLOON" id="MyNoticeGroup"/>
     </extensions>
 

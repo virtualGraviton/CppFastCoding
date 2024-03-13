@@ -1,4 +1,4 @@
-package MyToolWindow.MainWindow.MyComp;
+package MyToolWindow.MyComp.MyComp;
 
 import com.intellij.ui.JBColor;
 

@@ -1,6 +1,6 @@
 package MyToolWindow.MainWindow.SpecComp;
 
-import MyToolWindow.MainWindow.MyComp.MyPanel;
+import MyToolWindow.MyComp.MyComp.MyPanel;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBScrollPane;
 
@@ -23,6 +23,7 @@ public class BottomPanel extends JPanel {
         buttonPanel.add(new SC_NewButton(testCasePanel));
         buttonPanel.add(new SC_RunButton(project, testCasePanel));
         buttonPanel.add(new SC_ClrButton(testCasePanel));
+        buttonPanel.add(new SC_SettingButton());
 
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         this.add(scrollPane);
@@ -32,8 +33,8 @@ public class BottomPanel extends JPanel {
             public void componentResized(ComponentEvent e) {
                 int w = e.getComponent().getWidth();
                 int h = e.getComponent().getHeight();
-                scrollPane.setPreferredSize(new Dimension(w - 75, h - 10));
-                buttonPanel.setPreferredSize(new Dimension(60, h - 10));
+                scrollPane.setPreferredSize(new Dimension(w - 115, h - 10));
+                buttonPanel.setPreferredSize(new Dimension(100, h - 10));
                 scrollPane.updateUI();
                 buttonPanel.updateUI();
             }
