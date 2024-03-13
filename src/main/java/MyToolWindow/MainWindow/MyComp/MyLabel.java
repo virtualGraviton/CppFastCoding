@@ -7,10 +7,11 @@ import com.intellij.ui.components.JBLabel;
 import java.awt.*;
 
 public class MyLabel extends JBLabel {
-    public MyLabel(String text){
+    public MyLabel(String text) {
         super(text);
         SetFont();
     }
+
     public void SetFont() {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         String fontType = fontPreferences.getFontFamily();

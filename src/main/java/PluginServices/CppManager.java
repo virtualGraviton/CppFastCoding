@@ -41,13 +41,9 @@ public class CppManager {
         File file = new File(exeFilePath);
         if (file.exists()) {
             boolean deleted = file.delete();
-            if (deleted) {
-                System.out.println("File deleted successfully.");
-            } else {
-                MyNotice.ShowBalloon(this.getClass().toString(), "Error:Failed to delete file.");
+            if (!deleted) {
+                MyNotice.ShowBalloon("ERROR", "Failed to delete file.");
             }
-        } else {
-            System.out.println("File does not exist.");
         }
         try {
             Process process = Runtime.getRuntime().exec("g++ -std=c++20 " + cppFilePath + " -o " + exeFilePath);
@@ -60,15 +56,14 @@ public class CppManager {
 
             int exitCode = process.waitFor();
             if (exitCode == 0) {
-                System.out.println("Compilation successful. Output file: " + exeFilePath);
                 return CompileSucceed;
             } else {
-                MyNotice.ShowBalloon(this.getClass().toString(), "Error:Compilation failed.");
+                MyNotice.ShowBalloon("ERROR", "Compilation failed.");
                 return CompileFailed;
             }
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
-            MyNotice.ShowBalloon(this.getClass().toString(), "Error:Compilation failed.");
+            MyNotice.ShowBalloon("ERROR", "Compilation failed.");
             return CompileFailed;
         }
     }
@@ -107,6 +102,7 @@ public class CppManager {
                 nowTestCase.SetStat(TestCase.RE);
             }
         } catch (Exception exception) {
+            MyNotice.ShowBalloon("ERROR", "Info:" + exception.toString());
             logger.error("FatalError", exception);
         }
     }

@@ -15,6 +15,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class TestCase extends MyPanel {
+    public static int AC = 0;
+    public static int TLE = 1;
+    public static int RE = 2;
+    public static int RUN = -1;
+    public static int PD = -2;
     public JLabel statLabel = new JLabel("Pending...");
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
@@ -25,11 +30,6 @@ public class TestCase extends MyPanel {
     MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS);
     String fontType;
     int fontSize;
-    public static int AC = 0;
-    public static int TLE = 1;
-    public static int RE = 2;
-    public static int RUN = -1;
-    public static int PD = -2;
 
     TestCase(int num) {
         super(BoxLayout.Y_AXIS);
@@ -90,15 +90,14 @@ public class TestCase extends MyPanel {
     public void SetStat(int stat) {
         if (stat == TestCase.AC) {
             this.statLabel.setText("Accepted");
-            MyNotice.ShowBalloon(this.getClass().toString(), "Info: Accepted");
             this.statLabel.setForeground(JBColor.green);
         } else if (stat == TestCase.TLE) {
             this.statLabel.setText("TimeLimitExceed");
-            MyNotice.ShowBalloon(this.getClass().toString(), "Info: TimeLimitExceed");
+            MyNotice.ShowBalloon("INFO", "Info: TimeLimitExceed");
             this.statLabel.setForeground(JBColor.black);
         } else if (stat == TestCase.RE) {
             this.statLabel.setText("RuntimeError");
-            MyNotice.ShowBalloon(this.getClass().toString(), "Info: RuntimeError");
+            MyNotice.ShowBalloon("INFO", "Info: RuntimeError");
             this.statLabel.setForeground(JBColor.red);
         } else if (stat == TestCase.PD) {
             this.statLabel.setText("Pending...");
