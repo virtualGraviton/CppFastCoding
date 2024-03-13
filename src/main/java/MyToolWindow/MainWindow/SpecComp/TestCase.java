@@ -58,7 +58,7 @@ public class TestCase extends MyPanel {
         this.AddComp(new MyLabel("Output:"));
         this.AddComp(outputField);
 
-        this.setBorder(new LineBorder(JBColor.gray, 5, true));
+        this.setBorder(new LineBorder(JBColor.black, 5, true));
     }
 
     public void AddComp(JComponent c) {

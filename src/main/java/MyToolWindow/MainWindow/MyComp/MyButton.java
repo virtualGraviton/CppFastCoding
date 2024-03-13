@@ -13,9 +13,10 @@ public class MyButton extends JButton {
     public MyButton(String Text) {
         super(Text);
         SetFont();
-        this.setBackground(JBColor.gray);
+        this.setBackground(JBColor.white);
         this.setFocusPainted(false);
         this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -34,12 +35,20 @@ public class MyButton extends JButton {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
+                MyButton b = (MyButton) e.getSource();
+                b.setContentAreaFilled(true);
+                b.setBackground(new JBColor(JBColor.white, JBColor.white));
+                b.setFocusPainted(false);
+                b.updateUI();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-
+                MyButton b = (MyButton) e.getSource();
+                b.setContentAreaFilled(false);
+                b.setBackground(new JBColor(JBColor.white, JBColor.white));
+                b.setFocusPainted(false);
+                b.updateUI();
             }
         });
     }
