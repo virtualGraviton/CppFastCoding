@@ -16,11 +16,12 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class CppManager {
-    String cppFilePath;
-    String exeFilePath;
+    private static final Logger logger = LoggerFactory.getLogger(CppManager.class);
     public int CompileSucceed = 0;
     public int CompileFailed = 1;
-    private static final Logger logger = LoggerFactory.getLogger(CppManager.class);
+    String cppFilePath;
+    String exeFilePath;
+
     public CppManager(Project project) {
         FileEditorManager editorManager = FileEditorManager.getInstance(project);
         VirtualFile focusedFile = Objects.requireNonNull(editorManager.getSelectedEditor()).getFile();

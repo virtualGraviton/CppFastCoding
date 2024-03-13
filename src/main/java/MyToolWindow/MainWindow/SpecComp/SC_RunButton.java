@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
 import java.awt.event.ActionEvent;
 
 public class SC_RunButton extends MyButton {
+    private static final Logger logger = LoggerFactory.getLogger(BottomPanel.class);
     Project project;
     TestCasePanel testCasePanel;
-    private static final Logger logger = LoggerFactory.getLogger(BottomPanel.class);
 
     SC_RunButton(Project p, TestCasePanel t) {
         super("Run");

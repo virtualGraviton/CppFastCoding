@@ -13,16 +13,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class TestCase extends MyPanel {
-    JLabel title;
     public JLabel statLabel = new JLabel("Pending...");
+    public MyTextArea inputField = new MyTextArea();
+    public MyTextArea outputField = new MyTextArea();
+    JLabel title;
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
     MyButton clearTextButton = new MyButton("ClearText");
     MyButton deleteButton = new MyButton("DeleteTestCase");
     MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS);
     JLabel inputLabel = new JLabel("Input:");
-    public MyTextArea inputField = new MyTextArea();
     JLabel outputLabel = new JLabel("Output:");
-    public MyTextArea outputField = new MyTextArea();
     String fontType;
     int fontSize;
 
