@@ -102,7 +102,7 @@ public class CppManager {
                 nowTestCase.SetStat(TestCase.RE);
             }
         } catch (Exception exception) {
-            MyNotice.ShowBalloon("ERROR", "Info:" + exception.toString());
+            MyNotice.ShowBalloon("ERROR", "Info:" + exception);
             logger.error("FatalError", exception);
         }
     }
