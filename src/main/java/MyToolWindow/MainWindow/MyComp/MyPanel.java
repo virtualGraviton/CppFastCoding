@@ -3,6 +3,7 @@ package MyToolWindow.MainWindow.MyComp;
 import com.intellij.ui.JBColor;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MyPanel extends JPanel {
     int Axis;
@@ -10,7 +11,6 @@ public class MyPanel extends JPanel {
     public MyPanel(int axis) {
         Axis = axis;
         this.setLayout(new BoxLayout(this, axis));
-        this.setBackground(JBColor.gray);
     }
 
     public void AddComp(JComponent comp) {
@@ -20,5 +20,13 @@ public class MyPanel extends JPanel {
         } else {
             this.add(Box.createVerticalStrut(7));
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        g.setColor(new JBColor(JBColor.gray, JBColor.gray));
+        g.fillRect(0, 0, getWidth(), getHeight());
     }
 }

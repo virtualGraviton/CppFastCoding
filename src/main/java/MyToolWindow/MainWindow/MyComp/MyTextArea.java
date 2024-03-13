@@ -3,23 +3,20 @@ package MyToolWindow.MainWindow.MyComp;
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
+import com.intellij.ui.components.JBTextArea;
 
-import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 
-public class MyTextArea extends JTextArea {
+public class MyTextArea extends JBTextArea {
     int rowHeight;
     String fontType;
     int fontSize;
 
     public MyTextArea() {
         SetFont();
-
-        this.setPreferredSize(new Dimension(200, rowHeight + 3));
-        this.setFont(new Font(fontType, Font.PLAIN, fontSize));
-        this.setMaximumSize(new Dimension(200, rowHeight + 3));
+        Init();
         MyTextArea self = this;
         this.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -32,8 +29,8 @@ public class MyTextArea extends JTextArea {
                         res++;
                     }
                 }
-                self.setPreferredSize(new Dimension(200, res * rowHeight + 3));
-                self.setMaximumSize(new Dimension(200, res * rowHeight + 3));
+                self.setPreferredSize(new Dimension(300, res * rowHeight));
+                self.setMaximumSize(new Dimension(300, res * rowHeight));
             }
 
             @Override
@@ -46,8 +43,8 @@ public class MyTextArea extends JTextArea {
                         res++;
                     }
                 }
-                self.setPreferredSize(new Dimension(200, res * rowHeight + 3));
-                self.setMaximumSize(new Dimension(200, res * rowHeight + 3));
+                self.setPreferredSize(new Dimension(300, res * rowHeight));
+                self.setMaximumSize(new Dimension(300, res * rowHeight));
             }
 
             @Override
@@ -62,5 +59,11 @@ public class MyTextArea extends JTextArea {
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
         rowHeight = (int) (1.5 * fontSize) - 1;
+        this.setFont(new Font(fontType, Font.PLAIN, fontSize));
+    }
+
+    private void Init() {
+        this.setPreferredSize(new Dimension(300, rowHeight));
+        this.setMaximumSize(new Dimension(300, rowHeight));
     }
 }
