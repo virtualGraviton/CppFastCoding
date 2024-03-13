@@ -5,7 +5,6 @@
     <vendor>virtualgraviton</vendor>
 
     <depends>com.intellij.modules.platform</depends>
-
     <actions>
         <action id="ShowMainWindow" class="MyAction.ShowMainWindowAction" text="ShowMainWindow" description="Show main window">
             <add-to-group group-id="MainMenu" anchor="last"/>
@@ -15,4 +14,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="CppFastCodingPlugin" anchor="right" factoryClass="MyToolWindow.MainWindow.MainToolWindow"/>
     </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup displayType="BALLOON" id="MyNoticeGroup"/>
+    </extensions>
+
 </idea-plugin>

@@ -3,9 +3,7 @@ package PluginServices;
 import MyToolWindow.MainWindow.SpecComp.TestCase;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.ui.JBColor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +44,7 @@ public class CppManager {
             if (deleted) {
                 System.out.println("File deleted successfully.");
             } else {
-                System.out.println("Failed to delete file.");
+                MyNotice.ShowBalloon(this.getClass().toString(), "Error:Failed to delete file.");
             }
         } else {
             System.out.println("File does not exist.");
@@ -65,33 +63,29 @@ public class CppManager {
                 System.out.println("Compilation successful. Output file: " + exeFilePath);
                 return CompileSucceed;
             } else {
-                Messages.showMessageDialog("Compilation failed.", "Message", Messages.getInformationIcon());
+                MyNotice.ShowBalloon(this.getClass().toString(), "Error:Compilation failed.");
                 return CompileFailed;
             }
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
+            MyNotice.ShowBalloon(this.getClass().toString(), "Error:Compilation failed.");
             return CompileFailed;
         }
     }
 
     public void cppRun(TestCase nowTestCase) {
         String input = nowTestCase.inputField.getText();
-        nowTestCase.statLabel.setText("Running...");
-        nowTestCase.statLabel.setForeground(JBColor.blue);
+        nowTestCase.SetStat(TestCase.RUN);
         try {
             Process process = new ProcessBuilder(exeFilePath).start();
             process.getOutputStream().write(input.getBytes());
             process.getOutputStream().close();
 
-            int maxWaitTime = 2000;
+            int maxWaitTime = 5000;
             boolean timeLimitExceed = false;
 
-            if (process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
-                System.out.println("External program completed successfully.");
-            } else {
-                System.out.println("External program execution time exceeded the maximum wait time. Forcing stop.");
+            if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();
-                System.out.println("External program forcibly stopped.");
                 timeLimitExceed = true;
             }
 
@@ -101,19 +95,16 @@ public class CppManager {
             while ((bytesRead = process.getInputStream().read(buffer)) != -1) {
                 output.append(new String(buffer, 0, bytesRead));
             }
-
-            int exitCode = process.exitValue();
-            System.out.println("Program exit code: " + exitCode);
             nowTestCase.outputField.setText(output.toString());
+            int exitCode = process.exitValue();
+//            System.out.println("Program exit code: " + exitCode);
+
             if (exitCode == 0) {
-                nowTestCase.statLabel.setText("Accepted");
-                nowTestCase.statLabel.setForeground(JBColor.green);
+                nowTestCase.SetStat(TestCase.AC);
             } else if (timeLimitExceed) {
-                nowTestCase.statLabel.setText("TimeLimitExceed");
-                nowTestCase.statLabel.setForeground(JBColor.black);
+                nowTestCase.SetStat(TestCase.TLE);
             } else if (exitCode == -1073741819) {
-                nowTestCase.statLabel.setText("RuntimeError");
-                nowTestCase.statLabel.setForeground(JBColor.red);
+                nowTestCase.SetStat(TestCase.RE);
             }
         } catch (Exception exception) {
             logger.error("FatalError", exception);

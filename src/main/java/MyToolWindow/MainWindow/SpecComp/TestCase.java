@@ -1,8 +1,10 @@
 package MyToolWindow.MainWindow.SpecComp;
 
 import MyToolWindow.MainWindow.MyComp.MyButton;
+import MyToolWindow.MainWindow.MyComp.MyLabel;
 import MyToolWindow.MainWindow.MyComp.MyPanel;
 import MyToolWindow.MainWindow.MyComp.MyTextArea;
+import PluginServices.MyNotice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
@@ -21,10 +23,13 @@ public class TestCase extends MyPanel {
     MyButton clearTextButton = new MyButton("ClearText");
     MyButton deleteButton = new MyButton("DeleteTestCase");
     MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS);
-    JLabel inputLabel = new JLabel("Input:");
-    JLabel outputLabel = new JLabel("Output:");
     String fontType;
     int fontSize;
+    public static int AC = 0;
+    public static int TLE = 1;
+    public static int RE = 2;
+    public static int RUN = -1;
+    public static int PD = -2;
 
     TestCase(int num) {
         super(BoxLayout.Y_AXIS);
@@ -48,9 +53,9 @@ public class TestCase extends MyPanel {
         buttonRow.add(deleteButton);
 
         this.AddComp(buttonRow);
-        this.AddComp(inputLabel);
+        this.AddComp(new MyLabel("Input:"));
         this.AddComp(inputField);
-        this.AddComp(outputLabel);
+        this.AddComp(new MyLabel("Output:"));
         this.AddComp(outputField);
 
         this.setBorder(new LineBorder(JBColor.gray, 5, true));
@@ -68,8 +73,7 @@ public class TestCase extends MyPanel {
 
     public void ClearText(ActionEvent e) {
         this.outputField.setText("");
-        this.statLabel.setText("Pending...");
-        this.statLabel.setForeground(JBColor.blue);
+        this.SetStat(TestCase.PD);
     }
 
     private void Delete(ActionEvent e) {
@@ -81,5 +85,28 @@ public class TestCase extends MyPanel {
         gPanel.repaint();
         gPanel.titleUdt();
         gPanel.testCaseNum--;
+    }
+
+    public void SetStat(int stat) {
+        if (stat == TestCase.AC) {
+            this.statLabel.setText("Accepted");
+            MyNotice.ShowBalloon(this.getClass().toString(), "Info: Accepted");
+            this.statLabel.setForeground(JBColor.green);
+        } else if (stat == TestCase.TLE) {
+            this.statLabel.setText("TimeLimitExceed");
+            MyNotice.ShowBalloon(this.getClass().toString(), "Info: TimeLimitExceed");
+            this.statLabel.setForeground(JBColor.black);
+        } else if (stat == TestCase.RE) {
+            this.statLabel.setText("RuntimeError");
+            MyNotice.ShowBalloon(this.getClass().toString(), "Info: RuntimeError");
+            this.statLabel.setForeground(JBColor.red);
+        } else if (stat == TestCase.PD) {
+            this.statLabel.setText("Pending...");
+            this.statLabel.setForeground(JBColor.blue);
+        } else if (stat == TestCase.RUN) {
+            this.statLabel.setText("Running...");
+            this.statLabel.setForeground(JBColor.blue);
+        }
+        this.updateUI();
     }
 }
