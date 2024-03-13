@@ -1,9 +1,9 @@
 package MyToolWindow.MainWindow.SpecComp;
 
-import MyToolWindow.MyComp.MyComp.MyButton;
-import MyToolWindow.MyComp.MyComp.MyLabel;
-import MyToolWindow.MyComp.MyComp.MyPanel;
-import MyToolWindow.MyComp.MyComp.MyTextArea;
+import MyToolWindow.MyComp.MyButton;
+import MyToolWindow.MyComp.MyLabel;
+import MyToolWindow.MyComp.MyPanel;
+import MyToolWindow.MyComp.MyTextArea;
 import PluginServices.MyNotice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;

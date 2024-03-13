@@ -1,6 +1,6 @@
 package MyToolWindow.MainWindow.SpecComp;
 
-import MyToolWindow.MyComp.MyComp.MyPanel;
+import MyToolWindow.MyComp.MyPanel;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBScrollPane;
 

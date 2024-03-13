@@ -1,6 +1,6 @@
 package MyToolWindow.MainWindow.SpecComp;
 
-import MyToolWindow.MyComp.MyComp.MyButton;
+import MyToolWindow.MyComp.MyButton;
 import PluginServices.CppManager;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
