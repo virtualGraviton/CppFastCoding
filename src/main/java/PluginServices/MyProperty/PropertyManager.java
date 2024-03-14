@@ -3,13 +3,14 @@ package PluginServices.MyProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyManager {
-    Properties properties;
     private static final Logger logger = LoggerFactory.getLogger(PropertyManager.class);
+    Properties properties;
 
     public PropertyManager() {
         properties = new Properties();

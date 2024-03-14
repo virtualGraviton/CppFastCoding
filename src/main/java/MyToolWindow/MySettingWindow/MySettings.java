@@ -11,6 +11,7 @@ import javax.swing.*;
 public class MySettings implements Configurable {
     MyPanel bottom = new MyPanel(BoxLayout.Y_AXIS);
     PropertyManager properties;
+
     @Nullable
     @Override
     public JComponent createComponent() {

@@ -24,10 +24,10 @@ public class TestCase extends MyPanel {
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
     JLabel title;
-    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS,JBColor.gray);
+    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, JBColor.gray);
     MyButton clearTextButton = new MyButton("ClearText");
     MyButton deleteButton = new MyButton("DeleteTestCase");
-    MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS,JBColor.gray);
+    MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS, JBColor.gray);
     String fontType;
     int fontSize;
 
