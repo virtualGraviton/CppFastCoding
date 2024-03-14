@@ -1,7 +1,6 @@
 package MyToolWindow.MySettingWindow.SettingGroup;
 
 import MyToolWindow.MyComp.MyPanel;
-import com.intellij.ui.JBColor;
 
 import javax.swing.*;
 
