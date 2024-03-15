@@ -17,6 +17,17 @@ public class MyTextArea extends JBTextArea {
     public MyTextArea() {
         SetFont();
         Init();
+        addListener();
+    }
+
+    public MyTextArea(String init) {
+        SetFont();
+        Init();
+        addListener();
+        this.setText(init);
+    }
+
+    private void addListener() {
         MyTextArea self = this;
         this.getDocument().addDocumentListener(new DocumentListener() {
             @Override

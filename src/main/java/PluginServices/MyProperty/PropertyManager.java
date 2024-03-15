@@ -24,7 +24,7 @@ public class PropertyManager {
         } catch (IOException exception) {
             logger.error("Config read failed", exception);
         }
-        System.out.println(properties.getProperty("CompileSTD"));
+        System.out.println(properties.getProperty("CompileStandard"));
     }
 
     public String get(String key) {

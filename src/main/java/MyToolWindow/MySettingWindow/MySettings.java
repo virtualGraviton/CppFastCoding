@@ -1,42 +1,35 @@
 package MyToolWindow.MySettingWindow;
 
-import MyToolWindow.MySettingWindow.SettingGroup.MainSettingPane;
+import MyToolWindow.MyComp.MyPanel;
+import MyToolWindow.MySettingWindow.SettingGroup.SettingTextArea;
 import PluginServices.MyProperty.PropertyManager;
 import com.intellij.openapi.options.Configurable;
-import com.intellij.ui.components.JBScrollPane;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
 public class MySettings implements Configurable {
     PropertyManager properties;
-    JBScrollPane bottom;
+    MyPanel bottom;
+    public static boolean SettingModified = false;
 
     @Nullable
     @Override
     public JComponent createComponent() {
         properties = new PropertyManager();
-        bottom = new JBScrollPane(new MainSettingPane());
-        bottom.setBorder(null);
+        bottom = new MyPanel(BoxLayout.Y_AXIS);
+        bottom.AddComp(new SettingTextArea("Compile Standard:", properties.get("CompileStandard")));
         return bottom;
     }
 
     @Override
     public boolean isModified() {
-        return false;
+        return SettingModified;
     }
 
     @Override
     public void apply() {
         properties.save();
-    }
-
-    @Override
-    public void reset() {
-    }
-
-    @Override
-    public void disposeUIResources() {
     }
 
     @Nullable

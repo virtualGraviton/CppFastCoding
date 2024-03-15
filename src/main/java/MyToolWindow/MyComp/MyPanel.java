@@ -5,7 +5,7 @@ import com.intellij.ui.JBColor;
 import javax.swing.*;
 
 public class MyPanel extends JPanel {
-    int Axis;
+    protected int Axis;
 
     public MyPanel(int axis, JBColor color) {
         Axis = axis;
