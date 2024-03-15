@@ -1,6 +1,7 @@
 package PluginServices;
 
 import MyToolWindow.MainWindow.SpecComp.TestCase;
+import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -11,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
 
 public class CppManager {
     private static final Logger logger = LoggerFactory.getLogger(CppManager.class);
@@ -22,7 +22,12 @@ public class CppManager {
 
     public CppManager(Project project) {
         FileEditorManager editorManager = FileEditorManager.getInstance(project);
-        VirtualFile focusedFile = Objects.requireNonNull(editorManager.getSelectedEditor()).getFile();
+        FileEditor fileEditor = editorManager.getSelectedEditor();
+        if (fileEditor == null) {
+            exeFilePath = null;
+            return;
+        }
+        VirtualFile focusedFile = fileEditor.getFile();
         if (focusedFile != null && "cpp".equals(focusedFile.getExtension())) {
             cppFilePath = focusedFile.getPath();
             int len = focusedFile.getName().length();
@@ -38,6 +43,7 @@ public class CppManager {
     }
 
     public int cppCompile() {
+        if (exeFilePath == null) return CompileFailed;
         File file = new File(exeFilePath);
         if (file.exists()) {
             boolean deleted = file.delete();
