@@ -113,7 +113,6 @@ public class SettingTextArea extends MyPanel implements Setting {
                 @Override
                 public void componentResized(ComponentEvent e) {
                     _TextArea self = (_TextArea) e.getComponent();
-                    System.out.println(self.getHeight());
                     SettingTextArea panel = (SettingTextArea) self.getParent();
                     if (oldHeight != -1) {
                         panel.resize(self.getHeight() - self.oldHeight);
