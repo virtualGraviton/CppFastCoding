@@ -16,6 +16,18 @@ public class PropertyManager {
 
     public PropertyManager() {
         properties = new Properties();
+        read();
+    }
+
+    public String get(String key) {
+        return properties.getProperty(key);
+    }
+
+    public void set(String key, String val) {
+        properties.setProperty(key, val);
+    }
+
+    public void read() {
         try {
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("config.properties");
             if (inputStream != null) {
@@ -27,20 +39,12 @@ public class PropertyManager {
         }
     }
 
-    public String get(String key) {
-        return properties.getProperty(key);
-    }
-
-    public void set(String key, String val) {
-        properties.setProperty(key, val);
-        System.out.println(val);
-    }
-
     public void save() {
         try {
             OutputStream outputStream = new FileOutputStream("config.properties");
             properties.store(outputStream, null);
             outputStream.close();
+            read();
         } catch (IOException exception) {
             logger.error("Config write failed", exception);
         }
