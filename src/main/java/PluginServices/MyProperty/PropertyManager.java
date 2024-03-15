@@ -1,5 +1,6 @@
 package PluginServices.MyProperty;
 
+import PluginServices.MyNotice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,5 +44,6 @@ public class PropertyManager {
         } catch (IOException exception) {
             logger.error("Config write failed", exception);
         }
+        MyNotice.ShowBalloon("Property:", "Config saved.");
     }
 }

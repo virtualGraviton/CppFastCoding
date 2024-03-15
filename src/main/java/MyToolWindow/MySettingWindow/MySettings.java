@@ -1,7 +1,6 @@
 package MyToolWindow.MySettingWindow;
 
-import MyToolWindow.MyComp.MyPanel;
-import MyToolWindow.MySettingWindow.SettingGroup.SettingTextArea;
+import MyToolWindow.MySettingWindow.SettingGroup.SettingBottom;
 import PluginServices.MyProperty.PropertyManager;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
@@ -9,16 +8,15 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 
 public class MySettings implements Configurable {
-    PropertyManager properties;
-    MyPanel bottom;
+    static public PropertyManager properties;
     public static boolean SettingModified = false;
+    SettingBottom bottom;
 
     @Nullable
     @Override
     public JComponent createComponent() {
         properties = new PropertyManager();
-        bottom = new MyPanel(BoxLayout.Y_AXIS);
-        bottom.AddComp(new SettingTextArea("Compile Standard:", properties.get("CompileStandard")));
+        bottom = new SettingBottom();
         return bottom;
     }
 
@@ -29,7 +27,15 @@ public class MySettings implements Configurable {
 
     @Override
     public void apply() {
+        bottom.save();
         properties.save();
+        SettingModified = false;
+    }
+
+    @Override
+    public void reset() {
+        bottom.reset();
+        SettingModified = false;
     }
 
     @Nullable

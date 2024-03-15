@@ -3,6 +3,7 @@ package MyToolWindow.MyComp;
 import com.intellij.ui.JBColor;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MyPanel extends JPanel {
     protected int Axis;
@@ -27,5 +28,16 @@ public class MyPanel extends JPanel {
         } else {
             this.add(Box.createVerticalStrut(7));
         }
+    }
+
+    public void resize(int pad) {
+        if (Axis == BoxLayout.X_AXIS) {
+            this.setPreferredSize(new Dimension(this.getWidth() + pad, this.getHeight()));
+            this.setMaximumSize(new Dimension(this.getWidth() + pad, this.getHeight()));
+        } else {
+            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + pad));
+            this.setMaximumSize(new Dimension(this.getWidth(), this.getHeight() + pad));
+        }
+        this.updateUI();
     }
 }

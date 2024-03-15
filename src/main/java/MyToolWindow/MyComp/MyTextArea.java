@@ -10,7 +10,7 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 
 public class MyTextArea extends JBTextArea {
-    int rowHeight;
+    public int rowHeight;
     String fontType;
     int fontSize;
 
@@ -27,7 +27,7 @@ public class MyTextArea extends JBTextArea {
         this.setText(init);
     }
 
-    private void addListener() {
+    protected void addListener() {
         MyTextArea self = this;
         this.getDocument().addDocumentListener(new DocumentListener() {
             @Override
