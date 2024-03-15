@@ -28,6 +28,7 @@ public class MySettings implements Configurable {
 
     @Override
     public void apply() {
+        properties.save();
     }
 
     @Override
