@@ -1,21 +1,21 @@
 package CppFastCodingSetting;
 
 import CppFastCodingSetting.SettingGroup.SettingBottom;
-import CppFastCodingServices.MyProperty.PropertyManager;
+import CppFastCodingServices.SettingStorage;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
 public class MySettings implements Configurable {
-    static public PropertyManager properties;
+    static public SettingStorage properties;
     public static boolean SettingModified = false;
     SettingBottom bottom;
 
     @Nullable
     @Override
     public JComponent createComponent() {
-        properties = new PropertyManager();
+        properties = new SettingStorage();
         bottom = new SettingBottom();
         return bottom;
     }

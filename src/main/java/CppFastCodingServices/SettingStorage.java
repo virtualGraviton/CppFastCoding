@@ -1,7 +1,7 @@
-package CppFastCodingServices.MyProperty;
+package CppFastCodingServices;
 
-import CppFastCodingServices.MyNotice;
 import com.intellij.openapi.application.PathManager;
+import com.intellij.openapi.components.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
-public class PropertyManager {
-    private static final Logger logger = LoggerFactory.getLogger(PropertyManager.class);
+public class SettingStorage {
+    private static final Logger logger = LoggerFactory.getLogger(SettingStorage.class);
     Properties properties;
 
-    public PropertyManager() {
+    public SettingStorage() {
         properties = new Properties();
         read();
     }
@@ -40,7 +40,7 @@ public class PropertyManager {
     }
 
     public void save() {
-        String jarPath = PathManager.getJarPathForClass(PropertyManager.class);
+        String jarPath = PathManager.getJarPathForClass(SettingStorage.class);
         System.out.println("当前插件的 JAR 包地址：" + jarPath);
         try {
             OutputStream outputStream = new FileOutputStream("config.properties");
