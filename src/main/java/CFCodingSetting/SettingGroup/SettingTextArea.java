@@ -1,7 +1,7 @@
 package CFCodingSetting.SettingGroup;
 
 import CFCodingServices.MyNotice;
-import CFCodingServices.SettingStorage;
+import CFCodingServices.CFCodingSettings;
 import CFCodingSetting.CFCodingConfigurable;
 import CFCodingToolWindow.MyComp.MyLabel;
 import CFCodingToolWindow.MyComp.MyPanel;
@@ -23,9 +23,8 @@ import java.awt.event.KeyListener;
 public class SettingTextArea extends MyPanel implements Setting {
     private String initSetting;
     private _TextArea textArea;
-    private String KEY;
 
-    public SettingTextArea(String key, String title, String init) {
+    public SettingTextArea(String title, String init) {
         super(BoxLayout.Y_AXIS);
         this.AddComp(new MyLabel(title));
         initSetting = init;
@@ -33,16 +32,14 @@ public class SettingTextArea extends MyPanel implements Setting {
         textArea.setBorder(new LineBorder(JBColor.black, 3, true));
         this.AddComp(textArea);
         this.setMaximumSize(new Dimension(1000, 60));
-        KEY = key;
     }
 
-    public SettingTextArea(String key, String name) {
+    public SettingTextArea(String name) {
         super(BoxLayout.Y_AXIS);
         this.AddComp(new MyLabel(name));
         this.AddComp(new _TextArea());
         this.setBackground(JBColor.red);
         this.setMaximumSize(new Dimension(1000, 20));
-        KEY = key;
     }
 
     public void AddComp(JComponent comp) {
@@ -61,7 +58,7 @@ public class SettingTextArea extends MyPanel implements Setting {
 
     public void save() {
         initSetting = textArea.getText();
-        new SettingStorage().getState().CompileStandard = initSetting;
+        new CFCodingSettings().getState().CompileStandard = initSetting;
     }
 
     public static class _TextArea extends JBTextArea {

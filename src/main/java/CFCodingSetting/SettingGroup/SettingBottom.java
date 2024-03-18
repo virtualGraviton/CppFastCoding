@@ -1,6 +1,6 @@
 package CFCodingSetting.SettingGroup;
 
-import CFCodingServices.SettingStorage;
+import CFCodingServices.CFCodingSettings;
 import CFCodingToolWindow.MyComp.MyPanel;
 
 import javax.swing.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 public class SettingBottom extends MyPanel implements Setting {
     public SettingBottom() {
         super(BoxLayout.Y_AXIS);
-        AddComp(new SettingTextArea("CompileStandard", "Compile Standard:", new SettingStorage().getState().CompileStandard));
+        AddComp(new SettingTextArea("Compile Standard:", new CFCodingSettings().getState().CompileStandard));
     }
 
     public void save() {
