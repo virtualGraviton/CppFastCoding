@@ -1,6 +1,6 @@
-package MyToolWindow.MySettingWindow;
+package MySettingWindow;
 
-import MyToolWindow.MySettingWindow.SettingGroup.SettingBottom;
+import MySettingWindow.SettingGroup.SettingBottom;
 import PluginServices.MyProperty.PropertyManager;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;

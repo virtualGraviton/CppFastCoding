@@ -1,16 +1,15 @@
-package MyToolWindow.MySettingWindow.SettingGroup;
+package MySettingWindow.SettingGroup;
 
+import MySettingWindow.MySettings;
 import MyToolWindow.MyComp.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static MyToolWindow.MySettingWindow.MySettings.properties;
-
 public class SettingBottom extends MyPanel implements Setting {
     public SettingBottom() {
         super(BoxLayout.Y_AXIS);
-        AddComp(new SettingTextArea("CompileStandard", "Compile Standard:", properties.get("CompileStandard")));
+        AddComp(new SettingTextArea("CompileStandard", "Compile Standard:", MySettings.properties.get("CompileStandard")));
     }
 
     public void save() {

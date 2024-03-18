@@ -1,8 +1,8 @@
-package MyToolWindow.MySettingWindow.SettingGroup;
+package MySettingWindow.SettingGroup;
 
 import MyToolWindow.MyComp.MyLabel;
 import MyToolWindow.MyComp.MyPanel;
-import MyToolWindow.MySettingWindow.MySettings;
+import MySettingWindow.MySettings;
 import PluginServices.MyNotice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;

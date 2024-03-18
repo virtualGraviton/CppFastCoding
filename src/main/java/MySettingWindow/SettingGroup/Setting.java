@@ -1,4 +1,4 @@
-package MyToolWindow.MySettingWindow.SettingGroup;
+package MySettingWindow.SettingGroup;
 
 public interface Setting {
     void save();
