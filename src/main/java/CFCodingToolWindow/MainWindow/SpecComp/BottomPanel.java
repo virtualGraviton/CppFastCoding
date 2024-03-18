@@ -1,4 +1,4 @@
-package CppFastCodingToolWindow.MainWindow.SpecComp;
+package CFCodingToolWindow.MainWindow.SpecComp;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBScrollPane;

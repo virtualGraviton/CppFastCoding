@@ -1,6 +1,6 @@
-package CppFastCodingToolWindow.MainWindow.SpecComp;
+package CFCodingToolWindow.MainWindow.SpecComp;
 
-import CppFastCodingToolWindow.MyComp.MyButton;
+import CFCodingToolWindow.MyComp.MyButton;
 
 import java.awt.event.ActionEvent;
 

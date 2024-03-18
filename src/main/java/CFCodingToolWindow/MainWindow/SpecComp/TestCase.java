@@ -1,10 +1,10 @@
-package CppFastCodingToolWindow.MainWindow.SpecComp;
+package CFCodingToolWindow.MainWindow.SpecComp;
 
-import CppFastCodingServices.MyNotice;
-import CppFastCodingToolWindow.MyComp.MyButton;
-import CppFastCodingToolWindow.MyComp.MyLabel;
-import CppFastCodingToolWindow.MyComp.MyPanel;
-import CppFastCodingToolWindow.MyComp.MyTextArea;
+import CFCodingServices.MyNotice;
+import CFCodingToolWindow.MyComp.MyButton;
+import CFCodingToolWindow.MyComp.MyLabel;
+import CFCodingToolWindow.MyComp.MyPanel;
+import CFCodingToolWindow.MyComp.MyTextArea;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;

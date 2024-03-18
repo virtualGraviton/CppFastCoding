@@ -1,7 +1,7 @@
-package CppFastCodingToolWindow.MainWindow.SpecComp;
+package CFCodingToolWindow.MainWindow.SpecComp;
 
-import CppFastCodingServices.CppManager;
-import CppFastCodingToolWindow.MyComp.MyButton;
+import CFCodingServices.CppManager;
+import CFCodingToolWindow.MyComp.MyButton;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;

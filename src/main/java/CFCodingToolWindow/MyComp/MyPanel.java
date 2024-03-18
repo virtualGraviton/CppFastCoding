@@ -1,4 +1,4 @@
-package CppFastCodingToolWindow.MyComp;
+package CFCodingToolWindow.MyComp;
 
 import com.intellij.ui.JBColor;
 

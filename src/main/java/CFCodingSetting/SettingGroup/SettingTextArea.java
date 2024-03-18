@@ -1,10 +1,10 @@
-package CppFastCodingSetting.SettingGroup;
+package CFCodingSetting.SettingGroup;
 
-import CppFastCodingServices.MyNotice;
-import CppFastCodingServices.SettingStorage;
-import CppFastCodingSetting.CppFastCodingConfigurable;
-import CppFastCodingToolWindow.MyComp.MyLabel;
-import CppFastCodingToolWindow.MyComp.MyPanel;
+import CFCodingServices.MyNotice;
+import CFCodingServices.SettingStorage;
+import CFCodingSetting.CFCodingConfigurable;
+import CFCodingToolWindow.MyComp.MyLabel;
+import CFCodingToolWindow.MyComp.MyPanel;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
@@ -97,12 +97,12 @@ public class SettingTextArea extends MyPanel implements Setting {
             this.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
-                    CppFastCodingConfigurable.SettingModified = true;
+                    CFCodingConfigurable.SettingModified = true;
                 }
 
                 @Override
                 public void removeUpdate(DocumentEvent e) {
-                    CppFastCodingConfigurable.SettingModified = true;
+                    CFCodingConfigurable.SettingModified = true;
                 }
 
                 @Override

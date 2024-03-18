@@ -1,4 +1,4 @@
-package CppFastCodingSetting.SettingGroup;
+package CFCodingSetting.SettingGroup;
 
 public interface Setting {
     void save();

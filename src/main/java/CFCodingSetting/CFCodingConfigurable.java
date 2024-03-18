@@ -1,13 +1,13 @@
-package CppFastCodingSetting;
+package CFCodingSetting;
 
-import CppFastCodingServices.SettingStorage;
-import CppFastCodingSetting.SettingGroup.SettingBottom;
+import CFCodingServices.SettingStorage;
+import CFCodingSetting.SettingGroup.SettingBottom;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-public class CppFastCodingConfigurable implements Configurable {
+public class CFCodingConfigurable implements Configurable {
     public static boolean SettingModified = false;
     SettingBottom bottom;
 

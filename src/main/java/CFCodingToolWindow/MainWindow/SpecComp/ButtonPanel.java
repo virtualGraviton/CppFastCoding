@@ -1,6 +1,6 @@
-package CppFastCodingToolWindow.MainWindow.SpecComp;
+package CFCodingToolWindow.MainWindow.SpecComp;
 
-import CppFastCodingToolWindow.MyComp.MyPanel;
+import CFCodingToolWindow.MyComp.MyPanel;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.JBColor;
 

@@ -1,4 +1,4 @@
-package CppFastCodingToolWindow.MainWindow.SpecComp;
+package CFCodingToolWindow.MainWindow.SpecComp;
 
 import javax.swing.*;
 

@@ -1,6 +1,6 @@
-package CppFastCodingServices;
+package CFCodingServices;
 
-import CppFastCodingToolWindow.MainWindow.SpecComp.TestCase;
+import CFCodingToolWindow.MainWindow.SpecComp.TestCase;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;

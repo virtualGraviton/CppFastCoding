@@ -1,7 +1,7 @@
-package CppFastCodingSetting.SettingGroup;
+package CFCodingSetting.SettingGroup;
 
-import CppFastCodingServices.SettingStorage;
-import CppFastCodingToolWindow.MyComp.MyPanel;
+import CFCodingServices.SettingStorage;
+import CFCodingToolWindow.MyComp.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;

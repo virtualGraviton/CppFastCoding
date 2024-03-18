@@ -1,4 +1,4 @@
-package CppFastCodingServices;
+package CFCodingServices;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
