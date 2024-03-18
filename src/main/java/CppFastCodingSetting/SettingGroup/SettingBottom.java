@@ -1,6 +1,6 @@
 package CppFastCodingSetting.SettingGroup;
 
-import CppFastCodingSetting.MySettings;
+import CppFastCodingServices.SettingStorage;
 import CppFastCodingToolWindow.MyComp.MyPanel;
 
 import javax.swing.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 public class SettingBottom extends MyPanel implements Setting {
     public SettingBottom() {
         super(BoxLayout.Y_AXIS);
-        AddComp(new SettingTextArea("CompileStandard", "Compile Standard:", MySettings.properties.get("CompileStandard")));
+        AddComp(new SettingTextArea("CompileStandard", "Compile Standard:", new SettingStorage().getState().CompileStandard));
     }
 
     public void save() {

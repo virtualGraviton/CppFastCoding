@@ -7,15 +7,13 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-public class MySettings implements Configurable {
-    static public SettingStorage properties;
+public class CppFastCodingConfigurable implements Configurable {
     public static boolean SettingModified = false;
     SettingBottom bottom;
 
     @Nullable
     @Override
     public JComponent createComponent() {
-        properties = new SettingStorage();
         bottom = new SettingBottom();
         return bottom;
     }
@@ -28,7 +26,8 @@ public class MySettings implements Configurable {
     @Override
     public void apply() {
         bottom.save();
-        properties.save();
+        SettingStorage setting = new SettingStorage();
+        setting.getState().CompileStandard = "-std=c++17";
         SettingModified = false;
     }
 
@@ -41,6 +40,6 @@ public class MySettings implements Configurable {
     @Nullable
     @Override
     public String getDisplayName() {
-        return "My Settings";
+        return "CppFastCoding Settings";
     }
 }

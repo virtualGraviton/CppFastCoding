@@ -1,55 +1,31 @@
 package CppFastCodingServices;
 
-import com.intellij.openapi.application.PathManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.intellij.openapi.components.PersistentStateComponent;
+import com.intellij.openapi.components.State;
+import com.intellij.openapi.components.Storage;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Properties;
-
-public class SettingStorage {
-    private static final Logger logger = LoggerFactory.getLogger(SettingStorage.class);
-    Properties properties;
-
-    public SettingStorage() {
-        properties = new Properties();
-        read();
-    }
-
-    public String get(String key) {
-        return properties.getProperty(key);
-    }
-
-    public void set(String key, String val) {
-        properties.setProperty(key, val);
-    }
-
-    public void read() {
-        try {
-            InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("config.properties");
-            if (inputStream != null) {
-                properties.load(inputStream);
-                inputStream.close();
-            }
-        } catch (IOException exception) {
-            logger.error("Config read failed", exception);
+@State(
+        name = "CppFastCodingSettings",
+        storages = {
+                @Storage("CppFastCoding-Settings.xml")
         }
+)
+public class SettingStorage implements PersistentStateComponent<SettingStorage.State> {
+    private State SettingState = new State();
+
+    @Override
+    @NotNull
+    public SettingStorage.State getState() {
+        return SettingState;
     }
 
-    public void save() {
-        String jarPath = PathManager.getJarPathForClass(SettingStorage.class);
-        System.out.println("当前插件的 JAR 包地址：" + jarPath);
-        try {
-            OutputStream outputStream = new FileOutputStream("config.properties");
-            properties.store(outputStream, null);
-            outputStream.close();
-            read();
-        } catch (IOException exception) {
-            logger.error("Config write failed", exception);
-        }
-        MyNotice.ShowBalloon("Property:", "Config saved.");
+    @Override
+    public void loadState(@NotNull State state) {
+        SettingState = state;
+    }
+
+    public static class State {
+        public String CompileStandard = "-std=c++20";
     }
 }

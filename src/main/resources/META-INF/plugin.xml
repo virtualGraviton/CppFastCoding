@@ -9,12 +9,11 @@
         <action id="ShowMainWindow" class="MyAction.ShowMainWindowAction" text="ShowMainWindow"
                 description="Show main window">
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt B"/>
         </action>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable id="MySettings" displayName="CppFastCoding Settings" groupId="other"
-                                 instance="CppFastCodingSetting.MySettings"/>
+        <applicationConfigurable displayName="CppFastCoding Settings" groupId="other"
+                                 instance="CppFastCodingSetting.CppFastCodingConfigurable"/>
         <toolWindow id="CppFastCodingPlugin" anchor="right"
                     factoryClass="CppFastCodingToolWindow.MainWindow.MainToolWindow"/>
         <notificationGroup displayType="BALLOON" id="MyNoticeGroup"/>

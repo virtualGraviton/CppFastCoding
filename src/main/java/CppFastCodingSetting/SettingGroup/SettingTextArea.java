@@ -1,7 +1,8 @@
 package CppFastCodingSetting.SettingGroup;
 
 import CppFastCodingServices.MyNotice;
-import CppFastCodingSetting.MySettings;
+import CppFastCodingServices.SettingStorage;
+import CppFastCodingSetting.CppFastCodingConfigurable;
 import CppFastCodingToolWindow.MyComp.MyLabel;
 import CppFastCodingToolWindow.MyComp.MyPanel;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
@@ -60,7 +61,7 @@ public class SettingTextArea extends MyPanel implements Setting {
 
     public void save() {
         initSetting = textArea.getText();
-        MySettings.properties.set(KEY, initSetting);
+        new SettingStorage().getState().CompileStandard = initSetting;
     }
 
     public static class _TextArea extends JBTextArea {
@@ -96,12 +97,12 @@ public class SettingTextArea extends MyPanel implements Setting {
             this.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
-                    MySettings.SettingModified = true;
+                    CppFastCodingConfigurable.SettingModified = true;
                 }
 
                 @Override
                 public void removeUpdate(DocumentEvent e) {
-                    MySettings.SettingModified = true;
+                    CppFastCodingConfigurable.SettingModified = true;
                 }
 
                 @Override
