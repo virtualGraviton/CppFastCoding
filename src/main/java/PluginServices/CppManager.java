@@ -1,6 +1,6 @@
 package PluginServices;
 
-import MyToolWindow.MainWindow.SpecComp.TestCase;
+import CppFastCodingToolWindow.MainWindow.SpecComp.TestCase;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;

@@ -1,9 +1,9 @@
-package MyToolWindow.MainWindow.SpecComp;
+package CppFastCodingToolWindow.MainWindow.SpecComp;
 
-import MyToolWindow.MyComp.MyButton;
-import MyToolWindow.MyComp.MyLabel;
-import MyToolWindow.MyComp.MyPanel;
-import MyToolWindow.MyComp.MyTextArea;
+import CppFastCodingToolWindow.MyComp.MyButton;
+import CppFastCodingToolWindow.MyComp.MyLabel;
+import CppFastCodingToolWindow.MyComp.MyPanel;
+import CppFastCodingToolWindow.MyComp.MyTextArea;
 import PluginServices.MyNotice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;

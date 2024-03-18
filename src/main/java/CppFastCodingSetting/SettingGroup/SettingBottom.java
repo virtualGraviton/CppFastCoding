@@ -1,7 +1,7 @@
-package MySettingWindow.SettingGroup;
+package CppFastCodingSetting.SettingGroup;
 
-import MySettingWindow.MySettings;
-import MyToolWindow.MyComp.MyPanel;
+import CppFastCodingSetting.MySettings;
+import CppFastCodingToolWindow.MyComp.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;

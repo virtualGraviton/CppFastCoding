@@ -1,6 +1,6 @@
-package MyToolWindow.MainWindow;
+package CppFastCodingToolWindow.MainWindow;
 
-import MyToolWindow.MainWindow.SpecComp.BottomPanel;
+import CppFastCodingToolWindow.MainWindow.SpecComp.BottomPanel;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;

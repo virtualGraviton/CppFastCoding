@@ -1,4 +1,4 @@
-package MySettingWindow.SettingGroup;
+package CppFastCodingSetting.SettingGroup;
 
 public interface Setting {
     void save();

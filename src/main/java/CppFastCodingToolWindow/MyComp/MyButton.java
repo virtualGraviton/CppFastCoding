@@ -1,4 +1,4 @@
-package MyToolWindow.MyComp;
+package CppFastCodingToolWindow.MyComp;
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;

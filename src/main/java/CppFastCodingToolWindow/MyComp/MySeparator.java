@@ -1,4 +1,4 @@
-package MyToolWindow.MyComp;
+package CppFastCodingToolWindow.MyComp;
 
 import javax.swing.*;
 import java.awt.*;

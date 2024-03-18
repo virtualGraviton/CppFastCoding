@@ -1,6 +1,6 @@
-package MyToolWindow.MainWindow.SpecComp;
+package CppFastCodingToolWindow.MainWindow.SpecComp;
 
-import MyToolWindow.MyComp.MyButton;
+import CppFastCodingToolWindow.MyComp.MyButton;
 import com.intellij.openapi.options.ShowSettingsUtil;
 
 public class SC_SettingButton extends MyButton {

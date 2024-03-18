@@ -1,8 +1,8 @@
-package MySettingWindow.SettingGroup;
+package CppFastCodingSetting.SettingGroup;
 
-import MyToolWindow.MyComp.MyLabel;
-import MyToolWindow.MyComp.MyPanel;
-import MySettingWindow.MySettings;
+import CppFastCodingToolWindow.MyComp.MyLabel;
+import CppFastCodingToolWindow.MyComp.MyPanel;
+import CppFastCodingSetting.MySettings;
 import PluginServices.MyNotice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;

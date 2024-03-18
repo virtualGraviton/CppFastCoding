@@ -1,6 +1,6 @@
-package MyToolWindow.MainWindow.SpecComp;
+package CppFastCodingToolWindow.MainWindow.SpecComp;
 
-import MyToolWindow.MyComp.MyButton;
+import CppFastCodingToolWindow.MyComp.MyButton;
 import PluginServices.CppManager;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;

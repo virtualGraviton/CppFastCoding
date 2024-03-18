@@ -1,6 +1,6 @@
-package MySettingWindow;
+package CppFastCodingSetting;
 
-import MySettingWindow.SettingGroup.SettingBottom;
+import CppFastCodingSetting.SettingGroup.SettingBottom;
 import PluginServices.MyProperty.PropertyManager;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
