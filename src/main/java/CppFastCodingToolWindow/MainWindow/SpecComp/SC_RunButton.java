@@ -1,7 +1,7 @@
 package CppFastCodingToolWindow.MainWindow.SpecComp;
 
-import CppFastCodingToolWindow.MyComp.MyButton;
 import CppFastCodingServices.CppManager;
+import CppFastCodingToolWindow.MyComp.MyButton;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;

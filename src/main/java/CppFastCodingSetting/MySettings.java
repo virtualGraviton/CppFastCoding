@@ -1,7 +1,7 @@
 package CppFastCodingSetting;
 
-import CppFastCodingSetting.SettingGroup.SettingBottom;
 import CppFastCodingServices.SettingStorage;
+import CppFastCodingSetting.SettingGroup.SettingBottom;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
 

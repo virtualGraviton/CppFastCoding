@@ -15,7 +15,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable id="MySettings" displayName="CppFastCoding Settings" groupId="other"
                                  instance="CppFastCodingSetting.MySettings"/>
-        <toolWindow id="CppFastCodingPlugin" anchor="right" factoryClass="CppFastCodingToolWindow.MainWindow.MainToolWindow"/>
+        <toolWindow id="CppFastCodingPlugin" anchor="right"
+                    factoryClass="CppFastCodingToolWindow.MainWindow.MainToolWindow"/>
         <notificationGroup displayType="BALLOON" id="MyNoticeGroup"/>
     </extensions>
 

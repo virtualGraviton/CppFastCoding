@@ -1,7 +1,6 @@
 package CppFastCodingServices;
 
 import com.intellij.openapi.application.PathManager;
-import com.intellij.openapi.components.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
+
 public class SettingStorage {
     private static final Logger logger = LoggerFactory.getLogger(SettingStorage.class);
     Properties properties;
