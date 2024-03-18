@@ -1,6 +1,6 @@
-package PluginServices.MyProperty;
+package CppFastCodingServices.MyProperty;
 
-import PluginServices.MyNotice;
+import CppFastCodingServices.MyNotice;
 import com.intellij.openapi.application.PathManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

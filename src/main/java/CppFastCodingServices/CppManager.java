@@ -1,4 +1,4 @@
-package PluginServices;
+package CppFastCodingServices;
 
 import CppFastCodingToolWindow.MainWindow.SpecComp.TestCase;
 import com.intellij.openapi.fileEditor.FileEditor;

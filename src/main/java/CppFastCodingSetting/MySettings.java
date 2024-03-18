@@ -1,7 +1,7 @@
 package CppFastCodingSetting;
 
 import CppFastCodingSetting.SettingGroup.SettingBottom;
-import PluginServices.MyProperty.PropertyManager;
+import CppFastCodingServices.MyProperty.PropertyManager;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
 

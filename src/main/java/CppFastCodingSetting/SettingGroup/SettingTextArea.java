@@ -3,7 +3,7 @@ package CppFastCodingSetting.SettingGroup;
 import CppFastCodingToolWindow.MyComp.MyLabel;
 import CppFastCodingToolWindow.MyComp.MyPanel;
 import CppFastCodingSetting.MySettings;
-import PluginServices.MyNotice;
+import CppFastCodingServices.MyNotice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
