@@ -1,7 +1,7 @@
-package CFCodingWindow.MainToolWindow.MainWindowComp;
+package CFCoding.Window.MainWindow.MainWindowComp;
 
-import CFCodingServices.CppManager;
-import CFCodingBase.MyButton;
+import CFCoding.Base.MyButton;
+import CFCoding.Services.CppManager;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;

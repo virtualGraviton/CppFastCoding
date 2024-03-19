@@ -1,4 +1,4 @@
-package CFCodingServices;
+package CFCoding.Services;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;

@@ -1,6 +1,6 @@
-package CFCodingWindow.MainToolWindow.MainWindowComp;
+package CFCoding.Window.MainWindow.MainWindowComp;
 
-import CFCodingBase.MyButton;
+import CFCoding.Base.MyButton;
 
 import java.awt.event.ActionEvent;
 

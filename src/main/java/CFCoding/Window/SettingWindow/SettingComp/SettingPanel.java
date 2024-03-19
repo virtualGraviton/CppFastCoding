@@ -1,13 +1,14 @@
-package CFCodingWindow.SettingWindow.SettingGroup;
+package CFCoding.Window.SettingWindow.SettingComp;
 
-import CFCodingServices.CFCodingSettings;
-import CFCodingBase.MyPanel;
+import CFCoding.Services.CFCodingSettings;
+import CFCoding.Base.MyPanel;
+import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SettingPanel extends MyPanel implements Setting {
+public class SettingPanel extends MyPanel implements SettingBase {
     public SettingPanel() {
         super(BoxLayout.Y_AXIS);
         CFCodingSettings setting = ApplicationManager.getApplication().getService(CFCodingSettings.class);
@@ -16,16 +17,16 @@ public class SettingPanel extends MyPanel implements Setting {
 
     public void save() {
         for (Component comp : this.getComponents()) {
-            if (comp instanceof Setting) {
-                ((Setting) comp).save();
+            if (comp instanceof SettingBase) {
+                ((SettingBase) comp).save();
             }
         }
     }
 
     public void reset() {
         for (Component comp : this.getComponents()) {
-            if (comp instanceof Setting) {
-                ((Setting) comp).reset();
+            if (comp instanceof SettingBase) {
+                ((SettingBase) comp).reset();
             }
         }
     }

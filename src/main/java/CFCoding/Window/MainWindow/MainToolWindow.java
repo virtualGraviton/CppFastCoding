@@ -1,6 +1,6 @@
-package CFCodingWindow.MainToolWindow;
+package CFCoding.Window.MainWindow;
 
-import CFCodingWindow.MainToolWindow.MainWindowComp.BottomPanel;
+import CFCoding.Window.MainWindow.MainWindowComp.BottomPanel;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;

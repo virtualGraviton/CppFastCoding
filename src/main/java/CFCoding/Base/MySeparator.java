@@ -1,4 +1,4 @@
-package CFCodingBase;
+package CFCoding.Base;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package CFCodingWindow.MainToolWindow.MainWindowComp;
+package CFCoding.Window.MainWindow.MainWindowComp;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBScrollPane;

@@ -1,10 +1,11 @@
-package CFCodingWindow.SettingWindow.SettingGroup;
+package CFCoding.Window.SettingWindow.SettingComp;
 
-import CFCodingServices.CFCodingSettings;
-import CFCodingServices.MyNotice;
-import CFCodingWindow.SettingWindow.CFCodingConfigurable;
-import CFCodingBase.MyLabel;
-import CFCodingBase.MyPanel;
+import CFCoding.Base.MyLabel;
+import CFCoding.Services.CFCodingSettings;
+import CFCoding.Services.MyNotice;
+import CFCoding.Window.SettingWindow.CFCodingConfigurable;
+import CFCoding.Base.MyPanel;
+import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
@@ -21,7 +22,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class SettingTextArea extends MyPanel implements Setting {
+public class SettingTextArea extends MyPanel implements SettingBase {
     private String initSetting;
     private _TextArea textArea;
 

@@ -1,6 +1,6 @@
-package CFCodingServices;
+package CFCoding.Services;
 
-import CFCodingWindow.MainToolWindow.MainWindowComp.TestCase;
+import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;

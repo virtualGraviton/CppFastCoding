@@ -1,4 +1,4 @@
-package CFCodingBase;
+package CFCoding.Base;
 
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;

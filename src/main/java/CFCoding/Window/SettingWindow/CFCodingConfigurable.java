@@ -1,6 +1,6 @@
-package CFCodingWindow.SettingWindow;
+package CFCoding.Window.SettingWindow;
 
-import CFCodingWindow.SettingWindow.SettingGroup.SettingPanel;
+import CFCoding.Window.SettingWindow.SettingComp.SettingPanel;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
 
