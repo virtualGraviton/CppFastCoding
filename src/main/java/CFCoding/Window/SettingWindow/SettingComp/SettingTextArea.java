@@ -117,7 +117,7 @@ public class SettingTextArea extends MyPanel implements SettingBase {
                 @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        Notice.ShowBalloon("Waring:", "请勿输入回车.");
+                        Notice.ShowBalloon("WARN:", "请勿输入回车.");
                         e.consume();
                     }
                 }

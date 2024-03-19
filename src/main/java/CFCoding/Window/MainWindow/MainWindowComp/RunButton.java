@@ -2,13 +2,13 @@ package CFCoding.Window.MainWindow.MainWindowComp;
 
 import CFCoding.Base.MyButton;
 import CFCoding.Services.CppManager;
+import CFCoding.Services.Notice;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class RunButton extends MyButton {
     private void ExeRun(ActionEvent e) {
         SaveCpp();
         if (testCasePanel.testCaseNum == 0) {
-            Messages.showMessageDialog("Empty test case.", "Error", Messages.getInformationIcon());
+            Notice.ShowBalloon("ERROR", "Empty test case.");
             return;
         }
         CppManager cppManager = new CppManager(project, testCasePanel);
