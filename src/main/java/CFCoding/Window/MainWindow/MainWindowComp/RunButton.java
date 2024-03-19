@@ -32,12 +32,8 @@ public class RunButton extends MyButton {
             Messages.showMessageDialog("Empty test case.", "Error", Messages.getInformationIcon());
             return;
         }
-        CppManager cppManager = new CppManager(project);
-        if (cppManager.cppCompile() == cppManager.CompileFailed) return;
-
-        for (int i = 0; i < testCasePanel.testCaseNum; i++) {
-            cppManager.cppRun(testCasePanel.getTestCase(i));
-        }
+        CppManager cppManager = new CppManager(project, testCasePanel);
+        cppManager.RunAllTest();
     }
 
     public void SaveCpp() {

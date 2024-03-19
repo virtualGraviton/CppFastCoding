@@ -12,7 +12,7 @@
         </action>
     </actions>
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable displayName="CppFastCoding Settings" groupId="other"
+        <applicationConfigurable displayName="CppFastCoding Settings" groupId="root"
                                  instance="CFCoding.Window.SettingWindow.CFCodingConfigurable"/>
         <toolWindow id="CppFastCodingPlugin" anchor="right"
                     factoryClass="CFCoding.Window.MainWindow.MainToolWindow"/>
