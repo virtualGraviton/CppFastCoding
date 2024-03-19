@@ -109,11 +109,11 @@ public class CppManager {
             process.getOutputStream().close();
 
             int maxWaitTime = 5000;
-            boolean timeLimitExceed = false;
 
             if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();
-                timeLimitExceed = true;
+                verdict = Stat.RunTLE;
+                return new RunResult(output.toString(), verdict);
             }
 
             byte[] buffer = new byte[1024];
@@ -124,8 +124,6 @@ public class CppManager {
 
             if (process.exitValue() == 0) {
                 verdict = Stat.RunSucceed;
-            } else if (timeLimitExceed) {
-                verdict = Stat.RunTLE;
             } else {
                 verdict = Stat.RunRE;
             }
@@ -163,18 +161,19 @@ public class CppManager {
     }
 
     public void AsyncRun(TestCase now) {
-        SwingWorker<Integer, Void> AsyncRun = new SwingWorker<>() {
+        SwingWorker<RunResult, Void> AsyncRun = new SwingWorker<>() {
             @Override
-            protected Integer doInBackground() throws Exception {
+            protected RunResult doInBackground() throws Exception {
                 return Run(now);
             }
 
             @Override
             protected void done() {
                 try {
-                    Integer result = get();
+                    RunResult result = get();
                     SwingUtilities.invokeLater(() -> {
-                        // 更新插件界面或执行其他操作
+                        now.SetStat(result.verdict);
+                        now.outputField.setText(result.output);
                     });
                 } catch (Exception e) {
                     logger.error("FatalError", e);
@@ -184,15 +183,15 @@ public class CppManager {
     }
 
     public static class Stat {
-        public static int CompileSucceed = 0;
-        public static int CompileFailed = 1;
-        public static int UnCompiled = 2;
-        public static int RunSucceed = 10;
-        public static int RunTLE = 11;
-        public static int RunRE = 12;
+        public static int CompileSucceed = 10;
+        public static int CompileFailed = 11;
+        public static int UnCompiled = 12;
+        public static int RunSucceed = TestCase.AC;
+        public static int RunTLE = TestCase.TLE;
+        public static int RunRE = TestCase.RE;
     }
 
-    public class RunResult {
+    public static class RunResult {
         public String output;
         public int verdict;
 
