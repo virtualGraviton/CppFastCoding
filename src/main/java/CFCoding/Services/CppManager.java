@@ -51,7 +51,7 @@ public class CppManager {
         if (file.exists()) {
             boolean deleted = file.delete();
             if (!deleted) {
-                MyNotice.ShowBalloon("ERROR", "Failed to delete file.");
+                Notice.ShowBalloon("ERROR", "Failed to delete file.");
             }
         }
         try {
@@ -67,12 +67,12 @@ public class CppManager {
             if (exitCode == 0) {
                 return CompileSucceed;
             } else {
-                MyNotice.ShowBalloon("ERROR", "Compilation failed.");
+                Notice.ShowBalloon("ERROR", "Compilation failed.");
                 return CompileFailed;
             }
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
-            MyNotice.ShowBalloon("ERROR", "Compilation failed.");
+            Notice.ShowBalloon("ERROR", "Compilation failed.");
             return CompileFailed;
         }
     }
@@ -111,7 +111,7 @@ public class CppManager {
                 nowTestCase.SetStat(TestCase.RE);
             }
         } catch (Exception exception) {
-            MyNotice.ShowBalloon("ERROR", "Info:" + exception);
+            Notice.ShowBalloon("ERROR", "Info:" + exception);
             logger.error("FatalError", exception);
         }
     }

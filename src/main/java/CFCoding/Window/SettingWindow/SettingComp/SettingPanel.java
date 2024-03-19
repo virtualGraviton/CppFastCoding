@@ -1,7 +1,7 @@
 package CFCoding.Window.SettingWindow.SettingComp;
 
 import CFCoding.Base.MyPanel;
-import CFCoding.Services.CFCodingSettings;
+import CFCoding.Services.SettingStorage;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
 
@@ -11,7 +11,7 @@ import java.awt.*;
 public class SettingPanel extends MyPanel implements SettingBase {
     public SettingPanel() {
         super(BoxLayout.Y_AXIS);
-        CFCodingSettings setting = ApplicationManager.getApplication().getService(CFCodingSettings.class);
+        SettingStorage setting = ApplicationManager.getApplication().getService(SettingStorage.class);
         AddComp(new SettingTextArea("Compile Standard:", setting.getState().CompileStandard));
     }
 

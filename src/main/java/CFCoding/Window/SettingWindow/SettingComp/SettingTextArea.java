@@ -2,8 +2,8 @@ package CFCoding.Window.SettingWindow.SettingComp;
 
 import CFCoding.Base.MyLabel;
 import CFCoding.Base.MyPanel;
-import CFCoding.Services.CFCodingSettings;
-import CFCoding.Services.MyNotice;
+import CFCoding.Services.SettingStorage;
+import CFCoding.Services.Notice;
 import CFCoding.Window.SettingWindow.CFCodingConfigurable;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
@@ -52,7 +52,7 @@ public class SettingTextArea extends MyPanel implements SettingBase {
 
     public void save() {
         initSetting = textArea.getText();
-        CFCodingSettings setting = ApplicationManager.getApplication().getService(CFCodingSettings.class);
+        SettingStorage setting = ApplicationManager.getApplication().getService(SettingStorage.class);
         setting.getState().CompileStandard = initSetting;
     }
 
@@ -117,7 +117,7 @@ public class SettingTextArea extends MyPanel implements SettingBase {
                 @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        MyNotice.ShowBalloon("Waring:", "请勿输入回车.");
+                        Notice.ShowBalloon("Waring:", "请勿输入回车.");
                         e.consume();
                     }
                 }

@@ -4,7 +4,7 @@ import CFCoding.Base.MyButton;
 import CFCoding.Base.MyLabel;
 import CFCoding.Base.MyPanel;
 import CFCoding.Base.MyTextArea;
-import CFCoding.Services.MyNotice;
+import CFCoding.Services.Notice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
@@ -93,11 +93,11 @@ public class TestCase extends MyPanel {
             this.statLabel.setForeground(JBColor.green);
         } else if (stat == TestCase.TLE) {
             this.statLabel.setText("TimeLimitExceed");
-            MyNotice.ShowBalloon("INFO", "Info: TimeLimitExceed");
+            Notice.ShowBalloon("INFO", "Info: TimeLimitExceed");
             this.statLabel.setForeground(JBColor.black);
         } else if (stat == TestCase.RE) {
             this.statLabel.setText("RuntimeError");
-            MyNotice.ShowBalloon("INFO", "Info: RuntimeError");
+            Notice.ShowBalloon("INFO", "Info: RuntimeError");
             this.statLabel.setForeground(JBColor.red);
         } else if (stat == TestCase.PD) {
             this.statLabel.setText("Pending...");

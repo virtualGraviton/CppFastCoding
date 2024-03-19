@@ -14,18 +14,18 @@ import org.jetbrains.annotations.NotNull;
                 @Storage("CppFastCoding_Settings.xml")
         }
 )
-public final class CFCodingSettings implements PersistentStateComponent<CFCodingSettings> {
+public final class SettingStorage implements PersistentStateComponent<SettingStorage> {
 
     public String CompileStandard = "-std=c++20";
 
     @Override
     @NotNull
-    public CFCodingSettings getState() {
+    public SettingStorage getState() {
         return this;
     }
 
     @Override
-    public void loadState(@NotNull CFCodingSettings state) {
+    public void loadState(@NotNull SettingStorage state) {
         XmlSerializerUtil.copyBean(state, this);
     }
 }
