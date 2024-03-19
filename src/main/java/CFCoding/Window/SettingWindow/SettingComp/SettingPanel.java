@@ -1,7 +1,7 @@
 package CFCoding.Window.SettingWindow.SettingComp;
 
-import CFCoding.Services.CFCodingSettings;
 import CFCoding.Base.MyPanel;
+import CFCoding.Services.CFCodingSettings;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
 

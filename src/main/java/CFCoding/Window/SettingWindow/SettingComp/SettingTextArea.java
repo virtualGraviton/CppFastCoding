@@ -1,10 +1,10 @@
 package CFCoding.Window.SettingWindow.SettingComp;
 
 import CFCoding.Base.MyLabel;
+import CFCoding.Base.MyPanel;
 import CFCoding.Services.CFCodingSettings;
 import CFCoding.Services.MyNotice;
 import CFCoding.Window.SettingWindow.CFCodingConfigurable;
-import CFCoding.Base.MyPanel;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
