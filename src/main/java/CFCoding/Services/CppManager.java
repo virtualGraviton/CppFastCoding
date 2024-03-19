@@ -156,7 +156,7 @@ public class CppManager {
     private void AsyncRun(TestCase now) {
         SwingWorker<RunResult, Void> AsyncRun = new SwingWorker<>() {
             @Override
-            protected RunResult doInBackground() throws Exception {
+            protected RunResult doInBackground() {
                 return Run(now);
             }
 
@@ -173,6 +173,7 @@ public class CppManager {
                 }
             }
         };
+        AsyncRun.execute();
     }
 
     public static class Stat {
