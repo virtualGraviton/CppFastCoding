@@ -1,10 +1,10 @@
-package CFCodingSetting.SettingGroup;
+package CFCodingWindow.SettingWindow.SettingGroup;
 
 import CFCodingServices.CFCodingSettings;
 import CFCodingServices.MyNotice;
-import CFCodingSetting.CFCodingConfigurable;
-import CFCodingToolWindow.MyComp.MyLabel;
-import CFCodingToolWindow.MyComp.MyPanel;
+import CFCodingWindow.SettingWindow.CFCodingConfigurable;
+import CFCodingBase.MyLabel;
+import CFCodingBase.MyPanel;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;

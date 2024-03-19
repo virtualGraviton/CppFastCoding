@@ -1,13 +1,13 @@
-package CFCodingToolWindow.MainWindow.SpecComp;
+package CFCodingWindow.MainToolWindow.MainWindowComp;
 
-import CFCodingToolWindow.MyComp.MyButton;
+import CFCodingBase.MyButton;
 
 import java.awt.event.ActionEvent;
 
-public class SC_ClrButton extends MyButton {
+public class ClrButton extends MyButton {
     TestCasePanel testCasePanel;
 
-    SC_ClrButton(TestCasePanel t) {
+    ClrButton(TestCasePanel t) {
         super("Clear");
         testCasePanel = t;
         this.addActionListener(this::ClearAll);

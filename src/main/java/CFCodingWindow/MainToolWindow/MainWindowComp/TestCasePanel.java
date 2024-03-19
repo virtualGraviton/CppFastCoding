@@ -1,4 +1,4 @@
-package CFCodingToolWindow.MainWindow.SpecComp;
+package CFCodingWindow.MainToolWindow.MainWindowComp;
 
 import javax.swing.*;
 

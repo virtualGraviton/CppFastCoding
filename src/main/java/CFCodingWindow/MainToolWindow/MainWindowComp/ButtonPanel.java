@@ -1,6 +1,6 @@
-package CFCodingToolWindow.MainWindow.SpecComp;
+package CFCodingWindow.MainToolWindow.MainWindowComp;
 
-import CFCodingToolWindow.MyComp.MyPanel;
+import CFCodingBase.MyPanel;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.JBColor;
 
@@ -10,10 +10,10 @@ import java.awt.*;
 public class ButtonPanel extends MyPanel {
     ButtonPanel(Project project, TestCasePanel testCasePanel) {
         super(BoxLayout.Y_AXIS);
-        this.AddComp(new SC_NewButton(testCasePanel));
-        this.AddComp(new SC_RunButton(project, testCasePanel));
-        this.AddComp(new SC_ClrButton(testCasePanel));
-        this.AddComp(new SC_SettingButton());
+        this.AddComp(new NewButton(testCasePanel));
+        this.AddComp(new RunButton(project, testCasePanel));
+        this.AddComp(new ClrButton(testCasePanel));
+        this.AddComp(new OpenSettingButton());
     }
 
     @Override

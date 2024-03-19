@@ -1,10 +1,10 @@
-package CFCodingToolWindow.MainWindow.SpecComp;
+package CFCodingWindow.MainToolWindow.MainWindowComp;
 
-import CFCodingToolWindow.MyComp.MyButton;
+import CFCodingBase.MyButton;
 import com.intellij.openapi.options.ShowSettingsUtil;
 
-public class SC_SettingButton extends MyButton {
-    SC_SettingButton() {
+public class OpenSettingButton extends MyButton {
+    OpenSettingButton() {
         super("Setting");
         this.addActionListener(e -> ShowSettingsUtil.getInstance().showSettingsDialog(null, "CppFastCoding Settings"));
     }

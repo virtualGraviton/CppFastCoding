@@ -1,6 +1,6 @@
 package CFCodingServices;
 
-import CFCodingToolWindow.MainWindow.SpecComp.TestCase;
+import CFCodingWindow.MainToolWindow.MainWindowComp.TestCase;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
@@ -12,7 +12,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/**
+ *
+ */
 public class CppManager {
     private static final Logger logger = LoggerFactory.getLogger(CppManager.class);
     public int CompileSucceed = 0;

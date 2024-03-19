@@ -1,13 +1,13 @@
-package CFCodingToolWindow.MainWindow.SpecComp;
+package CFCodingWindow.MainToolWindow.MainWindowComp;
 
-import CFCodingToolWindow.MyComp.MyButton;
+import CFCodingBase.MyButton;
 
 import java.awt.event.ActionEvent;
 
-public class SC_NewButton extends MyButton {
+public class NewButton extends MyButton {
     TestCasePanel testCasePanel;
 
-    SC_NewButton(TestCasePanel t) {
+    NewButton(TestCasePanel t) {
         super("New");
         testCasePanel = t;
         this.addActionListener(this::AddTestCase);

@@ -1,10 +1,10 @@
-package CFCodingToolWindow.MainWindow.SpecComp;
+package CFCodingWindow.MainToolWindow.MainWindowComp;
 
 import CFCodingServices.MyNotice;
-import CFCodingToolWindow.MyComp.MyButton;
-import CFCodingToolWindow.MyComp.MyLabel;
-import CFCodingToolWindow.MyComp.MyPanel;
-import CFCodingToolWindow.MyComp.MyTextArea;
+import CFCodingBase.MyButton;
+import CFCodingBase.MyLabel;
+import CFCodingBase.MyPanel;
+import CFCodingBase.MyTextArea;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;

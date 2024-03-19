@@ -1,14 +1,14 @@
-package CFCodingSetting.SettingGroup;
+package CFCodingWindow.SettingWindow.SettingGroup;
 
 import CFCodingServices.CFCodingSettings;
-import CFCodingToolWindow.MyComp.MyPanel;
+import CFCodingBase.MyPanel;
 import com.intellij.openapi.application.ApplicationManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SettingBottom extends MyPanel implements Setting {
-    public SettingBottom() {
+public class SettingPanel extends MyPanel implements Setting {
+    public SettingPanel() {
         super(BoxLayout.Y_AXIS);
         CFCodingSettings setting = ApplicationManager.getApplication().getService(CFCodingSettings.class);
         AddComp(new SettingTextArea("Compile Standard:", setting.getState().CompileStandard));

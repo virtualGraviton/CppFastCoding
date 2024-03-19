@@ -1,7 +1,7 @@
-package CFCodingToolWindow.MainWindow.SpecComp;
+package CFCodingWindow.MainToolWindow.MainWindowComp;
 
 import CFCodingServices.CppManager;
-import CFCodingToolWindow.MyComp.MyButton;
+import CFCodingBase.MyButton;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -14,12 +14,12 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.event.ActionEvent;
 
-public class SC_RunButton extends MyButton {
+public class RunButton extends MyButton {
     private static final Logger logger = LoggerFactory.getLogger(BottomPanel.class);
     Project project;
     TestCasePanel testCasePanel;
 
-    SC_RunButton(Project p, TestCasePanel t) {
+    RunButton(Project p, TestCasePanel t) {
         super("Run");
         project = p;
         testCasePanel = t;
@@ -32,11 +32,11 @@ public class SC_RunButton extends MyButton {
             Messages.showMessageDialog("Empty test case.", "Error", Messages.getInformationIcon());
             return;
         }
-        CppManager cm = new CppManager(project);
-        if (cm.cppCompile() == cm.CompileFailed) return;
+        CppManager cppManager = new CppManager(project);
+        if (cppManager.cppCompile() == cppManager.CompileFailed) return;
 
         for (int i = 0; i < testCasePanel.testCaseNum; i++) {
-            cm.cppRun(testCasePanel.getTestCase(i));
+            cppManager.cppRun(testCasePanel.getTestCase(i));
         }
     }
 

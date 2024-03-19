@@ -1,4 +1,4 @@
-package CFCodingToolWindow.MyComp;
+package CFCodingBase;
 
 import javax.swing.*;
 import java.awt.*;

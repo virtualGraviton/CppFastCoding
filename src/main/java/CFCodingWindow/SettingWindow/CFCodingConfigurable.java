@@ -1,8 +1,6 @@
-package CFCodingSetting;
+package CFCodingWindow.SettingWindow;
 
-import CFCodingServices.CFCodingSettings;
-import CFCodingSetting.SettingGroup.SettingBottom;
-import com.intellij.openapi.application.ApplicationManager;
+import CFCodingWindow.SettingWindow.SettingGroup.SettingPanel;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,12 +8,12 @@ import javax.swing.*;
 
 public class CFCodingConfigurable implements Configurable {
     public static boolean SettingModified = false;
-    SettingBottom bottom;
+    SettingPanel bottom;
 
     @Nullable
     @Override
     public JComponent createComponent() {
-        bottom = new SettingBottom();
+        bottom = new SettingPanel();
         return bottom;
     }
 

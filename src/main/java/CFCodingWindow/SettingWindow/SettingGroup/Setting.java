@@ -1,4 +1,4 @@
-package CFCodingSetting.SettingGroup;
+package CFCodingWindow.SettingWindow.SettingGroup;
 
 public interface Setting {
     void save();

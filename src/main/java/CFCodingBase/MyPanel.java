@@ -1,4 +1,4 @@
-package CFCodingToolWindow.MyComp;
+package CFCodingBase;
 
 import com.intellij.ui.JBColor;
 
