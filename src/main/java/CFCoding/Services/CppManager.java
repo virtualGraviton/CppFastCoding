@@ -47,7 +47,6 @@ public class CppManager {
         CompileStat = Stat.UnCompiled;
     }
 
-    //进行编译之前的必要准备
     private void CompilePrepare() {
         if (exeFilePath == null) {
             CompileStat = Stat.CompileFailed;
