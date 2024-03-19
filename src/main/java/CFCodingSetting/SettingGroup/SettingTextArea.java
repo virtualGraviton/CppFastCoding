@@ -1,10 +1,11 @@
 package CFCodingSetting.SettingGroup;
 
-import CFCodingServices.MyNotice;
 import CFCodingServices.CFCodingSettings;
+import CFCodingServices.MyNotice;
 import CFCodingSetting.CFCodingConfigurable;
 import CFCodingToolWindow.MyComp.MyLabel;
 import CFCodingToolWindow.MyComp.MyPanel;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
@@ -34,14 +35,6 @@ public class SettingTextArea extends MyPanel implements Setting {
         this.setMaximumSize(new Dimension(1000, 60));
     }
 
-    public SettingTextArea(String name) {
-        super(BoxLayout.Y_AXIS);
-        this.AddComp(new MyLabel(name));
-        this.AddComp(new _TextArea());
-        this.setBackground(JBColor.red);
-        this.setMaximumSize(new Dimension(1000, 20));
-    }
-
     public void AddComp(JComponent comp) {
         this.add(comp);
         if (Axis == BoxLayout.X_AXIS) {
@@ -58,7 +51,8 @@ public class SettingTextArea extends MyPanel implements Setting {
 
     public void save() {
         initSetting = textArea.getText();
-        new CFCodingSettings().getState().CompileStandard = initSetting;
+        CFCodingSettings setting = ApplicationManager.getApplication().getService(CFCodingSettings.class);
+        setting.getState().CompileStandard = initSetting;
     }
 
     public static class _TextArea extends JBTextArea {

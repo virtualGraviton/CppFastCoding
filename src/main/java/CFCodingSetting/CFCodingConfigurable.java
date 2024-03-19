@@ -2,6 +2,7 @@ package CFCodingSetting;
 
 import CFCodingServices.CFCodingSettings;
 import CFCodingSetting.SettingGroup.SettingBottom;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.options.Configurable;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,9 +27,6 @@ public class CFCodingConfigurable implements Configurable {
     @Override
     public void apply() {
         bottom.save();
-        CFCodingSettings setting = new CFCodingSettings();
-        setting.getState().CompileStandard = "-std=c++17";
-
         SettingModified = false;
     }
 
