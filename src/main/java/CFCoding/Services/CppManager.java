@@ -47,21 +47,8 @@ public class CppManager {
         CompileStat = Stat.UnCompiled;
     }
 
-    public void RunAllTest() {
-        CompilePrepare();
-        if (CompileStat == Stat.CompileFailed) {
-            return;
-        }
-        AsyncCompile();
-        for (Component comp : tot.getComponents()) {
-            TestCase now = (TestCase) comp;
-            now.SetStat(TestCase.RUN);
-            AsyncRun(now);
-        }
-    }
-
     //进行编译之前的必要准备
-    public void CompilePrepare() {
+    private void CompilePrepare() {
         if (exeFilePath == null) {
             CompileStat = Stat.CompileFailed;
             Notice.ShowBalloon("ERROR", "No file selected.");
@@ -99,7 +86,7 @@ public class CppManager {
         }
     }
 
-    public RunResult Run(@NotNull TestCase nowTestCase) {
+    private RunResult Run(@NotNull TestCase nowTestCase) {
         String input = nowTestCase.inputField.getText();
         StringBuilder output = new StringBuilder();
         int verdict;
@@ -135,8 +122,9 @@ public class CppManager {
         return new RunResult(output.toString(), verdict);
     }
 
-    public void AsyncCompile() {
-        SwingWorker<Integer, Void> Async = new SwingWorker<>() {
+    public void AsyncRunAll() {
+        CompilePrepare();
+        SwingWorker<Integer, Void> AsyncCompile = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
                 return Compile();
@@ -151,16 +139,21 @@ public class CppManager {
                             Notice.ShowBalloon("ERROR", "Compilation failed.");
                             return;
                         }
+                        for (Component comp : tot.getComponents()) {
+                            TestCase now = (TestCase) comp;
+                            now.SetStat(TestCase.RUN);
+                            AsyncRun(now);
+                        }
                     });
                 } catch (Exception e) {
                     logger.error("FatalError", e);
                 }
             }
         };
-        Async.execute();
+        AsyncCompile.execute();
     }
 
-    public void AsyncRun(TestCase now) {
+    private void AsyncRun(TestCase now) {
         SwingWorker<RunResult, Void> AsyncRun = new SwingWorker<>() {
             @Override
             protected RunResult doInBackground() throws Exception {

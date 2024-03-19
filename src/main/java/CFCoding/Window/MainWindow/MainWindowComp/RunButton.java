@@ -33,7 +33,7 @@ public class RunButton extends MyButton {
             return;
         }
         CppManager cppManager = new CppManager(project, testCasePanel);
-        cppManager.RunAllTest();
+        cppManager.AsyncRunAll();
     }
 
     public void SaveCpp() {
