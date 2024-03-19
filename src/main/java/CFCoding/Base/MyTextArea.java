@@ -20,13 +20,6 @@ public class MyTextArea extends JBTextArea {
         addListener();
     }
 
-    public MyTextArea(String init) {
-        SetFont();
-        Init();
-        addListener();
-        this.setText(init);
-    }
-
     protected void addListener() {
         MyTextArea self = this;
         this.getDocument().addDocumentListener(new DocumentListener() {
