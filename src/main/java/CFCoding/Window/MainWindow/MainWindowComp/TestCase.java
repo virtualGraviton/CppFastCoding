@@ -101,7 +101,7 @@ public class TestCase extends MyPanel {
             this.statLabel.setForeground(JBColor.red);
         } else if (stat == TestCase.PD) {
             this.statLabel.setText("Pending...");
-            this.statLabel.setForeground(JBColor.blue);
+            this.statLabel.setForeground(JBColor.black);
         } else if (stat == TestCase.RUN) {
             this.statLabel.setText("Running...");
             this.statLabel.setForeground(JBColor.blue);

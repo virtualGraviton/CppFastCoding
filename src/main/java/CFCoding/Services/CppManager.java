@@ -124,6 +124,7 @@ public class CppManager {
 
     public void AsyncRunAll() {
         CompilePrepare();
+        if (CompileStat == Stat.CompileFailed) return;
         SwingWorker<Integer, Void> AsyncCompile = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
