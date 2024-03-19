@@ -2,8 +2,8 @@ package CFCoding.Window.SettingWindow.SettingComp;
 
 import CFCoding.Base.MyLabel;
 import CFCoding.Base.MyPanel;
-import CFCoding.Services.SettingStorage;
 import CFCoding.Services.Notice;
+import CFCoding.Services.SettingStorage;
 import CFCoding.Window.SettingWindow.CFCodingConfigurable;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
@@ -25,8 +25,9 @@ import java.awt.event.KeyListener;
 public class SettingTextArea extends MyPanel implements SettingBase {
     private String initSetting;
     private final _TextArea textArea;
+    private final String SettingKey;
 
-    public SettingTextArea(String title, String init) {
+    public SettingTextArea(String key, String title, String init) {
         super(BoxLayout.Y_AXIS);
         this.AddComp(new MyLabel(title));
         initSetting = init;
@@ -34,6 +35,8 @@ public class SettingTextArea extends MyPanel implements SettingBase {
         textArea.setBorder(new LineBorder(JBColor.black, 3, true));
         this.AddComp(textArea);
         this.setMaximumSize(new Dimension(1000, 60));
+
+        SettingKey = key;
     }
 
     public void AddComp(JComponent comp) {
@@ -53,7 +56,7 @@ public class SettingTextArea extends MyPanel implements SettingBase {
     public void save() {
         initSetting = textArea.getText();
         SettingStorage setting = ApplicationManager.getApplication().getService(SettingStorage.class);
-        setting.getState().CompileStandard = initSetting;
+        setting.setKeyValue(SettingKey, initSetting);
     }
 
     public static class _TextArea extends JBTextArea {

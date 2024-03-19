@@ -12,7 +12,7 @@ public class SettingPanel extends MyPanel implements SettingBase {
     public SettingPanel() {
         super(BoxLayout.Y_AXIS);
         SettingStorage setting = ApplicationManager.getApplication().getService(SettingStorage.class);
-        AddComp(new SettingTextArea("Compile Standard:", setting.getState().CompileStandard));
+        AddComp(new SettingTextArea("CompileStandard", "Compile Standard:", setting.getValueByKey("CompileStandard")));
     }
 
     public void save() {
