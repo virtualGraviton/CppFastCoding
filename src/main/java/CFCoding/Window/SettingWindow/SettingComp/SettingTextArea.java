@@ -24,7 +24,7 @@ import java.awt.event.KeyListener;
 
 public class SettingTextArea extends MyPanel implements SettingBase {
     private String initSetting;
-    private _TextArea textArea;
+    private final _TextArea textArea;
 
     public SettingTextArea(String title, String init) {
         super(BoxLayout.Y_AXIS);
@@ -63,12 +63,6 @@ public class SettingTextArea extends MyPanel implements SettingBase {
 
         _TextArea(String text) {
             super(text);
-            SetFont();
-            addListener();
-            init();
-        }
-
-        _TextArea() {
             SetFont();
             addListener();
             init();
