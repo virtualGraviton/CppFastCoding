@@ -32,6 +32,10 @@ public class RunButton extends MyButton {
             Notice.ShowBalloon("ERROR", "Empty test case.");
             return;
         }
+        for (int i = 0; i < testCasePanel.testCaseNum; i++) {
+            TestCase t = testCasePanel.getTestCase(i);
+            t.ClearText(e);
+        }
         CppManager cppManager = new CppManager(project, testCasePanel);
         cppManager.AsyncRunAll();
     }

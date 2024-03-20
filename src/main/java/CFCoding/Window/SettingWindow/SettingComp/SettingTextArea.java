@@ -28,13 +28,13 @@ public class SettingTextArea extends MyPanel implements SettingBase {
     private String initSetting;
 
     public SettingTextArea(String key, String title, String init) {
-        super(BoxLayout.Y_AXIS);
+        super(BoxLayout.X_AXIS);
         this.AddComp(new MyLabel(title));
         initSetting = init;
         textArea = new _TextArea(init);
         textArea.setBorder(new LineBorder(JBColor.black, 3, true));
         this.AddComp(textArea);
-        this.setMaximumSize(new Dimension(1000, 60));
+        this.setMaximumSize(new Dimension(1000, 30));
 
         SettingKey = key;
     }

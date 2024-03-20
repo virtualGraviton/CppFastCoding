@@ -16,6 +16,7 @@ public class SettingPanel extends MyPanel implements SettingBase {
         super(BoxLayout.Y_AXIS);
         setting = ApplicationManager.getApplication().getService(SettingStorage.class);
         addSetting("CompileStandard", "Compile Standard:");
+        addSetting("MaxWaitTime", "Max Wait Time(ms):");
     }
 
     public void addSetting(String key, String title) {

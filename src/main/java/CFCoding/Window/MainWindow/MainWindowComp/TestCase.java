@@ -41,7 +41,6 @@ public class TestCase extends MyPanel {
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.add(title);
         statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
-        statLabel.setForeground(JBColor.blue);
         titleRow.add(statLabel);
         this.AddComp(titleRow);
 
