@@ -10,10 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SelectedFileListener implements FileEditorManagerListener {
 
-    private final Project project;
-
-    public SelectedFileListener(Project project) {
-        this.project = project;
+    public SelectedFileListener() {
     }
 
     @Override
