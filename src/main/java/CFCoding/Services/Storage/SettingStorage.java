@@ -1,5 +1,6 @@
-package CFCoding.Services;
+package CFCoding.Services.Storage;
 
+import CFCoding.Services.InitialSetting;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.Service;
 import com.intellij.openapi.components.State;

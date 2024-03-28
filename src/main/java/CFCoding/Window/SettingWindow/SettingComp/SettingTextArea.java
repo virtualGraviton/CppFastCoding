@@ -3,7 +3,7 @@ package CFCoding.Window.SettingWindow.SettingComp;
 import CFCoding.Base.MyLabel;
 import CFCoding.Base.MyPanel;
 import CFCoding.Services.Notice;
-import CFCoding.Services.SettingStorage;
+import CFCoding.Services.Storage.SettingStorage;
 import CFCoding.Window.SettingWindow.CFCodingConfigurable;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;

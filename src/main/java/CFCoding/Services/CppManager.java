@@ -1,5 +1,6 @@
 package CFCoding.Services;
 
+import CFCoding.Services.Storage.SettingStorage;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCasePanel;
 import com.intellij.openapi.application.ApplicationManager;
