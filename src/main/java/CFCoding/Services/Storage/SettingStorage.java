@@ -15,8 +15,8 @@ import java.util.Map;
 @Service
 @State(name = "CFCodingSettings", storages = {@Storage("CppFastCoding_Settings.xml")})
 public final class SettingStorage implements PersistentStateComponent<SettingStorage> {
-    public final Map<String, String> data = new HashMap<>();
     private static SettingStorage instance;
+    public final Map<String, String> data = new HashMap<>();
 
     public static SettingStorage getInstance() {
         if (instance == null) instance = ApplicationManager.getApplication().getService(SettingStorage.class);

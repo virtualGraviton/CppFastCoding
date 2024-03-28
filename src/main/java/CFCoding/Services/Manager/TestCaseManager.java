@@ -12,8 +12,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public final class TestCaseManager {
-    private TestCaseManager instance;
     private final Project project;
+    private TestCaseManager instance;
 
     TestCaseManager(Project p) {
         project = p;
