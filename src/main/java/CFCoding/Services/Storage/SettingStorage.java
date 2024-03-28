@@ -38,7 +38,7 @@ public final class SettingStorage implements PersistentStateComponent<SettingSto
         data.put(key, value);
     }
 
-    public String getValueByKey(String key) {
+    public String getValue(String key) {
         String res = data.get(key);
         if (res == null) setKeyValue(key, InitialSetting.get(key));
         return data.get(key);

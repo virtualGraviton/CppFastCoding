@@ -67,7 +67,7 @@ public class CppManager {
 
     private int Compile() {
         try {
-            Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValueByKey("CompileStandard"), cppFilePath, exeFilePath));
+            Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -96,7 +96,7 @@ public class CppManager {
             process.getOutputStream().write(input.getBytes());
             process.getOutputStream().close();
 
-            int maxWaitTime = Integer.parseInt(SettingStorage.getInstance().getValueByKey("MaxWaitTime"));
+            int maxWaitTime = Integer.parseInt(SettingStorage.getInstance().getValue("MaxWaitTime"));
 
             if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();
