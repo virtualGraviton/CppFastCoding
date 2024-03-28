@@ -38,13 +38,13 @@ public final class TestCaseStorage implements PersistentStateComponent<TestCaseS
         XmlSerializerUtil.copyBean(state, this);
     }
 
-    public void setTestCase(String key, ArrayList<String> value) {
+    public void saveTestCase(String key, ArrayList<String> value) {
         data.put(key, value);
     }
 
     public ArrayList<String> getTestCase(String key) {
         ArrayList<String> res = data.get(key);
-        if (res == null) setTestCase(key, new ArrayList<>());
+        if (res == null) saveTestCase(key, new ArrayList<>());
         return data.get(key);
     }
 }

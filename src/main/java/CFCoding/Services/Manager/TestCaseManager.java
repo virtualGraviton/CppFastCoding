@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 public final class TestCaseManager {
     private final Project project;
-    private TestCaseManager instance;
+    private static TestCaseManager instance;
 
     TestCaseManager(Project p) {
         project = p;
     }
 
-    public TestCaseManager getInstance(Project p) {
+    public static TestCaseManager getInstance(Project p) {
         if (instance == null) {
             instance = new TestCaseManager(p);
         }
@@ -54,6 +54,7 @@ public final class TestCaseManager {
     public void setTestCase(ArrayList<String> inputs) {
         TestCasePanel tcp = getPanel();
         if (tcp != null) {
+            tcp = new TestCasePanel();
             for (String s : inputs) {
                 tcp.addTextCase(s);
             }

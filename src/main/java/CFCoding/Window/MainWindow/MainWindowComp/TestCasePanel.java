@@ -5,7 +5,7 @@ import javax.swing.*;
 public class TestCasePanel extends JPanel {
     int testCaseNum;
 
-    TestCasePanel() {
+    public TestCasePanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         testCaseNum = 0;
     }

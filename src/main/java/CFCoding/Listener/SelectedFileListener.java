@@ -1,5 +1,7 @@
 package CFCoding.Listener;
 
+import CFCoding.Services.Manager.TestCaseManager;
+import CFCoding.Services.Storage.TestCaseStorage;
 import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.project.Project;
@@ -19,11 +21,13 @@ public class SelectedFileListener implements FileEditorManagerListener {
         VirtualFile oldFile = event.getOldFile();
         if (oldFile != null) {
             System.out.println(oldFile.getPath());
+            TestCaseStorage.getInstance().saveTestCase(oldFile.getPath(), TestCaseManager.getInstance(project).getTestCase());
         }
 
         VirtualFile newFile = event.getNewFile();
         if (newFile != null) {
             System.out.println(newFile.getPath());
+            TestCaseManager.getInstance(project).setTestCase(TestCaseStorage.getInstance().getTestCase(newFile.getPath()));
         }
     }
 }
