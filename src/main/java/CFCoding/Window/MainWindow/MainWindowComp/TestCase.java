@@ -31,8 +31,17 @@ public class TestCase extends MyPanel {
     String fontType;
     int fontSize;
 
-    TestCase(int num) {
+    TestCase(int testCaseNum) {
         super(BoxLayout.Y_AXIS);
+        baseInit(testCaseNum);
+    }
+
+    public TestCase(int testCaseNum, String init) {
+        super(BoxLayout.Y_AXIS);
+        baseInit(testCaseNum);
+    }
+
+    private void baseInit(int num) {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);

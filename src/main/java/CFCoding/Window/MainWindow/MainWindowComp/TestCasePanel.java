@@ -17,7 +17,13 @@ public class TestCasePanel extends JPanel {
         this.revalidate();
         this.repaint();
     }
-
+    public void addTextCase(String init) {
+        testCaseNum++;
+        TestCase testCase = new TestCase(testCaseNum,init);
+        this.add(testCase);
+        this.revalidate();
+        this.repaint();
+    }
     public void titleUdt() {
         int count = this.getComponentCount();
         for (int i = 0; i < count; i++) {

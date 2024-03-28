@@ -11,12 +11,13 @@ import java.awt.event.ComponentEvent;
 
 public class MainPanel extends JPanel {
     JBScrollPane scrollPane;
-    TestCasePanel testCasePanel = new TestCasePanel();
+    TestCasePanel testCasePanel;
     ButtonPanel buttonpanel;
     Project project;
 
     public MainPanel(Project p) {
         project = p;
+        testCasePanel = new TestCasePanel();
         scrollPane = new JBScrollPane(testCasePanel);
         buttonpanel = new ButtonPanel(project, testCasePanel);
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
@@ -33,5 +34,9 @@ public class MainPanel extends JPanel {
                 buttonpanel.updateUI();
             }
         });
+    }
+
+    public TestCasePanel getTestCasePanel() {
+        return testCasePanel;
     }
 }
