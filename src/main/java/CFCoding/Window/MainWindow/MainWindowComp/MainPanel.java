@@ -9,13 +9,13 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-public class BottomPanel extends JPanel {
+public class MainPanel extends JPanel {
     JBScrollPane scrollPane;
     TestCasePanel testCasePanel = new TestCasePanel();
     ButtonPanel buttonpanel;
     Project project;
 
-    public BottomPanel(Project p) {
+    public MainPanel(Project p) {
         project = p;
         scrollPane = new JBScrollPane(testCasePanel);
         buttonpanel = new ButtonPanel(project, testCasePanel);

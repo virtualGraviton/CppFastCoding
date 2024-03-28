@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.event.ActionEvent;
 
 public class RunButton extends MyButton {
-    private static final Logger logger = LoggerFactory.getLogger(BottomPanel.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
     Project project;
     TestCasePanel testCasePanel;
 
