@@ -21,13 +21,13 @@ public class SelectedFileListener implements FileEditorManagerListener {
         VirtualFile oldFile = event.getOldFile();
         if (oldFile != null) {
             System.out.println(oldFile.getPath());
-            TestCaseStorage.getInstance().saveTestCase(oldFile.getPath(), TestCaseManager.getInstance(project).getTestCase());
+            TestCaseStorage.getInstance().saveTestCase(oldFile.getPath(), TestCaseManager.getTestCase());
         }
 
         VirtualFile newFile = event.getNewFile();
         if (newFile != null) {
             System.out.println(newFile.getPath());
-            TestCaseManager.getInstance(project).setTestCase(TestCaseStorage.getInstance().getTestCase(newFile.getPath()));
+            TestCaseManager.setTestCase(TestCaseStorage.getInstance().getTestCase(newFile.getPath()));
         }
     }
 }
