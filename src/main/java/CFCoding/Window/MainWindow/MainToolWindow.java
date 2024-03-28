@@ -10,7 +10,7 @@ import javax.swing.*;
 
 
 public class MainToolWindow implements ToolWindowFactory {
-    public static MainPanel mainPanel;
+    public MainPanel mainPanel;
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {

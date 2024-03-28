@@ -37,4 +37,11 @@ public class TestCasePanel extends JPanel {
     public TestCase getTestCase(int i) {
         return (TestCase) this.getComponent(i);
     }
+
+    public void clear() {
+        for (int i = 0; i < testCaseNum; i++) {
+            this.remove(0);
+        }
+        testCaseNum = 0;
+    }
 }
