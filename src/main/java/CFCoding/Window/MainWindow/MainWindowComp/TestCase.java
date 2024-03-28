@@ -39,6 +39,7 @@ public class TestCase extends MyPanel {
     public TestCase(int testCaseNum, String init) {
         super(BoxLayout.Y_AXIS);
         baseInit(testCaseNum);
+        inputField.setText(init);
     }
 
     private void baseInit(int num) {
