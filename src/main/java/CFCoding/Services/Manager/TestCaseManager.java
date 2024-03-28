@@ -1,13 +1,10 @@
 package CFCoding.Services.Manager;
 
-import CFCoding.Window.MainWindow.MainWindowComp.MainPanel;
+import CFCoding.Window.MainWindow.MainToolWindow;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCasePanel;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.openapi.wm.ToolWindowManager;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -27,13 +24,8 @@ public final class TestCaseManager {
     }
 
     private TestCasePanel getPanel() {
-        ToolWindowManager toolWindowManager = ToolWindowManager.getInstance(project);
-        ToolWindow toolWindow = toolWindowManager.getToolWindow("CppFastCodingPlugin");
-        if (toolWindow != null) {
-            JComponent c = toolWindow.getComponent();
-            if (c instanceof MainPanel) {
-                return ((MainPanel) c).getTestCasePanel();
-            }
+        if (MainToolWindow.mainPanel != null) {
+            return MainToolWindow.mainPanel.getTestCasePanel();
         }
         return null;
     }

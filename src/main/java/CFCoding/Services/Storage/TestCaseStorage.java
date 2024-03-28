@@ -14,14 +14,14 @@ import java.util.Map;
 
 @Service
 @State(
-        name = "CFCodingSettings",
+        name = "CFCodingTestCases",
         storages = {
-                @Storage("CppFastCoding_Settings.xml")
+                @Storage("CppFastCoding_TestCase.xml")
         }
 )
 public final class TestCaseStorage implements PersistentStateComponent<TestCaseStorage> {
     private static TestCaseStorage instance;
-    public final Map<String, ArrayList<String>> data = new HashMap<>();
+    public Map<String, ArrayList<String>> data = new HashMap<>();
 
     public static TestCaseStorage getInstance() {
         if (instance == null) instance = ApplicationManager.getApplication().getService(TestCaseStorage.class);
