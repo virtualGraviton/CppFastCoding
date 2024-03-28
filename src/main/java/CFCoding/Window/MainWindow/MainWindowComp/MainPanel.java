@@ -10,8 +10,8 @@ import java.awt.event.ComponentEvent;
 
 
 public class MainPanel extends JPanel {
-    JBScrollPane scrollPane;
     public static TestCasePanel testCasePanel;
+    JBScrollPane scrollPane;
     ButtonPanel buttonpanel;
     Project project;
 
