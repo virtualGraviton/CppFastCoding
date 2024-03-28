@@ -1,7 +1,7 @@
 package CFCoding.Window.MainWindow.MainWindowComp;
 
 import CFCoding.Base.MyButton;
-import CFCoding.Services.CppManager;
+import CFCoding.Services.Manager.CppManager;
 import CFCoding.Services.Notice;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;

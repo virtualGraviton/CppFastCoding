@@ -1,5 +1,6 @@
-package CFCoding.Services;
+package CFCoding.Services.Manager;
 
+import CFCoding.Services.Notice;
 import CFCoding.Services.Storage.SettingStorage;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCasePanel;
