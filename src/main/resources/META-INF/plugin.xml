@@ -11,6 +11,11 @@
             <add-to-group group-id="MainMenu" anchor="last"/>
         </action>
     </actions>
+    <projectListeners>
+        <listener
+                class="CFCoding.Listener.SelectedFileListener"
+                topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+    </projectListeners>
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable displayName="CppFastCoding Settings" groupId="root"
                                  instance="CFCoding.Window.SettingWindow.CFCodingConfigurable"/>
