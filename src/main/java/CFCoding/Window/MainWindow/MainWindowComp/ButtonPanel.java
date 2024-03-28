@@ -2,7 +2,6 @@ package CFCoding.Window.MainWindow.MainWindowComp;
 
 import CFCoding.Base.MyPanel;
 import com.intellij.openapi.project.Project;
-import com.intellij.ui.JBColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,15 +11,7 @@ public class ButtonPanel extends MyPanel {
         super(BoxLayout.Y_AXIS);
         this.AddComp(new NewButton(testCasePanel));
         this.AddComp(new RunButton(project, testCasePanel));
-        this.AddComp(new ClrButton(testCasePanel));
         this.AddComp(new OpenSettingButton());
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(new JBColor(JBColor.gray, JBColor.gray));
-        g.fillRect(0, 0, getWidth(), getHeight());
     }
 
     public void AddComp(JComponent comp) {

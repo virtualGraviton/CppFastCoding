@@ -24,7 +24,7 @@ public class TestCase extends MyPanel {
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
     JLabel title;
-    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, JBColor.gray);
+    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
     MyButton clearTextButton = new MyButton("ClearText");
     MyButton deleteButton = new MyButton("DeleteTestCase");
     MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS, JBColor.gray);
@@ -106,12 +106,5 @@ public class TestCase extends MyPanel {
             this.statLabel.setForeground(JBColor.blue);
         }
         this.updateUI();
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(new JBColor(JBColor.gray, JBColor.gray));
-        g.fillRect(0, 0, getWidth(), getHeight());
     }
 }
