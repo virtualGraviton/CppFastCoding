@@ -1,6 +1,7 @@
 package CFCoding.Services.Storage;
 
 import CFCoding.Services.InitialSetting;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.Service;
 import com.intellij.openapi.components.State;
@@ -12,14 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@State(
-        name = "CFCodingSettings",
-        storages = {
-                @Storage("CppFastCoding_Settings.xml")
-        }
-)
+@State(name = "CFCodingSettings", storages = {@Storage("CppFastCoding_Settings.xml")})
 public final class SettingStorage implements PersistentStateComponent<SettingStorage> {
-    private final Map<String, String> map = new HashMap<>();
+    public final Map<String, String> data = new HashMap<>();
+    private static SettingStorage instance;
+
+    public static SettingStorage getInstance() {
+        if (instance == null) instance = ApplicationManager.getApplication().getService(SettingStorage.class);
+        return instance;
+    }
 
     @Override
     @NotNull
@@ -33,15 +35,12 @@ public final class SettingStorage implements PersistentStateComponent<SettingSto
     }
 
     public void setKeyValue(String key, String value) {
-        map.put(key, value);
+        data.put(key, value);
     }
 
     public String getValueByKey(String key) {
-        String res = map.get(key);
-        if (res == null) {
-            setKeyValue(key, InitialSetting.get(key));
-            return InitialSetting.get(key);
-        }
-        return map.get(key);
+        String res = data.get(key);
+        if (res == null) setKeyValue(key, InitialSetting.get(key));
+        return data.get(key);
     }
 }

@@ -4,7 +4,6 @@ import CFCoding.Services.Notice;
 import CFCoding.Services.Storage.SettingStorage;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCasePanel;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
@@ -22,7 +21,6 @@ import java.io.InputStreamReader;
 
 public class CppManager {
     private static final Logger logger = LoggerFactory.getLogger(CppManager.class);
-    private static SettingStorage setting;
     String cppFilePath;
     String exeFilePath;
     TestCasePanel tot;
@@ -49,7 +47,6 @@ public class CppManager {
             System.out.println("Failed to create directory!");
         }
         CompileStat = Stat.UnCompiled;
-        setting = ApplicationManager.getApplication().getService(SettingStorage.class);
     }
 
     private void CompilePrepare() {
@@ -70,7 +67,7 @@ public class CppManager {
 
     private int Compile() {
         try {
-            Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(setting.getValueByKey("CompileStandard"), cppFilePath, exeFilePath));
+            Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValueByKey("CompileStandard"), cppFilePath, exeFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -99,7 +96,7 @@ public class CppManager {
             process.getOutputStream().write(input.getBytes());
             process.getOutputStream().close();
 
-            int maxWaitTime = Integer.parseInt(setting.getValueByKey("MaxWaitTime"));
+            int maxWaitTime = Integer.parseInt(SettingStorage.getInstance().getValueByKey("MaxWaitTime"));
 
             if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();

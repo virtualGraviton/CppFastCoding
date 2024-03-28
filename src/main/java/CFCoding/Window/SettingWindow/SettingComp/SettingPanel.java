@@ -1,7 +1,6 @@
 package CFCoding.Window.SettingWindow.SettingComp;
 
 import CFCoding.Base.MyPanel;
-import CFCoding.Services.Notice;
 import CFCoding.Services.Storage.SettingStorage;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
@@ -20,7 +19,6 @@ public class SettingPanel extends MyPanel implements SettingBase {
     }
 
     public void addSetting(String key, String title) {
-        Notice.ShowBalloon("123", setting.getValueByKey(key));
         AddComp(new SettingTextArea(key, title, setting.getValueByKey(key)));
     }
 
