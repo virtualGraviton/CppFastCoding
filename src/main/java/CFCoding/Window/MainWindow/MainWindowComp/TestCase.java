@@ -23,12 +23,14 @@ public class TestCase extends MyPanel {
     public JLabel statLabel = new JLabel("Pending...");
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
-    JLabel title;
+    private JLabel title;
+    MyButton expandButton = new MyButton("-");
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
     MyButton deleteButton = new MyButton("Del");
     MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS, JBColor.gray);
     String fontType;
     int fontSize;
+    public boolean isExpanded = true;
 
     TestCase(int testCaseNum) {
         super(BoxLayout.Y_AXIS);
@@ -49,8 +51,13 @@ public class TestCase extends MyPanel {
         title = new JLabel("TestCase #%d    ".formatted(num));
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.add(title);
+
         statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.add(statLabel);
+
+        expandButton.addActionListener(this::Expand);
+        titleRow.add(expandButton);
+
         this.AddComp(titleRow);
 
         deleteButton.addActionListener(this::Delete);
@@ -78,7 +85,7 @@ public class TestCase extends MyPanel {
 
     public void ClearText() {
         this.outputField.setText("");
-        this.SetStat(TestCase.PD);
+        this.SetStat(PD);
     }
 
     private void Delete(ActionEvent e) {
@@ -93,24 +100,37 @@ public class TestCase extends MyPanel {
     }
 
     public void SetStat(int stat) {
-        if (stat == TestCase.AC) {
+        if (stat == AC) {
             this.statLabel.setText("Accepted");
             this.statLabel.setForeground(JBColor.green);
-        } else if (stat == TestCase.TLE) {
+        } else if (stat == TLE) {
             this.statLabel.setText("TimeLimitExceed");
             Notice.ShowBalloon("INFO", "Info: TimeLimitExceed");
             this.statLabel.setForeground(JBColor.black);
-        } else if (stat == TestCase.RE) {
+        } else if (stat == RE) {
             this.statLabel.setText("RuntimeError");
             Notice.ShowBalloon("INFO", "Info: RuntimeError");
             this.statLabel.setForeground(JBColor.red);
-        } else if (stat == TestCase.PD) {
+        } else if (stat == PD) {
             this.statLabel.setText("Pending...");
             this.statLabel.setForeground(JBColor.black);
-        } else if (stat == TestCase.RUN) {
+        } else if (stat == RUN) {
             this.statLabel.setText("Running...");
             this.statLabel.setForeground(JBColor.blue);
         }
         this.updateUI();
+    }
+
+    private void Expand(ActionEvent e) {
+        isExpanded = !isExpanded;
+        set_Visible(isExpanded);
+    }
+
+    private void set_Visible(boolean visible) {
+        for (Component c : this.getComponents()) {
+            if (c != titleRow) {
+                c.setVisible(visible);
+            }
+        }
     }
 }
