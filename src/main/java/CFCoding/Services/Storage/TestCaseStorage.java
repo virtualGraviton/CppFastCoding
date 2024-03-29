@@ -21,7 +21,7 @@ import java.util.Map;
 )
 public final class TestCaseStorage implements PersistentStateComponent<TestCaseStorage> {
     private static TestCaseStorage instance;
-    public Map<String, ArrayList<String>> data = new HashMap<>();
+    public Map<String, ArrayList<String>> InputData = new HashMap<>();
 
     public static TestCaseStorage getInstance() {
         if (instance == null) instance = ApplicationManager.getApplication().getService(TestCaseStorage.class);
@@ -39,12 +39,12 @@ public final class TestCaseStorage implements PersistentStateComponent<TestCaseS
     }
 
     public void saveTestCase(String key, ArrayList<String> value) {
-        data.put(key, value);
+        InputData.put(key, value);
     }
 
     public ArrayList<String> getTestCase(String key) {
-        ArrayList<String> res = data.get(key);
+        ArrayList<String> res = InputData.get(key);
         if (res == null) saveTestCase(key, new ArrayList<>());
-        return data.get(key);
+        return InputData.get(key);
     }
 }

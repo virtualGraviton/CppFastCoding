@@ -16,8 +16,7 @@ import java.util.Map;
 @State(name = "CFCodingSettings", storages = {@Storage("CppFastCoding_Settings.xml")})
 public final class SettingStorage implements PersistentStateComponent<SettingStorage> {
     private static SettingStorage instance;
-    public final Map<String, String> data = new HashMap<>();
-
+    public final Map<String, String> BasicSettings = new HashMap<>();
     public static SettingStorage getInstance() {
         if (instance == null) instance = ApplicationManager.getApplication().getService(SettingStorage.class);
         return instance;
@@ -35,12 +34,12 @@ public final class SettingStorage implements PersistentStateComponent<SettingSto
     }
 
     public void setKeyValue(String key, String value) {
-        data.put(key, value);
+        BasicSettings.put(key, value);
     }
 
     public String getValue(String key) {
-        String res = data.get(key);
+        String res = BasicSettings.get(key);
         if (res == null) setKeyValue(key, InitialSetting.get(key));
-        return data.get(key);
+        return BasicSettings.get(key);
     }
 }
