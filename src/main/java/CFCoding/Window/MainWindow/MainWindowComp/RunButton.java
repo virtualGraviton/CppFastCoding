@@ -12,8 +12,6 @@ import com.intellij.openapi.project.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.event.ActionEvent;
-
 public class RunButton extends MyButton {
     private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
     Project project;
@@ -23,10 +21,10 @@ public class RunButton extends MyButton {
         super("Run");
         project = p;
         testCasePanel = t;
-        this.addActionListener(this::ExeRun);
+        this.addActionListener(e -> ExeRun());
     }
 
-    private void ExeRun(ActionEvent e) {
+    private void ExeRun() {
         SaveCpp();
         if (testCasePanel.testCaseNum == 0) {
             Notice.ShowBalloon("ERROR", "Empty test case.");
@@ -34,7 +32,7 @@ public class RunButton extends MyButton {
         }
         for (int i = 0; i < testCasePanel.testCaseNum; i++) {
             TestCase t = testCasePanel.getTestCase(i);
-            t.ClearText(e);
+            t.ClearText();
         }
         CppManager cppManager = new CppManager(project, testCasePanel);
         cppManager.AsyncRunAll();

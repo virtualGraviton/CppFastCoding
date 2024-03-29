@@ -25,8 +25,7 @@ public class TestCase extends MyPanel {
     public MyTextArea outputField = new MyTextArea();
     JLabel title;
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
-    MyButton clearTextButton = new MyButton("ClearText");
-    MyButton deleteButton = new MyButton("DeleteTestCase");
+    MyButton deleteButton = new MyButton("Del");
     MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS, JBColor.gray);
     String fontType;
     int fontSize;
@@ -54,11 +53,8 @@ public class TestCase extends MyPanel {
         titleRow.add(statLabel);
         this.AddComp(titleRow);
 
-        clearTextButton.addActionListener(this::ClearText);
-        clearTextButton.setForeground(JBColor.red);
         deleteButton.addActionListener(this::Delete);
         deleteButton.setForeground(JBColor.red);
-        buttonRow.add(clearTextButton);
         buttonRow.add(deleteButton);
 
         this.AddComp(buttonRow);
@@ -80,7 +76,7 @@ public class TestCase extends MyPanel {
         title.setText("TestCase #%d    ".formatted(i));
     }
 
-    public void ClearText(ActionEvent e) {
+    public void ClearText() {
         this.outputField.setText("");
         this.SetStat(TestCase.PD);
     }

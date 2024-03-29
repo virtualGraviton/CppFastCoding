@@ -8,11 +8,13 @@ import com.intellij.ui.components.JBTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 
 public class MyTextArea extends JBTextArea {
     public int rowHeight;
     String fontType;
     int fontSize;
+    MyTextArea self;
 
     public MyTextArea() {
         SetFont();
@@ -21,34 +23,16 @@ public class MyTextArea extends JBTextArea {
     }
 
     protected void addListener() {
-        MyTextArea self = this;
+        self = this;
         this.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                String s = self.getText();
-                int l = s.length();
-                int res = 1;
-                for (int i = 0; i < l; i++) {
-                    if (s.charAt(i) == '\n') {
-                        res++;
-                    }
-                }
-                self.setPreferredSize(new Dimension(300, res * rowHeight));
-                self.setMaximumSize(new Dimension(300, res * rowHeight));
+                textEventProcess();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                String s = self.getText();
-                int l = s.length();
-                int res = 1;
-                for (int i = 0; i < l; i++) {
-                    if (s.charAt(i) == '\n') {
-                        res++;
-                    }
-                }
-                self.setPreferredSize(new Dimension(300, res * rowHeight));
-                self.setMaximumSize(new Dimension(300, res * rowHeight));
+                textEventProcess();
             }
 
             @Override
@@ -56,6 +40,31 @@ public class MyTextArea extends JBTextArea {
 
             }
         });
+    }
+
+    public void textEventProcess() {
+        String s = self.getText();
+        int row_cnt = 1;
+        int col_width = 0;
+        StringBuilder a = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '\n') {
+                row_cnt++;
+                col_width = Math.max(getWidth(a.toString()), col_width);
+                a = new StringBuilder();
+            }
+            a.append(s.charAt(i));
+        }
+        col_width = Math.max(getWidth(a.toString()), col_width);
+        col_width = Math.max(col_width + 5, 200);
+        self.setPreferredSize(new Dimension(col_width, row_cnt * rowHeight));
+        self.setMaximumSize(new Dimension(col_width, row_cnt * rowHeight));
+    }
+
+    public int getWidth(String text) {
+        Font font = new Font(fontType, Font.PLAIN, fontSize);
+        FontRenderContext frc = new FontRenderContext(null, false, false);
+        return (int) font.getStringBounds(text, frc).getWidth();
     }
 
     private void SetFont() {
@@ -67,7 +76,7 @@ public class MyTextArea extends JBTextArea {
     }
 
     private void Init() {
-        this.setPreferredSize(new Dimension(300, rowHeight));
-        this.setMaximumSize(new Dimension(300, rowHeight));
+        this.setPreferredSize(new Dimension(200, rowHeight));
+        this.setMaximumSize(new Dimension(200, rowHeight));
     }
 }
