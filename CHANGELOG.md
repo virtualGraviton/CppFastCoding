@@ -4,12 +4,15 @@
 
 ## [Unreleased]
 
-## [1.0.0] - 2024/04/18
-
 ### Added
 
 - Initial scaffold created
   from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+
+## [1.0.0] - 2024/04/18
+
+### Added
+
 - Basic function: Run and manage multi testcase.
 
 ## [1.0.1] - 2024/04/01

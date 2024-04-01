@@ -4,7 +4,6 @@ import CFCoding.Base.MyButton;
 import CFCoding.Base.MyLabel;
 import CFCoding.Base.MyPanel;
 import CFCoding.Base.MyTextArea;
-import CFCoding.Services.Notice;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
@@ -23,13 +22,13 @@ public class TestCase extends MyPanel {
     public JLabel statLabel = new JLabel("Pending...");
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
-    private JLabel title;
+    public boolean isExpanded = true;
     MyButton deleteButton = new MyButton("Del");
     MyButton expandButton = new MyButton("-");
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
     String fontType;
     int fontSize;
-    public boolean isExpanded = true;
+    private JLabel title;
 
     TestCase(int testCaseNum) {
         super(BoxLayout.Y_AXIS);
@@ -68,7 +67,7 @@ public class TestCase extends MyPanel {
         this.AddComp(new MyLabel("Output:"));
         this.AddComp(outputField);
 
-        this.setBorder(new LineBorder(JBColor.black, 5, true));
+        this.setBorder(new LineBorder(JBColor.lightGray, 5));
     }
 
     public void AddComp(JComponent c) {
@@ -99,18 +98,16 @@ public class TestCase extends MyPanel {
 
     public void SetStat(int stat) {
         if (stat == AC) {
-            this.statLabel.setText("Accepted");
+            this.statLabel.setText("AC");
             this.statLabel.setForeground(JBColor.green);
         } else if (stat == TLE) {
-            this.statLabel.setText("TimeLimitExceed");
-            Notice.ShowBalloon("INFO", "Info: TimeLimitExceed");
+            this.statLabel.setText("TLE");
             this.statLabel.setForeground(JBColor.black);
         } else if (stat == RE) {
-            this.statLabel.setText("RuntimeError");
-            Notice.ShowBalloon("INFO", "Info: RuntimeError");
+            this.statLabel.setText("RE");
             this.statLabel.setForeground(JBColor.red);
         } else if (stat == PD) {
-            this.statLabel.setText("Pending...");
+            this.statLabel.setText("Pending");
             this.statLabel.setForeground(JBColor.black);
         } else if (stat == RUN) {
             this.statLabel.setText("Running...");
@@ -123,13 +120,15 @@ public class TestCase extends MyPanel {
         isExpanded = !isExpanded;
         set_Visible(isExpanded);
         MyButton b = (MyButton) e.getSource();
-        b.setText(isExpanded ? "-" : "+");
+        b.SetText(isExpanded ? "-" : "+");
     }
 
     private void set_Visible(boolean visible) {
+        boolean flag = false;
         for (Component c : this.getComponents()) {
             if (c != titleRow) {
-                c.setVisible(visible);
+                if (flag) c.setVisible(visible);
+                flag = true;
             }
         }
     }

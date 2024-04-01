@@ -2,7 +2,6 @@ package CFCoding.Window.SettingWindow.SettingComp;
 
 import CFCoding.Base.MyLabel;
 import CFCoding.Base.MyPanel;
-import CFCoding.Services.Notice;
 import CFCoding.Services.Storage.SettingStorage;
 import CFCoding.Window.SettingWindow.CFCodingConfigurable;
 import CFCoding.Window.SettingWindow.Interface.SettingBase;
@@ -114,7 +113,6 @@ public class SettingTextArea extends MyPanel implements SettingBase {
                 @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        Notice.ShowBalloon("WARN:", "请勿输入回车.");
                         e.consume();
                     }
                 }

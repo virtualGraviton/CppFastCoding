@@ -3,6 +3,7 @@ package CFCoding.Base;
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
+import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBTextArea;
 
 import javax.swing.event.DocumentEvent;
@@ -27,12 +28,18 @@ public class MyTextArea extends JBTextArea {
         this.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                textEventProcess();
+                String s = self.getText();
+                int w = getWidth(s), h = getHeight(s);
+                self.setPreferredSize(new Dimension(w, h));
+                self.setMaximumSize(new Dimension(w, h));
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                textEventProcess();
+                String s = self.getText();
+                int w = getWidth(s), h = getHeight(s);
+                self.setPreferredSize(new Dimension(w, h));
+                self.setMaximumSize(new Dimension(w, h));
             }
 
             @Override
@@ -42,26 +49,32 @@ public class MyTextArea extends JBTextArea {
         });
     }
 
-    public void textEventProcess() {
-        String s = self.getText();
+    public int getHeight(String text) {
         int row_cnt = 1;
-        int col_width = 0;
-        StringBuilder a = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '\n') {
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == '\n') {
                 row_cnt++;
-                col_width = Math.max(getWidth(a.toString()), col_width);
-                a = new StringBuilder();
             }
-            a.append(s.charAt(i));
         }
-        col_width = Math.max(getWidth(a.toString()), col_width);
-        col_width = Math.max(col_width + 5, 200);
-        self.setPreferredSize(new Dimension(col_width, row_cnt * rowHeight));
-        self.setMaximumSize(new Dimension(col_width, row_cnt * rowHeight));
+        return rowHeight * row_cnt;
     }
 
     public int getWidth(String text) {
+        int col_width = 0;
+        StringBuilder a = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == '\n') {
+                col_width = Math.max(_getWidth(a.toString()), col_width);
+                a = new StringBuilder();
+            }
+            a.append(text.charAt(i));
+        }
+        col_width = Math.max(_getWidth(a.toString()), col_width);
+        col_width = Math.max(col_width + 5, 200);
+        return col_width;
+    }
+
+    private int _getWidth(String text) {
         Font font = new Font(fontType, Font.PLAIN, fontSize);
         FontRenderContext frc = new FontRenderContext(null, false, false);
         return (int) font.getStringBounds(text, frc).getWidth();
@@ -78,5 +91,6 @@ public class MyTextArea extends JBTextArea {
     private void Init() {
         this.setPreferredSize(new Dimension(200, rowHeight));
         this.setMaximumSize(new Dimension(200, rowHeight));
+        this.setBackground(JBColor.lightGray);
     }
 }

@@ -60,7 +60,6 @@ public class CppManager {
             boolean deleted = file.delete();
             if (!deleted) {
                 CompileStat = Stat.CompileFailed;
-                Notice.ShowBalloon("ERROR", "Failed to delete file.");
             }
         }
     }
@@ -117,7 +116,6 @@ public class CppManager {
             }
         } catch (Exception exception) {
             verdict = Stat.RunRE;
-            Notice.ShowBalloon("ERROR", "Info:" + exception);
             logger.error("FatalError", exception);
         }
         return new RunResult(output.toString(), verdict);
@@ -142,9 +140,10 @@ public class CppManager {
                             return;
                         }
                         for (Component comp : tot.getComponents()) {
-                            TestCase now = (TestCase) comp;
-                            now.SetStat(TestCase.RUN);
-                            AsyncRun(now);
+                            if (comp instanceof TestCase now) {
+                                now.SetStat(TestCase.RUN);
+                                AsyncRun(now);
+                            }
                         }
                     });
                 } catch (Exception e) {

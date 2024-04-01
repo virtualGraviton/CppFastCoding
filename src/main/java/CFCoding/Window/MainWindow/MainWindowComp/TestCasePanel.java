@@ -1,19 +1,22 @@
 package CFCoding.Window.MainWindow.MainWindowComp;
 
-import javax.swing.*;
+import CFCoding.Base.MyPanel;
 
-public class TestCasePanel extends JPanel {
+import javax.swing.*;
+import java.awt.*;
+
+public class TestCasePanel extends MyPanel {
     int testCaseNum;
 
     public TestCasePanel() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        super(BoxLayout.Y_AXIS);
         testCaseNum = 0;
     }
 
     public void addTextCase() {
         testCaseNum++;
         TestCase testCase = new TestCase(testCaseNum);
-        this.add(testCase);
+        this.AddComp(testCase);
         this.revalidate();
         this.repaint();
     }
@@ -21,26 +24,23 @@ public class TestCasePanel extends JPanel {
     public void addTextCase(String init) {
         testCaseNum++;
         TestCase testCase = new TestCase(testCaseNum, init);
-        this.add(testCase);
+        this.AddComp(testCase);
         this.revalidate();
         this.repaint();
     }
 
     public void titleUdt() {
-        int count = this.getComponentCount();
-        for (int i = 0; i < count; i++) {
-            TestCase a = (TestCase) this.getComponent(i);
-            a.changeTitle(i + 1);
+        int count = 0;
+        for (Component c : this.getComponents()) {
+            if (c instanceof TestCase t) {
+                t.changeTitle(++count);
+            }
         }
     }
 
-    public TestCase getTestCase(int i) {
-        return (TestCase) this.getComponent(i);
-    }
-
     public void clear() {
-        for (int i = 0; i < testCaseNum; i++) {
-            this.remove(0);
+        for (Component c : this.getComponents()) {
+            this.remove(c);
         }
         testCaseNum = 0;
     }

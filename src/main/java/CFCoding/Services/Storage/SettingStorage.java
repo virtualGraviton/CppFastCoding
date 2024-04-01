@@ -17,6 +17,7 @@ import java.util.Map;
 public final class SettingStorage implements PersistentStateComponent<SettingStorage> {
     private static SettingStorage instance;
     public final Map<String, String> BasicSettings = new HashMap<>();
+
     public static SettingStorage getInstance() {
         if (instance == null) instance = ApplicationManager.getApplication().getService(SettingStorage.class);
         return instance;
