@@ -84,9 +84,7 @@ tasks {
         changeNotes = properties("pluginVersion").map { pluginVersion ->
             with(changelog) {
                 renderItem(
-                    (getOrNull(pluginVersion) ?: getUnreleased())
-                        .withHeader(false)
-                        .withEmptySections(false),
+                    (getOrNull(pluginVersion) ?: getUnreleased()).withHeader(false).withEmptySections(false),
                     Changelog.OutputType.HTML,
                 )
             }
@@ -115,8 +113,7 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels = properties("pluginVersion").map {
-            listOf(
-                it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
+            listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
         }
     }
 }
