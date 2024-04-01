@@ -24,10 +24,9 @@ public class TestCase extends MyPanel {
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
     private JLabel title;
+    MyButton deleteButton = new MyButton("Del");
     MyButton expandButton = new MyButton("-");
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
-    MyButton deleteButton = new MyButton("Del");
-    MyPanel buttonRow = new MyPanel(BoxLayout.X_AXIS, JBColor.gray);
     String fontType;
     int fontSize;
     public boolean isExpanded = true;
@@ -55,16 +54,15 @@ public class TestCase extends MyPanel {
         statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.add(statLabel);
 
+        deleteButton.addActionListener(this::Delete);
+        deleteButton.setForeground(JBColor.red);
         expandButton.addActionListener(this::Expand);
+        titleRow.add(deleteButton);
         titleRow.add(expandButton);
 
         this.AddComp(titleRow);
 
-        deleteButton.addActionListener(this::Delete);
-        deleteButton.setForeground(JBColor.red);
-        buttonRow.add(deleteButton);
 
-        this.AddComp(buttonRow);
         this.AddComp(new MyLabel("Input:"));
         this.AddComp(inputField);
         this.AddComp(new MyLabel("Output:"));
@@ -124,6 +122,8 @@ public class TestCase extends MyPanel {
     private void Expand(ActionEvent e) {
         isExpanded = !isExpanded;
         set_Visible(isExpanded);
+        MyButton b = (MyButton) e.getSource();
+        b.setText(isExpanded ? "-" : "+");
     }
 
     private void set_Visible(boolean visible) {
