@@ -2,13 +2,20 @@
 
 # CppFastCoding Changelog
 
-## v1.0.0
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
-- Basic function
+## [1.0.0] - 2024/04/18
 
-## v1.0.1
-### New
-- Setting compile standard
-- Setting maximum waiting time
-- Different TestCases for different cpp file
+### Added
+
+- Initial scaffold created
+  from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- Basic function: Run and manage multi testcase.
+
+## [1.0.1] - 2024/04/01
+
+### Added
+
+- Setting compile standard.
+- Setting maximum waiting time.
+- Different TestCases for different cpp file: The plugin window will store your inputs for each file and automatically
+  change when you select another file.
+- Expandable and collapsible testcase windows.
