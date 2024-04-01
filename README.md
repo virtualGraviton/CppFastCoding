@@ -1,7 +1,5 @@
 # CppFastCoding (For Clion)
 
-![Build](https://github.com/virtualGraviton/CppFastCoding/workflows/Build/badge.svg)
-
 <!-- Plugin description -->
 A plugin for ACMers and OIers with the ability to run multiple test case.
 <!-- Plugin description end -->
