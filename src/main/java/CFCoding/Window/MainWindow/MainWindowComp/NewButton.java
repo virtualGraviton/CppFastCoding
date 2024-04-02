@@ -2,7 +2,8 @@ package CFCoding.Window.MainWindow.MainWindowComp;
 
 import CFCoding.Base.MyButton;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class NewButton extends MyButton {
     TestCasePanel testCasePanel;
@@ -10,10 +11,35 @@ public class NewButton extends MyButton {
     NewButton(TestCasePanel t) {
         super("New");
         testCasePanel = t;
-        this.addActionListener(this::AddTestCase);
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                AddTestCase();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
     }
 
-    private void AddTestCase(ActionEvent e) {
+    private void AddTestCase() {
         testCasePanel.addTextCase();
     }
 }

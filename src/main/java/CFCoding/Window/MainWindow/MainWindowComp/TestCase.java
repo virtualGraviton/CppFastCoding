@@ -11,7 +11,8 @@ import com.intellij.ui.JBColor;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class TestCase extends MyPanel {
     public static int AC = 0;
@@ -53,9 +54,59 @@ public class TestCase extends MyPanel {
         statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.add(statLabel);
 
-        deleteButton.addActionListener(this::Delete);
+        deleteButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Delete();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         deleteButton.setForeground(JBColor.red);
-        expandButton.addActionListener(this::Expand);
+        expandButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Expand(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         titleRow.add(deleteButton);
         titleRow.add(expandButton);
 
@@ -85,7 +136,7 @@ public class TestCase extends MyPanel {
         this.SetStat(PD);
     }
 
-    private void Delete(ActionEvent e) {
+    private void Delete() {
         MyPanel buttonR = (MyPanel) deleteButton.getParent();
         TestCase testCase = (TestCase) buttonR.getParent();
         TestCasePanel gPanel = (TestCasePanel) testCase.getParent();
@@ -116,7 +167,7 @@ public class TestCase extends MyPanel {
         this.updateUI();
     }
 
-    private void Expand(ActionEvent e) {
+    private void Expand(MouseEvent e) {
         isExpanded = !isExpanded;
         set_Visible(isExpanded);
         MyButton b = (MyButton) e.getSource();

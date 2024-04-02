@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class RunButton extends MyButton {
     private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
@@ -23,7 +25,32 @@ public class RunButton extends MyButton {
         super("Run");
         project = p;
         testCasePanel = t;
-        this.addActionListener(e -> ExeRun());
+        this.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ExeRun();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
     }
 
     private void ExeRun() {

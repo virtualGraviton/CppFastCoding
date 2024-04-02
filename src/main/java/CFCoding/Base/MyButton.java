@@ -2,20 +2,27 @@ package CFCoding.Base;
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
+import com.intellij.ui.JBColor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 
-public class MyButton extends JButton {
+public class MyButton extends JLabel {
     public int rowHeight;
     String fontType;
     int fontSize;
 
     public MyButton(String Text) {
-        super();
+        this.setBackground(JBColor.red);
         SetFont();
         SetText(Text);
+    }
+
+    public MyButton(ImageIcon icon) {
+        super(icon);
+        this.setBackground(JBColor.red);
+        SetFont();
     }
 
     public void SetText(String text) {
