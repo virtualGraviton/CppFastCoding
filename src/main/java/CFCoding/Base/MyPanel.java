@@ -29,15 +29,4 @@ public class MyPanel extends JPanel {
             this.add(Box.createVerticalStrut(7));
         }
     }
-
-    public void resize(int pad) {
-        if (Axis == BoxLayout.X_AXIS) {
-            this.setPreferredSize(new Dimension(this.getWidth() + pad, this.getHeight()));
-            this.setMaximumSize(new Dimension(this.getWidth() + pad, this.getHeight()));
-        } else {
-            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + pad));
-            this.setMaximumSize(new Dimension(this.getWidth(), this.getHeight() + pad));
-        }
-        this.updateUI();
-    }
 }

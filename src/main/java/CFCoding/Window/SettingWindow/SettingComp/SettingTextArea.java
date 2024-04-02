@@ -98,17 +98,6 @@ public class SettingTextArea extends MyPanel implements SettingBase {
 
                 }
             });
-            this.addComponentListener(new ComponentAdapter() {
-                @Override
-                public void componentResized(ComponentEvent e) {
-                    _TextArea self = (_TextArea) e.getComponent();
-                    SettingTextArea panel = (SettingTextArea) self.getParent();
-                    if (oldHeight != -1) {
-                        panel.resize(self.getHeight() - self.oldHeight);
-                    }
-                    oldHeight = self.getHeight();
-                }
-            });
             this.addKeyListener(new KeyListener() {
                 @Override
                 public void keyPressed(KeyEvent e) {
