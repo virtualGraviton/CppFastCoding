@@ -1,13 +1,16 @@
 package CFCoding.Base;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MyPanel extends JPanel {
     protected int Axis;
+    public int Gap;
 
-    public MyPanel(int axis) {
+    public MyPanel(int axis, int gap) {
         Axis = axis;
         this.setLayout(new BoxLayout(this, axis));
+        Gap = gap;
     }
 
     public void AddComp(JComponent comp) {

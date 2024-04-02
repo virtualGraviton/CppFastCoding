@@ -26,18 +26,18 @@ public class TestCase extends MyPanel {
     public boolean isExpanded = true;
     MyButton deleteButton;
     MyButton expandButton = new MyButton("-");
-    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
+    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
     String fontType;
     int fontSize;
     private JLabel title;
 
     TestCase(int testCaseNum) {
-        super(BoxLayout.Y_AXIS);
+        super(BoxLayout.Y_AXIS, 7);
         baseInit(testCaseNum);
     }
 
     public TestCase(int testCaseNum, String init) {
-        super(BoxLayout.Y_AXIS);
+        super(BoxLayout.Y_AXIS, 7);
         baseInit(testCaseNum);
         inputField.setText(init);
     }
@@ -47,12 +47,12 @@ public class TestCase extends MyPanel {
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
 
-        title = new JLabel("TestCase #%d    ".formatted(num));
+        title = new JLabel("TestCase #%d ".formatted(num));
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
-        titleRow.add(title);
+        titleRow.AddComp(title);
 
         statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
-        titleRow.add(statLabel);
+        titleRow.AddComp(statLabel);
 
         ImageIcon icon = new ImageIcon("C:\\Users\\ASUS\\Downloads\\delete.png");
         deleteButton = new MyButton(icon);
@@ -108,9 +108,8 @@ public class TestCase extends MyPanel {
 
             }
         });
-        titleRow.add(deleteButton);
-        titleRow.add(expandButton);
-
+        titleRow.AddComp(deleteButton);
+        titleRow.AddComp(expandButton);
         this.AddComp(titleRow);
 
 

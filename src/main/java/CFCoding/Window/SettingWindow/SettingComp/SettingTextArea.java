@@ -25,7 +25,7 @@ public class SettingTextArea extends MyPanel implements SettingBase {
     private String initSetting;
 
     public SettingTextArea(String key, String title, String init) {
-        super(BoxLayout.X_AXIS);
+        super(BoxLayout.X_AXIS, 7);
         this.AddComp(new MyLabel(title));
         initSetting = init;
         textArea = new _TextArea(init);
