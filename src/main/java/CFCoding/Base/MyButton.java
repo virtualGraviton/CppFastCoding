@@ -14,12 +14,11 @@ public class MyButton extends JLabel {
     int fontSize;
 
     public MyButton(String Text) {
-        this.setBackground(JBColor.red);
         SetFont();
         SetText(Text);
     }
 
-    public MyButton(ImageIcon icon) {
+    public MyButton(Icon icon) {
         super(icon);
         this.setBackground(JBColor.red);
         SetFont();
