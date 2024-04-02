@@ -1,20 +1,9 @@
 package CFCoding.Base;
 
-import com.intellij.ui.JBColor;
-
 import javax.swing.*;
-import java.awt.*;
 
 public class MyPanel extends JPanel {
     protected int Axis;
-
-    public MyPanel(int axis, JBColor color) {
-        Axis = axis;
-        this.setLayout(new BoxLayout(this, axis));
-        if (color != null) {
-            this.setBackground(color);
-        }
-    }
 
     public MyPanel(int axis) {
         Axis = axis;

@@ -24,7 +24,7 @@ public class TestCase extends MyPanel {
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
     public boolean isExpanded = true;
-    MyButton deleteButton = new MyButton("Del");
+    MyButton deleteButton;
     MyButton expandButton = new MyButton("-");
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS);
     String fontType;
@@ -54,6 +54,8 @@ public class TestCase extends MyPanel {
         statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.add(statLabel);
 
+        ImageIcon icon = new ImageIcon("C:\\Users\\ASUS\\Downloads\\delete.png");
+        deleteButton = new MyButton(icon);
         deleteButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -80,7 +82,6 @@ public class TestCase extends MyPanel {
 
             }
         });
-        deleteButton.setForeground(JBColor.red);
         expandButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {

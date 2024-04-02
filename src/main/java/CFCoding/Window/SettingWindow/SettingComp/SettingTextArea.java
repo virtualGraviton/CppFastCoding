@@ -16,8 +16,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -61,7 +59,6 @@ public class SettingTextArea extends MyPanel implements SettingBase {
     public static class _TextArea extends JBTextArea {
         String fontType;
         int fontSize;
-        int oldHeight = -1;
 
         _TextArea(String text) {
             super(text);
