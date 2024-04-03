@@ -7,6 +7,9 @@ import com.intellij.ui.components.JBLabel;
 import java.awt.*;
 
 public class MyLabel extends JBLabel {
+    public String fontType;
+    public int fontSize;
+
     public MyLabel(String text) {
         super(text);
         SetFont();
@@ -14,8 +17,8 @@ public class MyLabel extends JBLabel {
 
     public void SetFont() {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
-        String fontType = fontPreferences.getFontFamily();
-        int fontSize = fontPreferences.getSize(fontType);
+        fontType = fontPreferences.getFontFamily();
+        fontSize = fontPreferences.getSize(fontType);
         this.setFont(new Font(fontType, Font.PLAIN, fontSize));
     }
 }

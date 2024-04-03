@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
-
 public class MainToolWindow implements ToolWindowFactory {
     public MainPanel mainPanel;
 

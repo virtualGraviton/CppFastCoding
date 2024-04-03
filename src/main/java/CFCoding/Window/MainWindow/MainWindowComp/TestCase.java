@@ -13,20 +13,15 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class TestCase extends MyPanel {
-    public static int AC = 0;
-    public static int TLE = 1;
-    public static int RE = 2;
-    public static int RUN = -1;
-    public static int PD = -2;
     private int idx;
-    public JLabel statLabel = new JLabel("Pending...");
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
     public boolean isExpanded = true;
+    StatLabel statLabel = new StatLabel("Pending...");
     MyButton deleteButton = new MyButton("Del");
     MyButton expandButton = new MyButton("-");
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
@@ -55,61 +50,21 @@ public class TestCase extends MyPanel {
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.AddComp(title);
 
-        statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.AddComp(statLabel);
 
-        deleteButton.addMouseListener(new MouseListener() {
+        deleteButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Delete();
             }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
         });
-        expandButton.addMouseListener(new MouseListener() {
+        expandButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Expand(e);
             }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
         });
+
         titleRow.AddComp(deleteButton);
         titleRow.AddComp(expandButton);
         this.AddComp(titleRow);
@@ -154,7 +109,7 @@ public class TestCase extends MyPanel {
 
     public void ClearText() {
         this.outputField.setText("");
-        this.SetStat(PD);
+        this.setStat(StatLabel.ResultStat.PD);
     }
 
     private void Delete() {
@@ -170,23 +125,8 @@ public class TestCase extends MyPanel {
         gPanel.testCaseNum--;
     }
 
-    public void SetStat(int stat) {
-        if (stat == AC) {
-            this.statLabel.setText("AC");
-            this.statLabel.setForeground(JBColor.green);
-        } else if (stat == TLE) {
-            this.statLabel.setText("TLE");
-            this.statLabel.setForeground(JBColor.black);
-        } else if (stat == RE) {
-            this.statLabel.setText("RE");
-            this.statLabel.setForeground(JBColor.red);
-        } else if (stat == PD) {
-            this.statLabel.setText("Pending");
-            this.statLabel.setForeground(JBColor.black);
-        } else if (stat == RUN) {
-            this.statLabel.setText("Running...");
-            this.statLabel.setForeground(JBColor.blue);
-        }
+    public void setStat(int stat) {
+        statLabel.setStat(stat);
         this.updateUI();
     }
 

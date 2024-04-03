@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static CFCoding.Window.MainWindow.MainWindowComp.StatLabel.ResultStat;
+
 public class CppManager {
     private static final Logger logger = LoggerFactory.getLogger(CppManager.class);
     String cppFilePath;
@@ -141,7 +143,7 @@ public class CppManager {
                         }
                         for (Component comp : tot.getComponents()) {
                             if (comp instanceof TestCase now) {
-                                now.SetStat(TestCase.RUN);
+                                now.setStat(ResultStat.RUN);
                                 AsyncRun(now);
                             }
                         }
@@ -166,7 +168,7 @@ public class CppManager {
                 try {
                     RunResult result = get();
                     SwingUtilities.invokeLater(() -> {
-                        now.SetStat(result.verdict);
+                        now.setStat(result.verdict);
                         now.outputField.setText(result.output);
                     });
                 } catch (Exception e) {
@@ -181,9 +183,9 @@ public class CppManager {
         public static int CompileSucceed = 10;
         public static int CompileFailed = 11;
         public static int UnCompiled = 12;
-        public static int RunSucceed = TestCase.AC;
-        public static int RunTLE = TestCase.TLE;
-        public static int RunRE = TestCase.RE;
+        public static int RunSucceed = ResultStat.AC;
+        public static int RunTLE = ResultStat.TLE;
+        public static int RunRE = ResultStat.RE;
     }
 
     public static class RunResult {
