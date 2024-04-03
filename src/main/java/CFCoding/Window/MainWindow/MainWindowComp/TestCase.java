@@ -11,6 +11,8 @@ import com.intellij.ui.JBColor;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -20,11 +22,13 @@ public class TestCase extends MyPanel {
     public static int RE = 2;
     public static int RUN = -1;
     public static int PD = -2;
+    private int idx;
     public JLabel statLabel = new JLabel("Pending...");
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
     public boolean isExpanded = true;
-    MyButton deleteButton;
+    MyButton deleteButton = new MyButton("Del");
+    ;
     MyButton expandButton = new MyButton("-");
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
     String fontType;
@@ -43,19 +47,18 @@ public class TestCase extends MyPanel {
     }
 
     private void baseInit(int num) {
+        idx = num;
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
 
-        title = new JLabel("TestCase #%d ".formatted(num));
+        title = new JLabel("TestCase #%d".formatted(num));
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.AddComp(title);
 
         statLabel.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.AddComp(statLabel);
 
-        ImageIcon icon = new ImageIcon("C:\\Users\\ASUS\\Downloads\\delete.png");
-        deleteButton = new MyButton(icon);
         deleteButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -111,6 +114,24 @@ public class TestCase extends MyPanel {
         titleRow.AddComp(deleteButton);
         titleRow.AddComp(expandButton);
         this.AddComp(titleRow);
+        titleRow.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                MyPanel p = (MyPanel) e.getComponent();
+                int w = 0, h = 0;
+                if (p.Axis == BoxLayout.X_AXIS) w = p.getWidth();
+                else h = p.getHeight();
+                for (Component c : p.getComponents()) {
+                    if (c instanceof Box.Filler) continue;
+                    if (p.Axis == BoxLayout.X_AXIS) h = Math.max(h, c.getHeight());
+                    else w = Math.max(w, c.getWidth());
+                }
+                p.setPreferredSize(new Dimension(w, h));
+                p.setMaximumSize(new Dimension(w, h));
+                p.revalidate();
+                p.repaint();
+            }
+        });
 
 
         this.AddComp(new MyLabel("Input:"));
@@ -128,7 +149,8 @@ public class TestCase extends MyPanel {
     }
 
     public void changeTitle(int i) {
-        title.setText("TestCase #%d    ".formatted(i));
+        idx = i;
+        title.setText("TestCase #%d".formatted(i));
     }
 
     public void ClearText() {
@@ -140,7 +162,9 @@ public class TestCase extends MyPanel {
         MyPanel buttonR = (MyPanel) deleteButton.getParent();
         TestCase testCase = (TestCase) buttonR.getParent();
         TestCasePanel gPanel = (TestCasePanel) testCase.getParent();
+        Box.Filler filler = (Box.Filler) gPanel.getComponent(idx * 2 - 1);
         gPanel.remove(testCase);
+        gPanel.remove(filler);
         gPanel.revalidate();
         gPanel.repaint();
         gPanel.titleUdt();
