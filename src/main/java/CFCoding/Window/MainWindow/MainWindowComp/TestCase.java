@@ -28,7 +28,6 @@ public class TestCase extends MyPanel {
     public MyTextArea outputField = new MyTextArea();
     public boolean isExpanded = true;
     MyButton deleteButton = new MyButton("Del");
-    ;
     MyButton expandButton = new MyButton("-");
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
     String fontType;
