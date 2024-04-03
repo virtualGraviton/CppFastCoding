@@ -2,9 +2,11 @@ package CFCoding.Base;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class MyPanel extends JPanel {
-    protected int Axis;
+    public int Axis;
     public int Gap;
 
     public MyPanel(int axis, int gap) {
