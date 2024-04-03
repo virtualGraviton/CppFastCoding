@@ -9,7 +9,7 @@ public class TestCasePanel extends MyPanel {
     int testCaseNum;
 
     public TestCasePanel() {
-        super(BoxLayout.Y_AXIS,7);
+        super(BoxLayout.Y_AXIS, 7);
         testCaseNum = 0;
     }
 

@@ -17,7 +17,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class TestCase extends MyPanel {
-    private int idx;
     public MyTextArea inputField = new MyTextArea();
     public MyTextArea outputField = new MyTextArea();
     public boolean isExpanded = true;
@@ -27,6 +26,7 @@ public class TestCase extends MyPanel {
     MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
     String fontType;
     int fontSize;
+    private int idx;
     private JLabel title;
 
     TestCase(int testCaseNum) {

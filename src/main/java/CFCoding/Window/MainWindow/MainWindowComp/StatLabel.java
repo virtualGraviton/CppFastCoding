@@ -41,11 +41,6 @@ public class StatLabel extends MyLabel {
     }
 
     public static class ResultStat {
-        public static int AC = 0;
-        public static int TLE = 1;
-        public static int RE = 2;
-        public static int RUN = 3;
-        public static int PD = 4;
         private static final ArrayList<String> statString = new ArrayList<>() {{
             add("Accepted");
             add("TLE");
@@ -53,6 +48,11 @@ public class StatLabel extends MyLabel {
             add("Running...");
             add("Pending");
         }};
+        public static int AC = 0;
+        public static int TLE = 1;
+        public static int RE = 2;
+        public static int RUN = 3;
+        public static int PD = 4;
 
         public static String getStatString(int stat) {
             return statString.get(stat);

@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class ButtonPanel extends MyPanel {
     ButtonPanel(Project project, TestCasePanel testCasePanel) {
-        super(BoxLayout.Y_AXIS,7);
+        super(BoxLayout.Y_AXIS, 7);
         this.AddComp(new NewButton(testCasePanel));
         this.AddComp(new RunButton(project, testCasePanel));
         this.AddComp(new OpenSettingButton());

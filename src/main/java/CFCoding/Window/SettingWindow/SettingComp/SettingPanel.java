@@ -12,7 +12,7 @@ public class SettingPanel extends MyPanel implements SettingBase {
     private static SettingStorage setting;
 
     public SettingPanel() {
-        super(BoxLayout.Y_AXIS,7);
+        super(BoxLayout.Y_AXIS, 7);
         setting = ApplicationManager.getApplication().getService(SettingStorage.class);
         addSetting("CompileStandard", "Compile Standard:");
         addSetting("MaxWaitTime", "Max Wait Time(ms):");
