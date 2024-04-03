@@ -1,7 +1,7 @@
 package CFCoding.Window.MainWindow.MainWindowComp;
 
 import CFCoding.Base.MyButton;
-import CFCoding.Services.Manager.CppManager;
+import CFCoding.Services.Manager.CppFileManager;
 import CFCoding.Services.Notice;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
@@ -64,8 +64,8 @@ public class RunButton extends MyButton {
                 t.ClearText();
             }
         }
-        CppManager cppManager = new CppManager(project, testCasePanel);
-        cppManager.AsyncRunAll();
+        CppFileManager cppFileManager = new CppFileManager(project, testCasePanel);
+        cppFileManager.AsyncRunAll();
     }
 
     public void SaveCpp() {

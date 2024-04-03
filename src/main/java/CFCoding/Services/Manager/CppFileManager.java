@@ -21,14 +21,14 @@ import java.io.InputStreamReader;
 
 import static CFCoding.Window.MainWindow.MainWindowComp.StatLabel.ResultStat;
 
-public class CppManager {
-    private static final Logger logger = LoggerFactory.getLogger(CppManager.class);
+public class CppFileManager {
+    private static final Logger logger = LoggerFactory.getLogger(CppFileManager.class);
     String cppFilePath;
     String exeFilePath;
     TestCasePanel tot;
     private int CompileStat;
 
-    public CppManager(Project project, TestCasePanel testCasePanel) {
+    public CppFileManager(Project project, TestCasePanel testCasePanel) {
         tot = testCasePanel;
 
         FileEditorManager editorManager = FileEditorManager.getInstance(project);
