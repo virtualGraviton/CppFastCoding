@@ -26,19 +26,19 @@ public class SettingTextArea extends MyPanel implements SettingBase {
 
     public SettingTextArea(String key, String title, String init) {
         super(BoxLayout.X_AXIS, 7);
-        this.AddComp(new MyLabel(title));
+        this.addComp(new MyLabel(title));
         initSetting = init;
         textArea = new _TextArea(init);
         textArea.setBorder(new LineBorder(JBColor.black, 3, true));
-        this.AddComp(textArea);
+        this.addComp(textArea);
         this.setMaximumSize(new Dimension(1000, 30));
 
         SettingKey = key;
     }
 
-    public void AddComp(JComponent comp) {
+    public void addComp(JComponent comp) {
         this.add(comp);
-        if (Axis == BoxLayout.X_AXIS) {
+        if (getAxis() == BoxLayout.X_AXIS) {
             this.add(Box.createHorizontalStrut(7));
         } else {
             comp.setAlignmentX(LEFT_ALIGNMENT);

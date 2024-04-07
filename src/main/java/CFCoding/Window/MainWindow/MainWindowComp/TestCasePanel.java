@@ -16,7 +16,7 @@ public class TestCasePanel extends MyPanel {
     public void addTextCase() {
         testCaseNum++;
         TestCase testCase = new TestCase(testCaseNum);
-        this.AddComp(testCase);
+        this.addComp(testCase);
         this.revalidate();
         this.repaint();
     }
@@ -24,7 +24,7 @@ public class TestCasePanel extends MyPanel {
     public void addTextCase(String init) {
         testCaseNum++;
         TestCase testCase = new TestCase(testCaseNum, init);
-        this.AddComp(testCase);
+        this.addComp(testCase);
         this.revalidate();
         this.repaint();
     }

@@ -13,8 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class RunButton extends MyButton {
     private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
@@ -25,30 +25,10 @@ public class RunButton extends MyButton {
         super("Run");
         project = p;
         testCasePanel = t;
-        this.addMouseListener(new MouseListener() {
+        this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ExeRun();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
             }
         });
     }
@@ -56,7 +36,7 @@ public class RunButton extends MyButton {
     private void ExeRun() {
         SaveCpp();
         if (testCasePanel.testCaseNum == 0) {
-            Notice.ShowBalloon("ERROR", "No test case.");
+            Notice.showBalloon("ERROR", "No test case.");
             return;
         }
         for (Component c : this.getComponents()) {
@@ -65,7 +45,7 @@ public class RunButton extends MyButton {
             }
         }
         CppFileManager cppFileManager = new CppFileManager(project, testCasePanel);
-        cppFileManager.AsyncRunAll();
+        cppFileManager.asyncRunAll();
     }
 
     public void SaveCpp() {

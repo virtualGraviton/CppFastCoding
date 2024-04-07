@@ -3,70 +3,36 @@ package CFCoding.Base;
 import CFCoding.Services.Manager.TextManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
-import com.intellij.ui.JBColor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.FontRenderContext;
 
 public class MyButton extends JLabel {
-    String fontType;
-    int fontSize;
-    TextManager textManager;
+    private String fontType;
+    private int fontSize;
+    private final TextManager textManager;
 
-    public MyButton(String Text) {
-        SetFont();
-        SetText(Text);
+    public MyButton() {
+        initFont();
+        textManager = new TextManager(fontType, Font.PLAIN, fontSize);
+        addPropertyChangeListener(evt -> {
+            if (!"text".equals(evt.getPropertyName())) return;
+            String s = (String) evt.getNewValue();
+            int w = textManager.getWidth(s) + 20, h = textManager.getHeight(s) + 10;
+            setPreferredSize(new Dimension(w, h));
+            setMaximumSize(new Dimension(w, h));
+        });
     }
 
-    public MyButton(Icon icon) {
-        super(icon);
-        this.setBackground(JBColor.red);
-        SetFont();
-    }
-
-    public void SetText(String text) {
+    public MyButton(String text) {
+        this();
         setText(text);
-        int w = getWidth(text) + 20, h = getHeight(text) + 10;
-        this.setPreferredSize(new Dimension(w, h));
-        this.setMaximumSize(new Dimension(w, h));
     }
 
-    private int getHeight(String text) {
-        int row_cnt = 1;
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == '\n') {
-                row_cnt++;
-            }
-        }
-        return textManager.getRowHeight() * row_cnt;
-    }
-
-    private int getWidth(String text) {
-        int col_width = 0;
-        StringBuilder a = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == '\n') {
-                col_width = Math.max(_getWidth(a.toString()), col_width);
-                a = new StringBuilder();
-            }
-            a.append(text.charAt(i));
-        }
-        col_width = Math.max(_getWidth(a.toString()), col_width);
-        return col_width;
-    }
-
-    private int _getWidth(String text) {
-        Font font = new Font(fontType, Font.PLAIN, fontSize);
-        FontRenderContext frc = new FontRenderContext(null, false, false);
-        return (int) font.getStringBounds(text, frc).getWidth();
-    }
-
-    private void SetFont() {
+    private void initFont() {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
-        textManager = new TextManager(fontType, Font.PLAIN, fontSize);
-        this.setFont(new Font(fontType, Font.PLAIN, fontSize));
+        setFont(new Font(fontType, Font.PLAIN, fontSize));
     }
 }

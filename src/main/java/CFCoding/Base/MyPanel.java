@@ -3,21 +3,29 @@ package CFCoding.Base;
 import javax.swing.*;
 
 public class MyPanel extends JPanel {
-    public int Axis;
-    public int Gap;
+    private final int Axis;
+    private final int Gap;
 
     public MyPanel(int axis, int gap) {
         Axis = axis;
-        this.setLayout(new BoxLayout(this, axis));
         Gap = gap;
+        setLayout(new BoxLayout(this, axis));
     }
 
-    public void AddComp(JComponent comp) {
-        this.add(comp);
+    public int getAxis() {
+        return Axis;
+    }
+
+    public int getGap() {
+        return Gap;
+    }
+
+    public void addComp(JComponent comp) {
+        add(comp);
         if (Axis == BoxLayout.X_AXIS) {
-            this.add(Box.createHorizontalStrut(Gap));
+            add(Box.createHorizontalStrut(Gap));
         } else {
-            this.add(Box.createVerticalStrut(Gap));
+            add(Box.createVerticalStrut(Gap));
         }
     }
 }

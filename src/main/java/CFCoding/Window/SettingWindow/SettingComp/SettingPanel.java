@@ -19,7 +19,7 @@ public class SettingPanel extends MyPanel implements SettingBase {
     }
 
     public void addSetting(String key, String title) {
-        AddComp(new SettingTextArea(key, title, setting.getValue(key)));
+        addComp(new SettingTextArea(key, title, setting.getValue(key)));
     }
 
     public void save() {

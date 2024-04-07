@@ -48,9 +48,9 @@ public class TestCase extends MyPanel {
 
         title = new JLabel("TestCase #%d".formatted(num));
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
-        titleRow.AddComp(title);
+        titleRow.addComp(title);
 
-        titleRow.AddComp(statLabel);
+        titleRow.addComp(statLabel);
 
         deleteButton.setForeground(JBColor.red);
         deleteButton.addMouseListener(new MouseAdapter() {
@@ -66,19 +66,19 @@ public class TestCase extends MyPanel {
             }
         });
 
-        titleRow.AddComp(deleteButton);
-        titleRow.AddComp(expandButton);
-        this.AddComp(titleRow);
+        titleRow.addComp(deleteButton);
+        titleRow.addComp(expandButton);
+        this.addComp(titleRow);
         titleRow.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 MyPanel p = (MyPanel) e.getComponent();
                 int w = 0, h = 0;
-                if (p.Axis == BoxLayout.X_AXIS) w = p.getWidth();
+                if (p.getAxis() == BoxLayout.X_AXIS) w = p.getWidth();
                 else h = p.getHeight();
                 for (Component c : p.getComponents()) {
                     if (c instanceof Box.Filler) continue;
-                    if (p.Axis == BoxLayout.X_AXIS) h = Math.max(h, c.getHeight());
+                    if (p.getAxis() == BoxLayout.X_AXIS) h = Math.max(h, c.getHeight());
                     else w = Math.max(w, c.getWidth());
                 }
                 p.setPreferredSize(new Dimension(w, h));
@@ -89,15 +89,15 @@ public class TestCase extends MyPanel {
         });
 
 
-        this.AddComp(new MyLabel("Input:"));
-        this.AddComp(inputField);
-        this.AddComp(new MyLabel("Output:"));
-        this.AddComp(outputField);
+        this.addComp(new MyLabel("Input:"));
+        this.addComp(inputField);
+        this.addComp(new MyLabel("Output:"));
+        this.addComp(outputField);
 
         this.setBorder(new LineBorder(JBColor.lightGray, 5));
     }
 
-    public void AddComp(JComponent c) {
+    public void addComp(JComponent c) {
         c.setAlignmentX(Component.LEFT_ALIGNMENT);
         this.add(c);
         this.add(Box.createVerticalStrut(7));
@@ -135,7 +135,7 @@ public class TestCase extends MyPanel {
         isExpanded = !isExpanded;
         set_Visible(isExpanded);
         MyButton b = (MyButton) e.getSource();
-        b.SetText(isExpanded ? "-" : "+");
+        b.setText(isExpanded ? "-" : "+");
     }
 
     private void set_Visible(boolean visible) {

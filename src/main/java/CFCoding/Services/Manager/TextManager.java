@@ -4,16 +4,16 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 
 public class TextManager {
-    private final Font _font;
+    private final Font font;
     private int rowHeight;
 
     public TextManager(String fontType, int fontStyle, int fontSize) {
-        _font = new Font(fontType, fontStyle, fontSize);
+        font = new Font(fontType, fontStyle, fontSize);
         rowHeight = (int) (1.5 * fontSize) - 1;
     }
 
     public TextManager(Font font) {
-        _font = font;
+        this.font = font;
     }
 
     public int getRowHeight() {
@@ -46,6 +46,6 @@ public class TextManager {
 
     private int _getWidth(String text) {
         FontRenderContext frc = new FontRenderContext(null, false, false);
-        return (int) _font.getStringBounds(text, frc).getWidth();
+        return (int) font.getStringBounds(text, frc).getWidth();
     }
 }

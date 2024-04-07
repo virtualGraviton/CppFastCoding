@@ -1,65 +1,53 @@
 package CFCoding.Base;
 
-
 import CFCoding.Services.Manager.TextManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
+import com.intellij.ui.DocumentAdapter;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBTextArea;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 
 public class MyTextArea extends JBTextArea {
-    String fontType;
-    int fontSize;
-    MyTextArea self;
-    TextManager textManager;
+    private String fontType;
+    private int fontSize;
+    private TextManager textManager;
 
     public MyTextArea() {
-        SetFont();
+        initFont();
         Init();
-        addListener();
-    }
-
-    protected void addListener() {
-        self = this;
-        this.getDocument().addDocumentListener(new DocumentListener() {
+        this.getDocument().addDocumentListener(new DocumentAdapter() {
             @Override
-            public void insertUpdate(DocumentEvent e) {
-                String s = self.getText();
+            protected void textChanged(@NotNull DocumentEvent e) {
+                String s;
+                try {
+                    s = e.getDocument().getText(0, e.getDocument().getLength());
+                } catch (BadLocationException ex) {
+                    throw new RuntimeException(ex);
+                }
+
                 int w = textManager.getWidth(s) + 10, h = textManager.getHeight(s);
-                self.setPreferredSize(new Dimension(Math.max(w, 200), h));
-                self.setMaximumSize(new Dimension(Math.max(w, 200), h));
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                String s = self.getText();
-                int w = textManager.getWidth(s) + 10, h = textManager.getHeight(s);
-                self.setPreferredSize(new Dimension(Math.max(w, 200), h));
-                self.setMaximumSize(new Dimension(Math.max(w, 200), h));
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-
+                setPreferredSize(new Dimension(Math.max(w, 200), h));
+                setMaximumSize(new Dimension(Math.max(w, 200), h));
             }
         });
     }
 
-    private void SetFont() {
+    private void initFont() {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
-        this.setFont(new Font(fontType, Font.PLAIN, fontSize));
-        textManager = new TextManager(fontType, Font.PLAIN, fontSize);
+        setFont(new Font(fontType, Font.PLAIN, fontSize));
     }
 
     private void Init() {
-        this.setPreferredSize(new Dimension(200, textManager.getRowHeight()));
-        this.setMaximumSize(new Dimension(200, textManager.getRowHeight()));
-        this.setBackground(JBColor.lightGray);
+        setPreferredSize(new Dimension(200, textManager.getRowHeight()));
+        setMaximumSize(new Dimension(200, textManager.getRowHeight()));
+        setBackground(JBColor.lightGray);
+        textManager = new TextManager(fontType, Font.PLAIN, fontSize);
     }
 }

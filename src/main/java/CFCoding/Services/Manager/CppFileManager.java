@@ -23,9 +23,9 @@ import static CFCoding.Window.MainWindow.MainWindowComp.StatLabel.ResultStat;
 
 public class CppFileManager {
     private static final Logger logger = LoggerFactory.getLogger(CppFileManager.class);
-    String cppFilePath;
-    String exeFilePath;
-    TestCasePanel tot;
+    private String cppFilePath;
+    private String exeFilePath;
+    private final TestCasePanel tot;
     private int CompileStat;
 
     public CppFileManager(Project project, TestCasePanel testCasePanel) {
@@ -51,10 +51,10 @@ public class CppFileManager {
         CompileStat = Stat.UnCompiled;
     }
 
-    private void CompilePrepare() {
+    private void compilePrepare() {
         if (exeFilePath == null) {
             CompileStat = Stat.CompileFailed;
-            Notice.ShowBalloon("ERROR", "No file selected.");
+            Notice.showBalloon("ERROR", "No file selected.");
             return;
         }
         File file = new File(exeFilePath);
@@ -66,7 +66,7 @@ public class CppFileManager {
         }
     }
 
-    private int Compile() {
+    private int compile() {
         try {
             Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -88,7 +88,7 @@ public class CppFileManager {
         }
     }
 
-    private RunResult Run(@NotNull TestCase nowTestCase) {
+    private RunResult run(@NotNull TestCase nowTestCase) {
         String input = nowTestCase.inputField.getText();
         StringBuilder output = new StringBuilder();
         int verdict;
@@ -123,13 +123,13 @@ public class CppFileManager {
         return new RunResult(output.toString(), verdict);
     }
 
-    public void AsyncRunAll() {
-        CompilePrepare();
+    public void asyncRunAll() {
+        compilePrepare();
         if (CompileStat == Stat.CompileFailed) return;
         SwingWorker<Integer, Void> AsyncCompile = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
-                return Compile();
+                return compile();
             }
 
             @Override
@@ -138,13 +138,13 @@ public class CppFileManager {
                     Integer result = get();
                     SwingUtilities.invokeLater(() -> {
                         if (result == Stat.CompileFailed) {
-                            Notice.ShowBalloon("ERROR", "Compilation failed.");
+                            Notice.showBalloon("ERROR", "Compilation failed.");
                             return;
                         }
                         for (Component comp : tot.getComponents()) {
                             if (comp instanceof TestCase now) {
                                 now.setStat(ResultStat.RUN);
-                                AsyncRun(now);
+                                asyncRun(now);
                             }
                         }
                     });
@@ -156,11 +156,11 @@ public class CppFileManager {
         AsyncCompile.execute();
     }
 
-    private void AsyncRun(TestCase now) {
+    private void asyncRun(TestCase now) {
         SwingWorker<RunResult, Void> AsyncRun = new SwingWorker<>() {
             @Override
             protected RunResult doInBackground() {
-                return Run(now);
+                return CppFileManager.this.run(now);
             }
 
             @Override

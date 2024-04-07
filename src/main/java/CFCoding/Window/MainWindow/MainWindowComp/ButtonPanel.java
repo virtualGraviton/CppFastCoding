@@ -9,12 +9,12 @@ import java.awt.*;
 public class ButtonPanel extends MyPanel {
     ButtonPanel(Project project, TestCasePanel testCasePanel) {
         super(BoxLayout.Y_AXIS, 7);
-        this.AddComp(new NewButton(testCasePanel));
-        this.AddComp(new RunButton(project, testCasePanel));
-        this.AddComp(new OpenSettingButton());
+        this.addComp(new NewButton(testCasePanel));
+        this.addComp(new RunButton(project, testCasePanel));
+        this.addComp(new OpenSettingButton());
     }
 
-    public void AddComp(JComponent comp) {
+    public void addComp(JComponent comp) {
         comp.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.add(comp);
         this.add(Box.createVerticalStrut(7));
