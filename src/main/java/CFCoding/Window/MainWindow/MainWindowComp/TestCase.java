@@ -52,6 +52,7 @@ public class TestCase extends MyPanel {
 
         titleRow.AddComp(statLabel);
 
+        deleteButton.setForeground(JBColor.red);
         deleteButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

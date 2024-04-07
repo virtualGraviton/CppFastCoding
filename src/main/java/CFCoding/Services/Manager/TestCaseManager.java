@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public final class TestCaseManager {
 
     public static ArrayList<String> getTestCase() {
-        TestCasePanel tcp = MainPanel.testCasePanel;
+        TestCasePanel tcp = MainPanel.getTestCasePanel();
         ArrayList<String> r = new ArrayList<>();
         if (tcp != null) {
             for (Component c : tcp.getComponents()) {
@@ -23,9 +23,9 @@ public final class TestCaseManager {
     }
 
     public static void setTestCase(ArrayList<String> inputs) {
-        MainPanel.testCasePanel.clear();
+        MainPanel.getTestCasePanel().clear();
         for (String s : inputs) {
-            MainPanel.testCasePanel.addTextCase(s);
+            MainPanel.getTestCasePanel().addTextCase(s);
         }
     }
 }

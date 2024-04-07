@@ -10,7 +10,7 @@ import java.awt.event.ComponentEvent;
 
 
 public class MainPanel extends JPanel {
-    public static TestCasePanel testCasePanel;
+    private static TestCasePanel testCasePanel;
     JBScrollPane scrollPane;
     ButtonPanel buttonpanel;
     Project project;
@@ -35,5 +35,10 @@ public class MainPanel extends JPanel {
                 buttonpanel.updateUI();
             }
         });
+    }
+
+    public static TestCasePanel getTestCasePanel() {
+        if (testCasePanel == null) testCasePanel = new TestCasePanel();
+        return testCasePanel;
     }
 }

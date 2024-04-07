@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SelectedFileListener implements FileEditorManagerListener {
 
+
     public SelectedFileListener() {
     }
 
