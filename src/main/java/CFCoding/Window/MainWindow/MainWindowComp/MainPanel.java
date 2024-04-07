@@ -11,9 +11,9 @@ import java.awt.event.ComponentEvent;
 
 public class MainPanel extends JPanel {
     private static TestCasePanel testCasePanel;
-    JBScrollPane scrollPane;
-    ButtonPanel buttonpanel;
-    Project project;
+    private final JBScrollPane scrollPane;
+    private final ButtonPanel buttonpanel;
+    private final Project project;
 
     public MainPanel(Project p) {
         project = p;

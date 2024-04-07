@@ -45,9 +45,9 @@ public class MyTextArea extends JBTextArea {
     }
 
     private void Init() {
+        textManager = new TextManager(fontType, Font.PLAIN, fontSize);
         setPreferredSize(new Dimension(200, textManager.getRowHeight()));
         setMaximumSize(new Dimension(200, textManager.getRowHeight()));
         setBackground(JBColor.lightGray);
-        textManager = new TextManager(fontType, Font.PLAIN, fontSize);
     }
 }

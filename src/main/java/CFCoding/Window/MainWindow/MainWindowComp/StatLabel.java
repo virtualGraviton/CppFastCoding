@@ -21,7 +21,6 @@ public class StatLabel extends MyLabel {
             minWidth = Math.max(minWidth, textManager.getWidth(entry.getValue()));
             minHeight = Math.max(minHeight, textManager.getHeight(entry.getValue()));
         }
-        System.out.println(minWidth);
         setMinimumSize(new Dimension(minWidth, minHeight));
         setPreferredSize(new Dimension(minWidth, minHeight));
     }
@@ -42,6 +41,11 @@ public class StatLabel extends MyLabel {
     }
 
     public static class ResultStat {
+        public static Integer AC = 0;
+        public static Integer TLE = 1;
+        public static Integer RE = 2;
+        public static Integer RUN = 3;
+        public static Integer PD = 4;
         private static final Map<Integer, String> statString = new HashMap<>() {
             {
                 put(AC, "Accepted");
@@ -51,11 +55,6 @@ public class StatLabel extends MyLabel {
                 put(PD, "Pending");
             }
         };
-        public static Integer AC = 0;
-        public static Integer TLE = 1;
-        public static Integer RE = 2;
-        public static Integer RUN = 3;
-        public static Integer PD = 4;
 
         public static String getStatString(int stat) {
             return statString.get(stat);

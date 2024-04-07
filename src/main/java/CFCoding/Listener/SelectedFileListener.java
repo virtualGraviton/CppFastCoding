@@ -16,9 +16,8 @@ public class SelectedFileListener implements FileEditorManagerListener {
     @Override
     public void selectionChanged(@NotNull FileEditorManagerEvent event) {
         VirtualFile oldFile = event.getOldFile();
-        if (oldFile != null) {
+        if (oldFile != null)
             TestCaseStorage.getInstance().saveTestCase(oldFile.getPath(), TestCaseManager.getTestCase());
-        }
 
         VirtualFile newFile = event.getNewFile();
         if (newFile != null) {

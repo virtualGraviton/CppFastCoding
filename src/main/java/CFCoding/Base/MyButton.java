@@ -8,9 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MyButton extends JLabel {
+    private final TextManager textManager;
     private String fontType;
     private int fontSize;
-    private final TextManager textManager;
 
     public MyButton() {
         initFont();

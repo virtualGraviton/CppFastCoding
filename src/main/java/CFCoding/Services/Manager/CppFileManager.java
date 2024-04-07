@@ -23,9 +23,9 @@ import static CFCoding.Window.MainWindow.MainWindowComp.StatLabel.ResultStat;
 
 public class CppFileManager {
     private static final Logger logger = LoggerFactory.getLogger(CppFileManager.class);
+    private final TestCasePanel tot;
     private String cppFilePath;
     private String exeFilePath;
-    private final TestCasePanel tot;
     private int CompileStat;
 
     public CppFileManager(Project project, TestCasePanel testCasePanel) {
@@ -46,7 +46,7 @@ public class CppFileManager {
 
         File directory = new File(project.getBasePath() + "/_cppCompile");
         if (!directory.mkdirs()) {
-            System.out.println("Failed to create directory!");
+            System.out.println("Directory already existed, skipping...");
         }
         CompileStat = Stat.UnCompiled;
     }
@@ -70,10 +70,6 @@ public class CppFileManager {
         try {
             Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
             reader.close();
 
             int exitCode = process.waitFor();
