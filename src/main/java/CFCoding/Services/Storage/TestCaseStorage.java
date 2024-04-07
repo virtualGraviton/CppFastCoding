@@ -40,7 +40,6 @@ public final class TestCaseStorage implements PersistentStateComponent<TestCaseS
 
     public void saveTestCase(String key, ArrayList<String> value) {
         InputData.put(key, value);
-        System.out.println("save test case: " + value);
     }
 
     public ArrayList<String> getTestCase(String key) {

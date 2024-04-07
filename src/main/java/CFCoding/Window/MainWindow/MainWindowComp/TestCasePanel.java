@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TestCasePanel extends MyPanel {
-    int testCaseNum;
+    private int testCaseNum;
 
     public TestCasePanel() {
         super(BoxLayout.Y_AXIS, 7);
@@ -16,22 +16,31 @@ public class TestCasePanel extends MyPanel {
     public void addTextCase() {
         testCaseNum++;
         TestCase testCase = new TestCase(testCaseNum);
-        this.addComp(testCase);
-        this.revalidate();
-        this.repaint();
+        addComp(testCase);
+        revalidate();
+        repaint();
     }
 
     public void addTextCase(String init) {
         testCaseNum++;
         TestCase testCase = new TestCase(testCaseNum, init);
-        this.addComp(testCase);
-        this.revalidate();
-        this.repaint();
+        addComp(testCase);
+        revalidate();
+        repaint();
+    }
+
+    public void removeTextCase(int idx) {
+        testCaseNum--;
+        remove(idx * 2 - 2);
+        remove(idx * 2 - 2);
+        revalidate();
+        repaint();
+        titleUdt();
     }
 
     public void titleUdt() {
         int count = 0;
-        for (Component c : this.getComponents()) {
+        for (Component c : getComponents()) {
             if (c instanceof TestCase t) {
                 t.changeTitle(++count);
             }
@@ -39,9 +48,13 @@ public class TestCasePanel extends MyPanel {
     }
 
     public void clear() {
-        for (Component c : this.getComponents()) {
-            this.remove(c);
+        for (Component c : getComponents()) {
+            remove(c);
         }
         testCaseNum = 0;
+    }
+
+    public int getTestCaseNum() {
+        return testCaseNum;
     }
 }

@@ -9,12 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 
 public class MainToolWindow implements ToolWindowFactory {
-    public MainPanel mainPanel;
-
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        mainPanel = new MainPanel(project);
-        toolWindow.getComponent().add(mainPanel);
+        toolWindow.getComponent().add(new MainPanel());
         SwingUtilities.invokeLater(() -> toolWindow.getComponent().revalidate());
     }
 }

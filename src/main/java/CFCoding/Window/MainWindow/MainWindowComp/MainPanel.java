@@ -1,6 +1,5 @@
 package CFCoding.Window.MainWindow.MainWindowComp;
 
-import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBScrollPane;
 
 import javax.swing.*;
@@ -13,18 +12,16 @@ public class MainPanel extends JPanel {
     private static TestCasePanel testCasePanel;
     private final JBScrollPane scrollPane;
     private final ButtonPanel buttonpanel;
-    private final Project project;
 
-    public MainPanel(Project p) {
-        project = p;
+    public MainPanel() {
         if (testCasePanel == null)
             testCasePanel = new TestCasePanel();
         scrollPane = new JBScrollPane(testCasePanel);
-        buttonpanel = new ButtonPanel(project, testCasePanel);
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-        this.add(scrollPane);
-        this.add(buttonpanel);
-        this.addComponentListener(new ComponentAdapter() {
+        buttonpanel = new ButtonPanel();
+        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        add(scrollPane);
+        add(buttonpanel);
+        addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 int w = e.getComponent().getWidth();

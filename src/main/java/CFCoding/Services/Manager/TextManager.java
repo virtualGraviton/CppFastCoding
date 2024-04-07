@@ -12,8 +12,8 @@ public class TextManager {
         rowHeight = (int) (1.5 * fontSize) - 1;
     }
 
-    public TextManager(Font font) {
-        this.font = font;
+    public TextManager(Font _font) {
+        font = _font;
     }
 
     public int getRowHeight() {

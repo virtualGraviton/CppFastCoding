@@ -23,7 +23,7 @@ public class SettingPanel extends MyPanel implements SettingBase {
     }
 
     public void save() {
-        for (Component comp : this.getComponents()) {
+        for (Component comp : getComponents()) {
             if (comp instanceof SettingBase) {
                 ((SettingBase) comp).save();
             }
@@ -31,7 +31,7 @@ public class SettingPanel extends MyPanel implements SettingBase {
     }
 
     public void reset() {
-        for (Component comp : this.getComponents()) {
+        for (Component comp : getComponents()) {
             if (comp instanceof SettingBase) {
                 ((SettingBase) comp).reset();
             }

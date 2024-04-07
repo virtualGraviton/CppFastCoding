@@ -26,23 +26,23 @@ public class SettingTextArea extends MyPanel implements SettingBase {
 
     public SettingTextArea(String key, String title, String init) {
         super(BoxLayout.X_AXIS, 7);
-        this.addComp(new MyLabel(title));
+        addComp(new MyLabel(title));
         initSetting = init;
         textArea = new _TextArea(init);
         textArea.setBorder(new LineBorder(JBColor.black, 3, true));
-        this.addComp(textArea);
-        this.setMaximumSize(new Dimension(1000, 30));
+        addComp(textArea);
+        setMaximumSize(new Dimension(1000, 30));
 
         SettingKey = key;
     }
 
     public void addComp(JComponent comp) {
-        this.add(comp);
+        add(comp);
         if (getAxis() == BoxLayout.X_AXIS) {
-            this.add(Box.createHorizontalStrut(7));
+            add(Box.createHorizontalStrut(7));
         } else {
             comp.setAlignmentX(LEFT_ALIGNMENT);
-            this.add(Box.createVerticalStrut(7));
+            add(Box.createVerticalStrut(7));
         }
     }
 
@@ -68,18 +68,18 @@ public class SettingTextArea extends MyPanel implements SettingBase {
         }
 
         private void init() {
-            this.setLineWrap(true);
+            setLineWrap(true);
         }
 
         private void SetFont() {
             FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
             fontType = fontPreferences.getFontFamily();
             fontSize = fontPreferences.getSize(fontType);
-            this.setFont(new Font(fontType, Font.PLAIN, fontSize));
+            setFont(new Font(fontType, Font.PLAIN, fontSize));
         }
 
         private void addListener() {
-            this.getDocument().addDocumentListener(new DocumentListener() {
+            getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
                     CFCodingConfigurable.SettingModified = true;
@@ -95,7 +95,7 @@ public class SettingTextArea extends MyPanel implements SettingBase {
 
                 }
             });
-            this.addKeyListener(new KeyListener() {
+            addKeyListener(new KeyListener() {
                 @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {

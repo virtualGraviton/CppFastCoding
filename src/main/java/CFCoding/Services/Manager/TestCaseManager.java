@@ -15,7 +15,7 @@ public final class TestCaseManager {
         if (tcp != null) {
             for (Component c : tcp.getComponents()) {
                 if (c instanceof TestCase) {
-                    r.add(((TestCase) c).inputField.getText());
+                    r.add(((TestCase) c).getInput());
                 }
             }
         }

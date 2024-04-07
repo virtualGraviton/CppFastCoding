@@ -17,30 +17,30 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class TestCase extends MyPanel {
-    public MyTextArea inputField = new MyTextArea();
-    public MyTextArea outputField = new MyTextArea();
-    public boolean isExpanded = true;
-    StatLabel statLabel = new StatLabel("Pending...");
-    MyButton deleteButton = new MyButton("Del");
-    MyButton expandButton = new MyButton("-");
-    MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
-    String fontType;
-    int fontSize;
+    private final StatLabel statLabel = new StatLabel("Pending...");
+    private final MyButton deleteButton = new MyButton("Del");
+    private final MyButton expandButton = new MyButton("-");
+    private final MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
+    private final MyTextArea inputField = new MyTextArea();
+    private final MyTextArea outputField = new MyTextArea();
+    private boolean isExpanded = true;
+    private String fontType;
+    private int fontSize;
     private int idx;
     private JLabel title;
 
     TestCase(int testCaseNum) {
         super(BoxLayout.Y_AXIS, 7);
-        baseInit(testCaseNum);
+        init(testCaseNum);
     }
 
     public TestCase(int testCaseNum, String init) {
         super(BoxLayout.Y_AXIS, 7);
-        baseInit(testCaseNum);
+        init(testCaseNum);
         inputField.setText(init);
     }
 
-    private void baseInit(int num) {
+    private void init(int num) {
         idx = num;
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
@@ -68,7 +68,7 @@ public class TestCase extends MyPanel {
 
         titleRow.addComp(deleteButton);
         titleRow.addComp(expandButton);
-        this.addComp(titleRow);
+        addComp(titleRow);
         titleRow.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -88,19 +88,18 @@ public class TestCase extends MyPanel {
             }
         });
 
+        addComp(new MyLabel("Input:"));
+        addComp(inputField);
+        addComp(new MyLabel("Output:"));
+        addComp(outputField);
 
-        this.addComp(new MyLabel("Input:"));
-        this.addComp(inputField);
-        this.addComp(new MyLabel("Output:"));
-        this.addComp(outputField);
-
-        this.setBorder(new LineBorder(JBColor.lightGray, 5));
+        setBorder(new LineBorder(JBColor.lightGray, 5));
     }
 
     public void addComp(JComponent c) {
         c.setAlignmentX(Component.LEFT_ALIGNMENT);
-        this.add(c);
-        this.add(Box.createVerticalStrut(7));
+        add(c);
+        add(Box.createVerticalStrut(7));
     }
 
     public void changeTitle(int i) {
@@ -109,26 +108,17 @@ public class TestCase extends MyPanel {
     }
 
     public void ClearText() {
-        this.outputField.setText("");
-        this.setStat(StatLabel.ResultStat.PD);
+        outputField.setText("");
+        setStat(StatLabel.ResultStat.PD);
     }
 
     private void Delete() {
-        MyPanel buttonR = (MyPanel) deleteButton.getParent();
-        TestCase testCase = (TestCase) buttonR.getParent();
-        TestCasePanel gPanel = (TestCasePanel) testCase.getParent();
-        Box.Filler filler = (Box.Filler) gPanel.getComponent(idx * 2 - 1);
-        gPanel.remove(testCase);
-        gPanel.remove(filler);
-        gPanel.revalidate();
-        gPanel.repaint();
-        gPanel.titleUdt();
-        gPanel.testCaseNum--;
+        MainPanel.getTestCasePanel().removeTextCase(idx);
     }
 
     public void setStat(int stat) {
         statLabel.setStat(stat);
-        this.updateUI();
+        updateUI();
     }
 
     private void Expand(MouseEvent e) {
@@ -140,11 +130,27 @@ public class TestCase extends MyPanel {
 
     private void set_Visible(boolean visible) {
         boolean flag = false;
-        for (Component c : this.getComponents()) {
+        for (Component c : getComponents()) {
             if (c != titleRow) {
                 if (flag) c.setVisible(visible);
                 flag = true;
             }
         }
+    }
+
+    public String getInput() {
+        return inputField.getText();
+    }
+
+    public void setInput(String input) {
+        inputField.setText(input);
+    }
+
+    public String getOutput() {
+        return outputField.getText();
+    }
+
+    public void setOutput(String output) {
+        outputField.setText(output);
     }
 }

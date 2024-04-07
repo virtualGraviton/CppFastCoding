@@ -20,7 +20,7 @@ public class MyTextArea extends JBTextArea {
     public MyTextArea() {
         initFont();
         Init();
-        this.getDocument().addDocumentListener(new DocumentAdapter() {
+        getDocument().addDocumentListener(new DocumentAdapter() {
             @Override
             protected void textChanged(@NotNull DocumentEvent e) {
                 String s;

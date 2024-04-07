@@ -19,7 +19,7 @@ public class MyLabel extends JBLabel {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
-        this.setFont(new Font(fontType, Font.PLAIN, fontSize));
+        setFont(new Font(fontType, Font.PLAIN, fontSize));
     }
 
     public String getFontType() {

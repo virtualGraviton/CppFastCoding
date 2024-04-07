@@ -2,11 +2,13 @@ package CFCoding.Services.Manager;
 
 import CFCoding.Services.Notice;
 import CFCoding.Services.Storage.SettingStorage;
+import CFCoding.Window.MainWindow.MainWindowComp.MainPanel;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCasePanel;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -28,9 +30,9 @@ public class CppFileManager {
     private String exeFilePath;
     private int CompileStat;
 
-    public CppFileManager(Project project, TestCasePanel testCasePanel) {
-        tot = testCasePanel;
-
+    public CppFileManager() {
+        tot = MainPanel.getTestCasePanel();
+        Project project = ProjectManager.getInstance().getOpenProjects()[0];
         FileEditorManager editorManager = FileEditorManager.getInstance(project);
         FileEditor fileEditor = editorManager.getSelectedEditor();
         if (fileEditor == null) {
@@ -84,8 +86,8 @@ public class CppFileManager {
         }
     }
 
-    private RunResult run(@NotNull TestCase nowTestCase) {
-        String input = nowTestCase.inputField.getText();
+    private RunResult runTestCase(@NotNull TestCase nowTestCase) {
+        String input = nowTestCase.getInput();
         StringBuilder output = new StringBuilder();
         int verdict;
         try {
@@ -156,7 +158,7 @@ public class CppFileManager {
         SwingWorker<RunResult, Void> AsyncRun = new SwingWorker<>() {
             @Override
             protected RunResult doInBackground() {
-                return CppFileManager.this.run(now);
+                return runTestCase(now);
             }
 
             @Override
@@ -165,7 +167,7 @@ public class CppFileManager {
                     RunResult result = get();
                     SwingUtilities.invokeLater(() -> {
                         now.setStat(result.verdict);
-                        now.outputField.setText(result.output);
+                        now.setOutput(result.output);
                     });
                 } catch (Exception e) {
                     logger.error("FatalError", e);

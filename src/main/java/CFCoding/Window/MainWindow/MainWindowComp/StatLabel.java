@@ -9,12 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StatLabel extends MyLabel {
-    TextManager textManager;
 
     public StatLabel(String text) {
         super(text);
         setFont(new Font(getFontType(), Font.BOLD, getFontSize() + 2));
-        textManager = new TextManager(this.getFont());
+        TextManager textManager = new TextManager(getFont());
         int minWidth = 0;
         int minHeight = 0;
         for (Map.Entry<Integer, String> entry : ResultStat.statString.entrySet()) {
@@ -26,17 +25,17 @@ public class StatLabel extends MyLabel {
     }
 
     public void setStat(int stat) {
-        this.setText(ResultStat.getStatString(stat));
+        setText(ResultStat.getStatString(stat));
         if (stat == ResultStat.AC) {
-            this.setForeground(JBColor.green);
+            setForeground(JBColor.green);
         } else if (stat == ResultStat.TLE) {
-            this.setForeground(JBColor.black);
+            setForeground(JBColor.black);
         } else if (stat == ResultStat.RE) {
-            this.setForeground(JBColor.red);
+            setForeground(JBColor.red);
         } else if (stat == ResultStat.PD) {
-            this.setForeground(JBColor.black);
+            setForeground(JBColor.black);
         } else if (stat == ResultStat.RUN) {
-            this.setForeground(JBColor.blue);
+            setForeground(JBColor.blue);
         }
     }
 

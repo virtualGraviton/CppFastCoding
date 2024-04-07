@@ -1,29 +1,28 @@
 package CFCoding.Window.MainWindow.MainWindowComp;
 
 import CFCoding.Base.MyPanel;
-import com.intellij.openapi.project.Project;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ButtonPanel extends MyPanel {
-    ButtonPanel(Project project, TestCasePanel testCasePanel) {
+    ButtonPanel() {
         super(BoxLayout.Y_AXIS, 7);
-        this.addComp(new NewButton(testCasePanel));
-        this.addComp(new RunButton(project, testCasePanel));
-        this.addComp(new OpenSettingButton());
+        addComp(new NewButton());
+        addComp(new RunButton());
+        addComp(new OpenSettingButton());
     }
 
     public void addComp(JComponent comp) {
         comp.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.add(comp);
-        this.add(Box.createVerticalStrut(7));
+        add(comp);
+        add(Box.createVerticalStrut(7));
     }
 
     public int getW() {
         int W = 0;
-        for (int i = 0; i < this.getComponentCount(); i++) {
-            W = Math.max(W, this.getComponent(i).getWidth());
+        for (int i = 0; i < getComponentCount(); i++) {
+            W = Math.max(W, getComponent(i).getWidth());
         }
         return W;
     }

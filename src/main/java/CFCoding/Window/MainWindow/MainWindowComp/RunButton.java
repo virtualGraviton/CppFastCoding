@@ -8,7 +8,6 @@ import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
-import com.intellij.openapi.project.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,37 +17,35 @@ import java.awt.event.MouseEvent;
 
 public class RunButton extends MyButton {
     private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
-    Project project;
-    TestCasePanel testCasePanel;
+    private final TestCasePanel testCasePanel;
 
-    RunButton(Project p, TestCasePanel t) {
+    RunButton() {
         super("Run");
-        project = p;
-        testCasePanel = t;
-        this.addMouseListener(new MouseAdapter() {
+        testCasePanel = MainPanel.getTestCasePanel();
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ExeRun();
+                run();
             }
         });
     }
 
-    private void ExeRun() {
-        SaveCpp();
-        if (testCasePanel.testCaseNum == 0) {
+    private void run() {
+        save();
+        if (testCasePanel.getTestCaseNum() == 0) {
             Notice.showBalloon("ERROR", "No test case.");
             return;
         }
-        for (Component c : this.getComponents()) {
+        for (Component c : getComponents()) {
             if (c instanceof TestCase t) {
                 t.ClearText();
             }
         }
-        CppFileManager cppFileManager = new CppFileManager(project, testCasePanel);
+        CppFileManager cppFileManager = new CppFileManager();
         cppFileManager.asyncRunAll();
     }
 
-    public void SaveCpp() {
+    private void save() {
         ActionManager actionManager = ActionManager.getInstance();
         try {
             AnAction myAction = actionManager.getAction("SaveAll");
