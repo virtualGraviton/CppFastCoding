@@ -12,7 +12,6 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 
 public class MyTextArea extends JBTextArea {
-    public int rowHeight;
     String fontType;
     int fontSize;
     MyTextArea self;
@@ -30,7 +29,7 @@ public class MyTextArea extends JBTextArea {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 String s = self.getText();
-                int w = textManager.getWidth(s), h = textManager.getHeight(s);
+                int w = textManager.getWidth(s) + 10, h = textManager.getHeight(s);
                 self.setPreferredSize(new Dimension(Math.max(w, 200), h));
                 self.setMaximumSize(new Dimension(Math.max(w, 200), h));
             }
@@ -38,7 +37,7 @@ public class MyTextArea extends JBTextArea {
             @Override
             public void removeUpdate(DocumentEvent e) {
                 String s = self.getText();
-                int w = textManager.getWidth(s), h = textManager.getHeight(s);
+                int w = textManager.getWidth(s) + 10, h = textManager.getHeight(s);
                 self.setPreferredSize(new Dimension(Math.max(w, 200), h));
                 self.setMaximumSize(new Dimension(Math.max(w, 200), h));
             }
@@ -54,14 +53,13 @@ public class MyTextArea extends JBTextArea {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
-        rowHeight = (int) (1.5 * fontSize) - 1;
         this.setFont(new Font(fontType, Font.PLAIN, fontSize));
         textManager = new TextManager(fontType, Font.PLAIN, fontSize);
     }
 
     private void Init() {
-        this.setPreferredSize(new Dimension(200, rowHeight));
-        this.setMaximumSize(new Dimension(200, rowHeight));
+        this.setPreferredSize(new Dimension(200, textManager.getRowHeight()));
+        this.setMaximumSize(new Dimension(200, textManager.getRowHeight()));
         this.setBackground(JBColor.lightGray);
     }
 }

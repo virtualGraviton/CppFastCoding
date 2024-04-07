@@ -1,5 +1,6 @@
 package CFCoding.Base;
 
+import CFCoding.Services.Manager.TextManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
@@ -9,9 +10,9 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 
 public class MyButton extends JLabel {
-    public int rowHeight;
     String fontType;
     int fontSize;
+    TextManager textManager;
 
     public MyButton(String Text) {
         SetFont();
@@ -38,7 +39,7 @@ public class MyButton extends JLabel {
                 row_cnt++;
             }
         }
-        return rowHeight * row_cnt;
+        return textManager.getRowHeight() * row_cnt;
     }
 
     private int getWidth(String text) {
@@ -65,7 +66,7 @@ public class MyButton extends JLabel {
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
         fontType = fontPreferences.getFontFamily();
         fontSize = fontPreferences.getSize(fontType);
-        rowHeight = (int) (1.5 * fontSize) - 1;
+        textManager = new TextManager(fontType, Font.PLAIN, fontSize);
         this.setFont(new Font(fontType, Font.PLAIN, fontSize));
     }
 }

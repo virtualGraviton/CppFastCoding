@@ -5,27 +5,29 @@ import java.awt.font.FontRenderContext;
 
 public class TextManager {
     private final Font _font;
+    private int rowHeight;
 
     public TextManager(String fontType, int fontStyle, int fontSize) {
         _font = new Font(fontType, fontStyle, fontSize);
+        rowHeight = (int) (1.5 * fontSize) - 1;
     }
 
     public TextManager(Font font) {
         _font = font;
     }
 
+    public int getRowHeight() {
+        return rowHeight;
+    }
+
     public int getHeight(String text) {
-        int col_height = 0;
-        StringBuilder a = new StringBuilder();
+        int row_cnt = 1;
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == '\n') {
-                col_height = Math.max(_getHeight(a.toString()), col_height);
-                a = new StringBuilder();
+                row_cnt++;
             }
-            a.append(text.charAt(i));
         }
-        col_height = Math.max(_getHeight(a.toString()), col_height);
-        return col_height;
+        return row_cnt * rowHeight;
     }
 
     public int getWidth(String text) {
@@ -40,11 +42,6 @@ public class TextManager {
         }
         col_width = Math.max(_getWidth(a.toString()), col_width);
         return col_width;
-    }
-
-    private int _getHeight(String text) {
-        FontRenderContext frc = new FontRenderContext(null, false, false);
-        return (int) _font.getStringBounds(text, frc).getHeight();
     }
 
     private int _getWidth(String text) {
