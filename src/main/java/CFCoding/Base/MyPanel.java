@@ -16,10 +16,6 @@ public class MyPanel extends JPanel {
         return Axis;
     }
 
-    public int getGap() {
-        return Gap;
-    }
-
     public void addComp(JComponent comp) {
         add(comp);
         if (Axis == BoxLayout.X_AXIS) {

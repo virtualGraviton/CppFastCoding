@@ -140,14 +140,6 @@ public class TestCase extends MyPanel {
         return inputField.getText();
     }
 
-    public void setInput(String input) {
-        inputField.setText(input);
-    }
-
-    public String getOutput() {
-        return outputField.getText();
-    }
-
     public void setOutput(String output) {
         outputField.setText(output);
     }
