@@ -31,16 +31,16 @@ public class MyTextArea extends JBTextArea {
             public void insertUpdate(DocumentEvent e) {
                 String s = self.getText();
                 int w = textManager.getWidth(s), h = textManager.getHeight(s);
-                self.setPreferredSize(new Dimension(w, h));
-                self.setMaximumSize(new Dimension(w, h));
+                self.setPreferredSize(new Dimension(Math.max(w, 200), h));
+                self.setMaximumSize(new Dimension(Math.max(w, 200), h));
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 String s = self.getText();
                 int w = textManager.getWidth(s), h = textManager.getHeight(s);
-                self.setPreferredSize(new Dimension(w, h));
-                self.setMaximumSize(new Dimension(w, h));
+                self.setPreferredSize(new Dimension(Math.max(w, 200), h));
+                self.setMaximumSize(new Dimension(Math.max(w, 200), h));
             }
 
             @Override

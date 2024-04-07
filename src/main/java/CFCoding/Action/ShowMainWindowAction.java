@@ -6,9 +6,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 
-/**
- *
- */
 public class ShowMainWindowAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {

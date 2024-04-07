@@ -15,9 +15,9 @@ public class MyPanel extends JPanel {
     public void AddComp(JComponent comp) {
         this.add(comp);
         if (Axis == BoxLayout.X_AXIS) {
-            this.add(Box.createHorizontalStrut(7));
+            this.add(Box.createHorizontalStrut(Gap));
         } else {
-            this.add(Box.createVerticalStrut(7));
+            this.add(Box.createVerticalStrut(Gap));
         }
     }
 }
