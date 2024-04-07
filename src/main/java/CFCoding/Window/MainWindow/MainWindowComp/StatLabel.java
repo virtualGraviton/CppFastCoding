@@ -26,17 +26,7 @@ public class StatLabel extends MyLabel {
 
     public void setStat(int stat) {
         setText(ResultStat.getStatString(stat));
-        if (stat == ResultStat.AC) {
-            setForeground(JBColor.green);
-        } else if (stat == ResultStat.TLE) {
-            setForeground(JBColor.black);
-        } else if (stat == ResultStat.RE) {
-            setForeground(JBColor.red);
-        } else if (stat == ResultStat.PD) {
-            setForeground(JBColor.black);
-        } else if (stat == ResultStat.RUN) {
-            setForeground(JBColor.blue);
-        }
+        setForeground(ResultStat.getStatColor(stat));
     }
 
     public static class ResultStat {
@@ -45,15 +35,24 @@ public class StatLabel extends MyLabel {
         public static Integer RE = 2;
         public static Integer RUN = 3;
         public static Integer PD = 4;
-        private static final Map<Integer, String> statString = new HashMap<>() {
-            {
-                put(AC, "Accepted");
-                put(TLE, "TLE");
-                put(RE, "RE");
-                put(RUN, "Running...");
-                put(PD, "Pending");
-            }
-        };
+        private static final Map<Integer, String> statString = new HashMap<>() {{
+            put(AC, "Accepted");
+            put(TLE, "TLE");
+            put(RE, "RE");
+            put(RUN, "Running...");
+            put(PD, "Pending");
+        }};
+        private static final Map<Integer, JBColor> statColor = new HashMap<>() {{
+            put(AC, JBColor.green);
+            put(TLE, JBColor.blue);
+            put(RE, JBColor.red);
+            put(RUN, JBColor.black);
+            put(PD, JBColor.black);
+        }};
+
+        public static JBColor getStatColor(int stat) {
+            return statColor.get(stat);
+        }
 
         public static String getStatString(int stat) {
             return statString.get(stat);

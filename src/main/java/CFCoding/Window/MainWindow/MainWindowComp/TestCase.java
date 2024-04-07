@@ -24,12 +24,10 @@ public class TestCase extends MyPanel {
     private final MyTextArea inputField = new MyTextArea();
     private final MyTextArea outputField = new MyTextArea();
     private boolean isExpanded = true;
-    private String fontType;
-    private int fontSize;
     private int idx;
     private JLabel title;
 
-    TestCase(int testCaseNum) {
+    public TestCase(int testCaseNum) {
         super(BoxLayout.Y_AXIS, 7);
         init(testCaseNum);
     }
@@ -43,8 +41,8 @@ public class TestCase extends MyPanel {
     private void init(int num) {
         idx = num;
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
-        fontType = fontPreferences.getFontFamily();
-        fontSize = fontPreferences.getSize(fontType);
+        String fontType = fontPreferences.getFontFamily();
+        int fontSize = fontPreferences.getSize(fontType);
 
         title = new JLabel("TestCase #%d".formatted(num));
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
@@ -123,12 +121,12 @@ public class TestCase extends MyPanel {
 
     private void Expand(MouseEvent e) {
         isExpanded = !isExpanded;
-        set_Visible(isExpanded);
+        setVis(isExpanded);
         MyButton b = (MyButton) e.getSource();
         b.setText(isExpanded ? "-" : "+");
     }
 
-    private void set_Visible(boolean visible) {
+    private void setVis(boolean visible) {
         boolean flag = false;
         for (Component c : getComponents()) {
             if (c != titleRow) {
