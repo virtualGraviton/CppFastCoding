@@ -4,6 +4,7 @@ import CFCoding.Base.MyButton;
 import CFCoding.Base.MyLabel;
 import CFCoding.Base.MyPanel;
 import CFCoding.Base.MyTextArea;
+import CFCoding.Services.ResultStat;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
@@ -107,7 +108,7 @@ public class TestCase extends MyPanel {
 
     public void ClearText() {
         outputField.setText("");
-        setStat(StatLabel.ResultStat.PD);
+        setStat(ResultStat.PD);
     }
 
     private void Delete() {

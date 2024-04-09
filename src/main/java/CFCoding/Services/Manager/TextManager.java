@@ -14,6 +14,7 @@ public class TextManager {
 
     public TextManager(Font _font) {
         font = _font;
+        rowHeight = (int) (1.5 * font.getSize()) - 1;
     }
 
     public int getRowHeight() {

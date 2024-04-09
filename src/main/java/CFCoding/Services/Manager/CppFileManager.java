@@ -1,6 +1,8 @@
 package CFCoding.Services.Manager;
 
 import CFCoding.Services.Notice;
+import CFCoding.Services.Result;
+import CFCoding.Services.ResultStat;
 import CFCoding.Services.Storage.SettingStorage;
 import CFCoding.Window.MainWindow.MainWindowComp.MainPanel;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
@@ -20,15 +22,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import static CFCoding.Window.MainWindow.MainWindowComp.StatLabel.ResultStat;
+import java.util.Objects;
 
 public class CppFileManager {
     private static final Logger logger = LoggerFactory.getLogger(CppFileManager.class);
     private final TestCasePanel tot;
     private String cppFilePath;
     private String exeFilePath;
-    private int CompileStat;
+    private int stat;
 
     public CppFileManager() {
         tot = MainPanel.getTestCasePanel();
@@ -50,12 +51,12 @@ public class CppFileManager {
         if (!directory.mkdirs()) {
             System.out.println("Directory already existed, skipping...");
         }
-        CompileStat = Stat.UnCompiled;
+        stat = ResultStat.PD;
     }
 
     private void compilePrepare() {
         if (exeFilePath == null) {
-            CompileStat = Stat.CompileFailed;
+            stat = ResultStat.CE;
             Notice.showBalloon("ERROR", "No file selected.");
             return;
         }
@@ -63,12 +64,15 @@ public class CppFileManager {
         if (file.exists()) {
             boolean deleted = file.delete();
             if (!deleted) {
-                CompileStat = Stat.CompileFailed;
+                stat = ResultStat.CE;
             }
         }
     }
 
-    private int compile() {
+    private Integer compile() {
+        for (Component comp : tot.getComponents()) {
+            if (comp instanceof TestCase now) now.setStat(ResultStat.CPN);
+        }
         try {
             Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -76,17 +80,18 @@ public class CppFileManager {
 
             int exitCode = process.waitFor();
             if (exitCode == 0) {
-                return Stat.CompileSucceed;
-            } else {
-                return Stat.CompileFailed;
+                return ResultStat.CPD;
             }
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
-            return Stat.CompileFailed;
         }
+        for (Component comp : tot.getComponents()) {
+            if (comp instanceof TestCase now) now.setStat(ResultStat.CE);
+        }
+        return ResultStat.CE;
     }
 
-    private RunResult runTestCase(@NotNull TestCase nowTestCase) {
+    private Result runTestCase(@NotNull TestCase nowTestCase) {
         String input = nowTestCase.getInput();
         StringBuilder output = new StringBuilder();
         int verdict;
@@ -99,8 +104,8 @@ public class CppFileManager {
 
             if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();
-                verdict = Stat.RunTLE;
-                return new RunResult(output.toString(), verdict);
+                verdict = ResultStat.TLE;
+                return new Result(output.toString(), verdict);
             }
 
             byte[] buffer = new byte[1024];
@@ -110,20 +115,43 @@ public class CppFileManager {
             }
 
             if (process.exitValue() == 0) {
-                verdict = Stat.RunSucceed;
+                verdict = ResultStat.AC;
             } else {
-                verdict = Stat.RunRE;
+                verdict = ResultStat.RE;
             }
         } catch (Exception exception) {
-            verdict = Stat.RunRE;
+            verdict = ResultStat.RE;
             logger.error("FatalError", exception);
         }
-        return new RunResult(output.toString(), verdict);
+        return new Result(output.toString(), verdict);
+    }
+
+    private void asyncRun(TestCase now) {
+        SwingWorker<Result, Void> AsyncRun = new SwingWorker<>() {
+            @Override
+            protected Result doInBackground() {
+                return runTestCase(now);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    Result result = get();
+                    SwingUtilities.invokeLater(() -> {
+                        now.setStat(result.verdict());
+                        now.setOutput(result.output());
+                    });
+                } catch (Exception e) {
+                    logger.error("FatalError", e);
+                }
+            }
+        };
+        AsyncRun.execute();
     }
 
     public void asyncRunAll() {
         compilePrepare();
-        if (CompileStat == Stat.CompileFailed) return;
+        if (stat == ResultStat.CE) return;
         SwingWorker<Integer, Void> AsyncCompile = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
@@ -135,8 +163,7 @@ public class CppFileManager {
                 try {
                     Integer result = get();
                     SwingUtilities.invokeLater(() -> {
-                        if (result == Stat.CompileFailed) {
-                            Notice.showBalloon("ERROR", "Compilation failed.");
+                        if (Objects.equals(result, ResultStat.CE)) {
                             return;
                         }
                         for (Component comp : tot.getComponents()) {
@@ -152,47 +179,5 @@ public class CppFileManager {
             }
         };
         AsyncCompile.execute();
-    }
-
-    private void asyncRun(TestCase now) {
-        SwingWorker<RunResult, Void> AsyncRun = new SwingWorker<>() {
-            @Override
-            protected RunResult doInBackground() {
-                return runTestCase(now);
-            }
-
-            @Override
-            protected void done() {
-                try {
-                    RunResult result = get();
-                    SwingUtilities.invokeLater(() -> {
-                        now.setStat(result.verdict);
-                        now.setOutput(result.output);
-                    });
-                } catch (Exception e) {
-                    logger.error("FatalError", e);
-                }
-            }
-        };
-        AsyncRun.execute();
-    }
-
-    public static class Stat {
-        public static int CompileSucceed = 10;
-        public static int CompileFailed = 11;
-        public static int UnCompiled = 12;
-        public static int RunSucceed = ResultStat.AC;
-        public static int RunTLE = ResultStat.TLE;
-        public static int RunRE = ResultStat.RE;
-    }
-
-    public static class RunResult {
-        public String output;
-        public int verdict;
-
-        RunResult(String o, int v) {
-            output = o;
-            verdict = v;
-        }
     }
 }
