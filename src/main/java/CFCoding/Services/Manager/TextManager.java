@@ -5,7 +5,7 @@ import java.awt.font.FontRenderContext;
 
 public class TextManager {
     private final Font font;
-    private int rowHeight;
+    private final int rowHeight;
 
     public TextManager(String fontType, int fontStyle, int fontSize) {
         font = new Font(fontType, fontStyle, fontSize);

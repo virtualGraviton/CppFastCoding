@@ -79,9 +79,8 @@ public class CppFileManager {
             reader.close();
 
             int exitCode = process.waitFor();
-            if (exitCode == 0) {
+            if (exitCode == 0)
                 return ResultStat.CPD;
-            }
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
         }
