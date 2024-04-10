@@ -135,16 +135,20 @@ public class TestCase extends MyPanel {
         return inputField.getText();
     }
 
-    public String getOutput() {
-        return outputField.getText();
-    }
-
     public void setInput(String input) {
         inputField.setText(input);
     }
 
+    public String getOutput() {
+        return outputField.getText();
+    }
+
     public void setOutput(String output) {
         outputField.setText(output);
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
     }
 
     public void setExpanded(boolean expanded) {
@@ -153,9 +157,5 @@ public class TestCase extends MyPanel {
             _setVisible(expanded);
             expandButton.setText(expanded ? "-" : "+");
         }
-    }
-
-    public boolean isExpanded() {
-        return isExpanded;
     }
 }
