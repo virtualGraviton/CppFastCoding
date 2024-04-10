@@ -1,6 +1,6 @@
 package CFCoding.Services;
 
-public record Result(String output,int verdict) {
+public record Result(String output, int verdict) {
     @Override
     public int verdict() {
         return verdict;
