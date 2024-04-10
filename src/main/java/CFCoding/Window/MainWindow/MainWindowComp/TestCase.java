@@ -39,7 +39,7 @@ public class TestCase extends MyPanel {
         String fontType = fontPreferences.getFontFamily();
         int fontSize = fontPreferences.getSize(fontType);
 
-        title = new JLabel("TestCase #%d".formatted(num));
+        title = new JLabel("TestCase #%d".formatted(num+1));
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.addComp(title);
 
