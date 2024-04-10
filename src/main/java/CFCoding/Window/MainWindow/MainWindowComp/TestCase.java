@@ -33,12 +33,6 @@ public class TestCase extends MyPanel {
         init(testCaseNum);
     }
 
-    public TestCase(int testCaseNum, String init) {
-        super(BoxLayout.Y_AXIS, 7);
-        init(testCaseNum);
-        inputField.setText(init);
-    }
-
     private void init(int num) {
         idx = num;
         FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
@@ -103,7 +97,7 @@ public class TestCase extends MyPanel {
 
     public void changeTitle(int i) {
         idx = i;
-        title.setText("TestCase #%d".formatted(i));
+        title.setText("TestCase #%d".formatted(i + 1));
     }
 
     public void ClearText() {
@@ -122,12 +116,12 @@ public class TestCase extends MyPanel {
 
     private void Expand(MouseEvent e) {
         isExpanded = !isExpanded;
-        setVis(isExpanded);
+        _setVisible(isExpanded);
         MyButton b = (MyButton) e.getSource();
         b.setText(isExpanded ? "-" : "+");
     }
 
-    private void setVis(boolean visible) {
+    private void _setVisible(boolean visible) {
         boolean flag = false;
         for (Component c : getComponents()) {
             if (c != titleRow) {
@@ -141,7 +135,19 @@ public class TestCase extends MyPanel {
         return inputField.getText();
     }
 
+    public String getOutput() {
+        return outputField.getText();
+    }
+
+    public void setInput(String input) {
+        inputField.setText(input);
+    }
+
     public void setOutput(String output) {
         outputField.setText(output);
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
     }
 }

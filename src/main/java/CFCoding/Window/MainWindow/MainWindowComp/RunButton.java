@@ -32,7 +32,7 @@ public class RunButton extends MyButton {
 
     private void run() {
         save();
-        if (testCasePanel.getTestCaseNum() == 0) {
+        if (testCasePanel.getTestCaseCount() == 0) {
             Notice.showBalloon("ERROR", "No test case.");
             return;
         }

@@ -1,5 +1,6 @@
 package CFCoding.Window.MainWindow.MainWindowComp;
 
+import CFCoding.Services.CppFileData;
 import com.intellij.ui.components.JBScrollPane;
 
 import javax.swing.*;
@@ -37,5 +38,16 @@ public class MainPanel extends JPanel {
     public static TestCasePanel getTestCasePanel() {
         if (testCasePanel == null) testCasePanel = new TestCasePanel();
         return testCasePanel;
+    }
+
+    public static void setTestCasePanel(CppFileData data) {
+        while (testCasePanel.getTestCaseCount() > 0) {
+            testCasePanel.removeTextCase(0);
+        }
+        for (int i = 0; i < data.testCaseCount; i++) {
+            testCasePanel.addTextCase();
+            TestCase tc = testCasePanel.getTestCase(i);
+            tc.setInput(data.inputs.get(i));
+        }
     }
 }

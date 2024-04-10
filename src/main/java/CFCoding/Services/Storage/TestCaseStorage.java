@@ -1,5 +1,6 @@
 package CFCoding.Services.Storage;
 
+import CFCoding.Services.CppFileData;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.Service;
@@ -8,20 +9,14 @@ import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@State(
-        name = "CFCodingTestCases",
-        storages = {
-                @Storage("CppFastCoding_TestCase.xml")
-        }
-)
+@State(name = "CFCodingTestCases", storages = {@Storage("CppFastCoding_TestCase.xml")})
 public final class TestCaseStorage implements PersistentStateComponent<TestCaseStorage> {
     private static TestCaseStorage instance;
-    public Map<String, ArrayList<String>> InputData = new HashMap<>();
+    public Map<String, CppFileData> data = new HashMap<>();
 
     public static TestCaseStorage getInstance() {
         if (instance == null) instance = ApplicationManager.getApplication().getService(TestCaseStorage.class);
@@ -38,13 +33,12 @@ public final class TestCaseStorage implements PersistentStateComponent<TestCaseS
         XmlSerializerUtil.copyBean(state, this);
     }
 
-    public void saveTestCase(String key, ArrayList<String> value) {
-        InputData.put(key, value);
+    public void saveData(String key, CppFileData d) {
+        data.put(key, d);
     }
 
-    public ArrayList<String> getTestCase(String key) {
-        ArrayList<String> res = InputData.get(key);
-        if (res == null) saveTestCase(key, new ArrayList<>());
-        return InputData.get(key);
+    public CppFileData getData(String key) {
+        if (!data.containsKey(key)) data.put(key, new CppFileData());
+        return data.get(key);
     }
 }
