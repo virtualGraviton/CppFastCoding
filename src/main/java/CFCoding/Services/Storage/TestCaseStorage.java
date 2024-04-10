@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@State(name = "CFCodingTestCases", storages = {@Storage("CppFastCoding_TestCase.xml")})
+@State(name = "CFCodingTestCases", storages = {@Storage("CppFastCoding_TestCase_1.0.2.xml")})
 public final class TestCaseStorage implements PersistentStateComponent<TestCaseStorage> {
     private static TestCaseStorage instance;
     public Map<String, TestCaseData> data = new HashMap<>();

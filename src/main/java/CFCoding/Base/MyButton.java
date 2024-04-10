@@ -14,28 +14,29 @@ public class MyButton extends JLabel {
     private final TextManager textManager;
     private String fontType;
     private int fontSize;
-
+    private final int borderSize = 3;
     public MyButton() {
         initFont();
         textManager = new TextManager(fontType, Font.PLAIN, fontSize);
         addPropertyChangeListener(evt -> {
             if (!"text".equals(evt.getPropertyName())) return;
             String s = (String) evt.getNewValue();
-            int w = textManager.getWidth(s) + 15, h = textManager.getHeight(s);
+            int w = textManager.getWidth(s) + 20, h = textManager.getHeight(s)+10;
             setPreferredSize(new Dimension(w, h));
             setMaximumSize(new Dimension(w, h));
         });
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                setBorder(BorderFactory.createLineBorder(JBColor.black, 2, true));
+                setBorder(BorderFactory.createLineBorder(JBColor.black, borderSize, true));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                setBorder(null);
+                setBorder(BorderFactory.createEmptyBorder(borderSize,borderSize,borderSize,borderSize));
             }
         });
+        setBorder(BorderFactory.createEmptyBorder(borderSize,borderSize,borderSize,borderSize));
     }
 
     public MyButton(String text) {
