@@ -147,6 +147,14 @@ public class TestCase extends MyPanel {
         outputField.setText(output);
     }
 
+    public void setExpanded(boolean expanded) {
+        if (isExpanded != expanded) {
+            isExpanded = expanded;
+            _setVisible(expanded);
+            expandButton.setText(expanded ? "-" : "+");
+        }
+    }
+
     public boolean isExpanded() {
         return isExpanded;
     }

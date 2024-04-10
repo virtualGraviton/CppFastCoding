@@ -48,6 +48,8 @@ public class MainPanel extends JPanel {
             testCasePanel.addTextCase();
             TestCase tc = testCasePanel.getTestCase(i);
             tc.setInput(data.inputs.get(i));
+            tc.setOutput(data.outputs.get(i));
+            tc.setExpanded(data.isExpand.get(i));
         }
     }
 }
