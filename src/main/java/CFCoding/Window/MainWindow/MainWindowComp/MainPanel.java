@@ -1,6 +1,6 @@
 package CFCoding.Window.MainWindow.MainWindowComp;
 
-import CFCoding.Services.CppFileData;
+import CFCoding.Services.Storage.TestCaseData;
 import com.intellij.ui.components.JBScrollPane;
 
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class MainPanel extends JPanel {
         return testCasePanel;
     }
 
-    public static void setTestCasePanel(CppFileData data) {
+    public static void setTestCasePanel(TestCaseData data) {
         while (testCasePanel.getTestCaseCount() > 0) {
             testCasePanel.removeTextCase(0);
         }

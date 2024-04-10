@@ -1,4 +1,4 @@
-package CFCoding.Services;
+package CFCoding.Services.Storage;
 
 import CFCoding.Window.MainWindow.MainWindowComp.TestCase;
 import CFCoding.Window.MainWindow.MainWindowComp.TestCasePanel;
@@ -7,7 +7,7 @@ import com.intellij.util.xmlb.annotations.XCollection;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CppFileData {
+public class TestCaseData {
     @XCollection
     public ArrayList<String> inputs;
     @XCollection
@@ -17,7 +17,7 @@ public class CppFileData {
     @XCollection
     public int testCaseCount;
 
-    public CppFileData(TestCasePanel tcp) {
+    public TestCaseData(TestCasePanel tcp) {
         inputs = new ArrayList<>();
         outputs = new ArrayList<>();
         isExpand = new ArrayList<>();
@@ -31,6 +31,6 @@ public class CppFileData {
         }
     }
 
-    public CppFileData() {
+    public TestCaseData() {
     }
 }
