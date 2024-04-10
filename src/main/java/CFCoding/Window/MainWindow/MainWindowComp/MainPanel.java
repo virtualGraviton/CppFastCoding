@@ -41,12 +41,13 @@ public class MainPanel extends JPanel {
     }
 
     public static void setTestCasePanel(TestCaseData data) {
-        while (testCasePanel.getTestCaseCount() > 0) {
-            testCasePanel.removeTextCase(0);
+        TestCasePanel tcp = getTestCasePanel();
+        while (tcp.getTestCaseCount() > 0) {
+            tcp.removeTextCase(0);
         }
         for (int i = 0; i < data.testCaseCount; i++) {
-            testCasePanel.addTextCase();
-            TestCase tc = testCasePanel.getTestCase(i);
+            tcp.addTextCase();
+            TestCase tc = tcp.getTestCase(i);
             tc.setInput(data.inputs.get(i));
             tc.setOutput(data.outputs.get(i));
             tc.setExpanded(data.isExpand.get(i));

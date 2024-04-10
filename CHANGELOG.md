@@ -24,3 +24,11 @@
 - Different TestCases for different cpp file: The plugin window will store your inputs for each file and automatically
   change when you select another file.
 - Expandable and collapsible testcase windows.
+
+## [1.0.2] - 2024/04/10
+
+### Changed
+
+- Bug fix.
+- Buttons appearance.
+- Input/output and expansion status of test cas will all be recorded.
