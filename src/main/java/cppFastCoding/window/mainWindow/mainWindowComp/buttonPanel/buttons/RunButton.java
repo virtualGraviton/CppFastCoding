@@ -1,4 +1,4 @@
-package cppFastCoding.window.mainWindow.mainWindowComp;
+package cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons;
 
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
@@ -9,6 +9,9 @@ import cppFastCoding.base.MyButton;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.ResultStat;
 import cppFastCoding.services.manager.CppFileManager;
+import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
+import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
+import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

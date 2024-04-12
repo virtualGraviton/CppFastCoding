@@ -1,4 +1,4 @@
-package cppFastCoding.window.mainWindow.mainWindowComp;
+package cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons;
 
 import cppFastCoding.base.MyButton;
 import com.intellij.openapi.options.ShowSettingsUtil;

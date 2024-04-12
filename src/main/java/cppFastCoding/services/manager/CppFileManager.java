@@ -10,7 +10,7 @@ import cppFastCoding.services.Result;
 import cppFastCoding.services.ResultStat;
 import cppFastCoding.services.storage.SettingStorage;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
-import cppFastCoding.window.mainWindow.mainWindowComp.RunButton;
+import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.RunButton;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
 import org.jetbrains.annotations.NotNull;
@@ -35,8 +35,8 @@ public class CppFileManager {
     private int finishedTaskCount;
     private final RunButton runButton;
 
-    public CppFileManager(RunButton source) {
-        runButton = source;
+    public CppFileManager(RunButton run) {
+        runButton = run;
         tot = MainPanel.getTestCasePanel();
         taskCount = tot.getTestCaseCount();
         finishedTaskCount = 0;

@@ -1,6 +1,9 @@
-package cppFastCoding.window.mainWindow.mainWindowComp;
+package cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel;
 
 import cppFastCoding.base.MyPanel;
+import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.NewButton;
+import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.OpenSettingButton;
+import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.RunButton;
 
 import javax.swing.*;
 import java.awt.*;
