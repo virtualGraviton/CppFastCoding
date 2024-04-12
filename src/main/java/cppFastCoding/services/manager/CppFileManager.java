@@ -27,7 +27,7 @@ import java.util.Objects;
 
 public class CppFileManager {
     private static final Logger logger = LoggerFactory.getLogger(CppFileManager.class);
-    private final TestCasePanel tot;
+    private final TestCasePanel tcp;
     private final int taskCount;
     private final RunButton runButton;
     private String cppFilePath;
@@ -36,8 +36,8 @@ public class CppFileManager {
 
     public CppFileManager(RunButton run) {
         runButton = run;
-        tot = MainPanel.getTestCasePanel();
-        taskCount = tot.getTestCaseCount();
+        tcp = MainPanel.getTestCasePanel();
+        taskCount = tcp.getTestCaseCount();
         finishedTaskCount = 0;
         Project project = ProjectManager.getInstance().getOpenProjects()[0];
         FileEditorManager editorManager = FileEditorManager.getInstance(project);
@@ -60,16 +60,23 @@ public class CppFileManager {
     }
 
     private Integer compile() {
+        //prepare
         if (exeFilePath == null) {
             Notice.showBalloon("ERROR", "No file selected.");
+            runButton.setEnabled(true);
             return ResultStat.CE;
         }
         File file = new File(exeFilePath);
-        if (file.exists() && !file.delete()) return ResultStat.CE;
-
-        for (Component comp : tot.getComponents()) {
-            if (comp instanceof TestCase now) now.setStat(ResultStat.CPN);
+        if (file.exists() && !file.delete()){
+            runButton.setEnabled(true);
+            return ResultStat.CE;
         }
+        //compile
+        SwingUtilities.invokeLater(() -> {
+            for (Component comp : tcp.getComponents()) {
+                if (comp instanceof TestCase now) now.setStat(ResultStat.CPN);
+            }
+        });
         try {
             Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -81,9 +88,12 @@ public class CppFileManager {
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
         }
-        for (Component comp : tot.getComponents()) {
-            if (comp instanceof TestCase now) now.setStat(ResultStat.CE);
-        }
+        SwingUtilities.invokeLater(() -> {
+            for (Component comp : tcp.getComponents()) {
+                if (comp instanceof TestCase now) now.setStat(ResultStat.CE);
+            }
+        });
+        runButton.setEnabled(true);
         return ResultStat.CE;
     }
 
@@ -148,32 +158,19 @@ public class CppFileManager {
     }
 
     public void asyncRunAll() {
-        SwingWorker<Integer, Void> AsyncCompile = new SwingWorker<>() {
+        SwingWorker<Integer, Void> swingWorker = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
-                return compile();
-            }
-
-            @Override
-            protected void done() {
-                try {
-                    Integer result = get();
-                    SwingUtilities.invokeLater(() -> {
-                        if (Objects.equals(result, ResultStat.CE)) {
-                            return;
-                        }
-                        for (Component comp : tot.getComponents()) {
-                            if (comp instanceof TestCase now) {
-                                now.setStat(ResultStat.RUN);
-                                asyncRun(now);
-                            }
-                        }
-                    });
-                } catch (Exception e) {
-                    logger.error("FatalError", e);
+                if (Objects.equals(compile(), ResultStat.CE)) return null;
+                for (Component comp : tcp.getComponents()) {
+                    if (comp instanceof TestCase now) {
+                        SwingUtilities.invokeLater(() -> now.setStat(ResultStat.RUN));
+                        asyncRun(now);
+                    }
                 }
+                return null;
             }
         };
-        AsyncCompile.execute();
+        swingWorker.execute();
     }
 }
