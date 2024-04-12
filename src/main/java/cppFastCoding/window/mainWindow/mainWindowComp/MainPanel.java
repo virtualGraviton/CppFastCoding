@@ -1,7 +1,7 @@
 package cppFastCoding.window.mainWindow.mainWindowComp;
 
 import com.intellij.ui.components.JBScrollPane;
-import cppFastCoding.services.storage.TestCaseData;
+import cppFastCoding.util.TestCaseData;
 import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.ButtonPanel;
 
 import javax.swing.*;

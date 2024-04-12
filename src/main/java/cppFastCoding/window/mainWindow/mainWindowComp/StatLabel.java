@@ -1,7 +1,7 @@
 package cppFastCoding.window.mainWindow.mainWindowComp;
 
 import cppFastCoding.base.MyLabel;
-import cppFastCoding.services.BaseStat;
+import cppFastCoding.util.BaseStat;
 import cppFastCoding.services.manager.TextManager;
 
 import java.awt.*;

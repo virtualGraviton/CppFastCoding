@@ -1,4 +1,4 @@
-package cppFastCoding.services;
+package cppFastCoding.util;
 
 public record Result(String output, BaseStat verdict) {
     @Override

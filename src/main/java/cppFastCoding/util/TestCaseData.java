@@ -1,4 +1,4 @@
-package cppFastCoding.services.storage;
+package cppFastCoding.util;
 
 import com.intellij.util.xmlb.annotations.XCollection;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;

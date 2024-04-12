@@ -7,7 +7,7 @@ import cppFastCoding.base.MyButton;
 import cppFastCoding.base.MyLabel;
 import cppFastCoding.base.MyPanel;
 import cppFastCoding.base.MyTextArea;
-import cppFastCoding.services.BaseStat;
+import cppFastCoding.util.BaseStat;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

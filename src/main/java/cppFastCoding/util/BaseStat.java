@@ -1,4 +1,4 @@
-package cppFastCoding.services;
+package cppFastCoding.util;
 
 import com.intellij.ui.JBColor;
 

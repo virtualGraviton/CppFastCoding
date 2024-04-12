@@ -1,4 +1,4 @@
-package cppFastCoding.services;
+package cppFastCoding.util;
 
 import java.util.HashMap;
 import java.util.Map;

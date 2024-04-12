@@ -6,7 +6,7 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
 import cppFastCoding.base.MyButton;
-import cppFastCoding.services.BaseStat;
+import cppFastCoding.util.BaseStat;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.manager.CppFileManager;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
