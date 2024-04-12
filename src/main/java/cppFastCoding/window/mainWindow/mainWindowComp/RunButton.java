@@ -1,14 +1,14 @@
 package cppFastCoding.window.mainWindow.mainWindowComp;
 
-import cppFastCoding.base.MyButton;
-import cppFastCoding.services.manager.CppFileManager;
-import cppFastCoding.services.Notice;
-import cppFastCoding.services.ResultStat;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
+import cppFastCoding.base.MyButton;
+import cppFastCoding.services.Notice;
+import cppFastCoding.services.ResultStat;
+import cppFastCoding.services.manager.CppFileManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +26,11 @@ public class RunButton extends MyButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (!isEnabled()) {
+                    Notice.showBalloon("WARN", "Do not click too fast.");
+                    return;
+                }
+                setEnabled(false);
                 run();
             }
         });
@@ -43,7 +48,7 @@ public class RunButton extends MyButton {
                 t.setStat(ResultStat.PD);
             }
         }
-        CppFileManager cppFileManager = new CppFileManager();
+        CppFileManager cppFileManager = new CppFileManager(this);
         cppFileManager.asyncRunAll();
     }
 

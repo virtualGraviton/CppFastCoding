@@ -1,17 +1,18 @@
 package cppFastCoding.services.manager;
 
-import cppFastCoding.services.Notice;
-import cppFastCoding.services.Result;
-import cppFastCoding.services.ResultStat;
-import cppFastCoding.services.storage.SettingStorage;
-import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
-import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
-import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
+import cppFastCoding.services.Notice;
+import cppFastCoding.services.Result;
+import cppFastCoding.services.ResultStat;
+import cppFastCoding.services.storage.SettingStorage;
+import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
+import cppFastCoding.window.mainWindow.mainWindowComp.RunButton;
+import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
+import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,9 +31,15 @@ public class CppFileManager {
     private String cppFilePath;
     private String exeFilePath;
     private int stat;
+    private final int taskCount;
+    private int finishedTaskCount;
+    private final RunButton runButton;
 
-    public CppFileManager() {
+    public CppFileManager(RunButton source) {
+        runButton = source;
         tot = MainPanel.getTestCasePanel();
+        taskCount = tot.getTestCaseCount();
+        finishedTaskCount = 0;
         Project project = ProjectManager.getInstance().getOpenProjects()[0];
         FileEditorManager editorManager = FileEditorManager.getInstance(project);
         FileEditor fileEditor = editorManager.getSelectedEditor();
@@ -139,6 +146,8 @@ public class CppFileManager {
                     SwingUtilities.invokeLater(() -> {
                         now.setStat(result.verdict());
                         now.setOutput(result.output());
+                        finishedTaskCount += 1;
+                        if (finishedTaskCount == taskCount) runButton.setEnabled(true);
                     });
                 } catch (Exception e) {
                     logger.error("FatalError", e);
