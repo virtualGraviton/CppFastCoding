@@ -17,8 +17,6 @@ public class StatLabel extends MyLabel {
             minWidth = Math.max(minWidth, textManager.getWidth(stat.getStatString()));
             minHeight = Math.max(minHeight, textManager.getHeight(stat.getStatString()));
         }
-        System.out.println("minWidth: " + minWidth);
-        System.out.println("minHeight: " + minHeight);
         setMinimumSize(new Dimension(minWidth, minHeight));
         setPreferredSize(new Dimension(minWidth, minHeight));
     }
@@ -26,6 +24,5 @@ public class StatLabel extends MyLabel {
     public void setStat(BaseStat stat) {
         setText(stat.getStatString());
         setForeground(stat.getStatColor());
-        System.out.println("width: " + getWidth() + ", height: " + getHeight());
     }
 }
