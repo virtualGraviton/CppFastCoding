@@ -1,26 +1,31 @@
 package cppFastCoding.window.mainWindow.mainWindowComp;
 
 import cppFastCoding.base.MyLabel;
-import cppFastCoding.services.ResultStat;
+import cppFastCoding.services.BaseStat;
 import cppFastCoding.services.manager.TextManager;
 
 import java.awt.*;
 
 public class StatLabel extends MyLabel {
-
     public StatLabel(String text) {
         super(text);
         setFont(new Font(getFontType(), Font.BOLD, getFontSize() + 2));
         TextManager textManager = new TextManager(getFont());
-        int minWidth = ResultStat.getWidth(textManager);
-        int minHeight = ResultStat.getHeight(textManager);
+        int minWidth = 0;
+        int minHeight = 0;
+        for (BaseStat stat : BaseStat.values()) {
+            minWidth = Math.max(minWidth, textManager.getWidth(stat.getStatString()));
+            minHeight = Math.max(minHeight, textManager.getHeight(stat.getStatString()));
+        }
+        System.out.println("minWidth: " + minWidth);
+        System.out.println("minHeight: " + minHeight);
         setMinimumSize(new Dimension(minWidth, minHeight));
         setPreferredSize(new Dimension(minWidth, minHeight));
     }
 
-    public void setStat(int stat) {
-        setText(ResultStat.getStatString(stat));
-        setForeground(ResultStat.getStatColor(stat));
+    public void setStat(BaseStat stat) {
+        setText(stat.getStatString());
+        setForeground(stat.getStatColor());
+        System.out.println("width: " + getWidth() + ", height: " + getHeight());
     }
-
 }

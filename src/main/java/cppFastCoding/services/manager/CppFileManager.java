@@ -5,9 +5,9 @@ import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
+import cppFastCoding.services.BaseStat;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.Result;
-import cppFastCoding.services.ResultStat;
 import cppFastCoding.services.storage.SettingStorage;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
@@ -59,22 +59,22 @@ public class CppFileManager {
         }
     }
 
-    private Integer compile() {
+    private BaseStat compile() {
         //prepare
         if (exeFilePath == null) {
             Notice.showBalloon("ERROR", "No file selected.");
             runButton.setEnabled(true);
-            return ResultStat.CE;
+            return BaseStat.CE;
         }
         File file = new File(exeFilePath);
-        if (file.exists() && !file.delete()){
+        if (file.exists() && !file.delete()) {
             runButton.setEnabled(true);
-            return ResultStat.CE;
+            return BaseStat.CE;
         }
         //compile
         SwingUtilities.invokeLater(() -> {
             for (Component comp : tcp.getComponents()) {
-                if (comp instanceof TestCase now) now.setStat(ResultStat.CPN);
+                if (comp instanceof TestCase now) now.setStat(BaseStat.CPN);
             }
         });
         try {
@@ -84,23 +84,23 @@ public class CppFileManager {
 
             int exitCode = process.waitFor();
             if (exitCode == 0)
-                return ResultStat.CPD;
+                return BaseStat.CPD;
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
         }
         SwingUtilities.invokeLater(() -> {
             for (Component comp : tcp.getComponents()) {
-                if (comp instanceof TestCase now) now.setStat(ResultStat.CE);
+                if (comp instanceof TestCase now) now.setStat(BaseStat.CE);
             }
         });
         runButton.setEnabled(true);
-        return ResultStat.CE;
+        return BaseStat.CE;
     }
 
     private Result runTestCase(@NotNull TestCase nowTestCase) {
         String input = nowTestCase.getInput();
         StringBuilder output = new StringBuilder();
-        int verdict;
+        BaseStat verdict;
         try {
             Process process = new ProcessBuilder(exeFilePath).start();
             process.getOutputStream().write(input.getBytes());
@@ -110,7 +110,7 @@ public class CppFileManager {
 
             if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();
-                verdict = ResultStat.TLE;
+                verdict = BaseStat.TLE;
                 return new Result(output.toString(), verdict);
             }
 
@@ -121,12 +121,12 @@ public class CppFileManager {
             }
 
             if (process.exitValue() == 0) {
-                verdict = ResultStat.AC;
+                verdict = BaseStat.AC;
             } else {
-                verdict = ResultStat.RE;
+                verdict = BaseStat.RE;
             }
         } catch (Exception exception) {
-            verdict = ResultStat.RE;
+            verdict = BaseStat.RE;
             logger.error("FatalError", exception);
         }
         return new Result(output.toString(), verdict);
@@ -161,10 +161,10 @@ public class CppFileManager {
         SwingWorker<Integer, Void> swingWorker = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
-                if (Objects.equals(compile(), ResultStat.CE)) return null;
+                if (Objects.equals(compile(), BaseStat.CE)) return null;
                 for (Component comp : tcp.getComponents()) {
                     if (comp instanceof TestCase now) {
-                        SwingUtilities.invokeLater(() -> now.setStat(ResultStat.RUN));
+                        SwingUtilities.invokeLater(() -> now.setStat(BaseStat.RUN));
                         asyncRun(now);
                     }
                 }

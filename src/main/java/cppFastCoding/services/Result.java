@@ -1,8 +1,8 @@
 package cppFastCoding.services;
 
-public record Result(String output, int verdict) {
+public record Result(String output, BaseStat verdict) {
     @Override
-    public int verdict() {
+    public BaseStat verdict() {
         return verdict;
     }
 

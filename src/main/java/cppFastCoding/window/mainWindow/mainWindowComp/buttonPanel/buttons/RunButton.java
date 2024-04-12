@@ -6,8 +6,8 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
 import cppFastCoding.base.MyButton;
+import cppFastCoding.services.BaseStat;
 import cppFastCoding.services.Notice;
-import cppFastCoding.services.ResultStat;
 import cppFastCoding.services.manager.CppFileManager;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
@@ -48,7 +48,7 @@ public class RunButton extends MyButton {
         for (Component c : getComponents()) {
             if (c instanceof TestCase t) {
                 t.setOutput("");
-                t.setStat(ResultStat.PD);
+                t.setStat(BaseStat.PD);
             }
         }
         CppFileManager cppFileManager = new CppFileManager(this);
