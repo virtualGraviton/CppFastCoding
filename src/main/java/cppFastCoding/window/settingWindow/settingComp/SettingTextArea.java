@@ -1,15 +1,15 @@
 package cppFastCoding.window.settingWindow.settingComp;
 
-import cppFastCoding.base.MyLabel;
-import cppFastCoding.base.MyPanel;
-import cppFastCoding.services.storage.SettingStorage;
-import cppFastCoding.window.settingWindow.CFCodingConfigurable;
-import cppFastCoding.window.settingWindow.SettingBase;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBTextArea;
+import cppFastCoding.base.MyLabel;
+import cppFastCoding.base.MyPanel;
+import cppFastCoding.services.storage.SettingStorage;
+import cppFastCoding.window.settingWindow.CFCodingConfigurable;
+import cppFastCoding.window.settingWindow.SettingBase;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

@@ -1,11 +1,11 @@
 package cppFastCoding.listener;
 
-import cppFastCoding.services.storage.TestCaseData;
-import cppFastCoding.services.storage.TestCaseStorage;
-import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.vfs.VirtualFile;
+import cppFastCoding.services.storage.TestCaseData;
+import cppFastCoding.services.storage.TestCaseStorage;
+import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import org.jetbrains.annotations.NotNull;
 
 public class SelectedFileListener implements FileEditorManagerListener {

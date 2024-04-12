@@ -1,7 +1,7 @@
 package cppFastCoding.services;
 
-import cppFastCoding.services.manager.TextManager;
 import com.intellij.ui.JBColor;
+import cppFastCoding.services.manager.TextManager;
 
 import java.util.HashMap;
 import java.util.Map;

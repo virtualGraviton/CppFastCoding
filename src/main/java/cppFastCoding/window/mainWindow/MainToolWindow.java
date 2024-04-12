@@ -1,9 +1,9 @@
 package cppFastCoding.window.mainWindow;
 
-import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
+import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;

@@ -10,9 +10,9 @@ import cppFastCoding.services.Result;
 import cppFastCoding.services.ResultStat;
 import cppFastCoding.services.storage.SettingStorage;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
-import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.RunButton;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
+import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.RunButton;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +28,12 @@ import java.util.Objects;
 public class CppFileManager {
     private static final Logger logger = LoggerFactory.getLogger(CppFileManager.class);
     private final TestCasePanel tot;
+    private final int taskCount;
+    private final RunButton runButton;
     private String cppFilePath;
     private String exeFilePath;
     private int stat;
-    private final int taskCount;
     private int finishedTaskCount;
-    private final RunButton runButton;
 
     public CppFileManager(RunButton run) {
         runButton = run;

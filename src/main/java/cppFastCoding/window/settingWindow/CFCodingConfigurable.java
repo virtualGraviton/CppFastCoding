@@ -1,7 +1,7 @@
 package cppFastCoding.window.settingWindow;
 
-import cppFastCoding.window.settingWindow.settingComp.SettingPanel;
 import com.intellij.openapi.options.Configurable;
+import cppFastCoding.window.settingWindow.settingComp.SettingPanel;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;

@@ -1,7 +1,7 @@
 package cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons;
 
-import cppFastCoding.base.MyButton;
 import com.intellij.openapi.options.ShowSettingsUtil;
+import cppFastCoding.base.MyButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

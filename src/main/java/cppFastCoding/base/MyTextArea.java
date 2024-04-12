@@ -1,11 +1,11 @@
 package cppFastCoding.base;
 
-import cppFastCoding.services.manager.TextManager;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.DocumentAdapter;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBTextArea;
+import cppFastCoding.services.manager.TextManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.event.DocumentEvent;

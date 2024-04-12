@@ -1,9 +1,9 @@
 package cppFastCoding.window.settingWindow.settingComp;
 
+import com.intellij.openapi.application.ApplicationManager;
 import cppFastCoding.base.MyPanel;
 import cppFastCoding.services.storage.SettingStorage;
 import cppFastCoding.window.settingWindow.SettingBase;
-import com.intellij.openapi.application.ApplicationManager;
 
 import javax.swing.*;
 import java.awt.*;

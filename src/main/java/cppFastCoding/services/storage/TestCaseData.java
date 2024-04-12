@@ -1,8 +1,8 @@
 package cppFastCoding.services.storage;
 
+import com.intellij.util.xmlb.annotations.XCollection;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
-import com.intellij.util.xmlb.annotations.XCollection;
 
 import java.awt.*;
 import java.util.ArrayList;

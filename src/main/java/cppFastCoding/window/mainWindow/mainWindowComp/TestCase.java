@@ -1,12 +1,12 @@
 package cppFastCoding.window.mainWindow.mainWindowComp;
 
+import com.intellij.openapi.editor.colors.EditorColorsManager;
+import com.intellij.openapi.editor.colors.FontPreferences;
+import com.intellij.ui.JBColor;
 import cppFastCoding.base.MyButton;
 import cppFastCoding.base.MyLabel;
 import cppFastCoding.base.MyPanel;
 import cppFastCoding.base.MyTextArea;
-import com.intellij.openapi.editor.colors.EditorColorsManager;
-import com.intellij.openapi.editor.colors.FontPreferences;
-import com.intellij.ui.JBColor;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -23,10 +23,10 @@ public class TestCase extends MyPanel {
     private final MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
     private final MyTextArea inputField = new MyTextArea();
     private final MyTextArea outputField = new MyTextArea();
+    private final MyTextArea expectOutputField = new MyTextArea();
     private boolean isExpanded = true;
     private int idx;
     private JLabel title;
-    private final MyTextArea expectOutputField = new MyTextArea();
 
     public TestCase(int testCaseNum) {
         super(BoxLayout.Y_AXIS, 7);
