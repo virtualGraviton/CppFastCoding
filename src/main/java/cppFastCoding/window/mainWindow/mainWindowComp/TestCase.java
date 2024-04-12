@@ -133,6 +133,10 @@ public class TestCase extends MyPanel {
         outputField.setText(output);
     }
 
+    public String getExpectOutput() {
+        return expectOutputField.getText();
+    }
+
     public boolean isExpanded() {
         return isExpanded;
     }

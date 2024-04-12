@@ -5,10 +5,11 @@ import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
-import cppFastCoding.util.BaseStat;
 import cppFastCoding.services.Notice;
-import cppFastCoding.util.Result;
 import cppFastCoding.services.storage.SettingStorage;
+import cppFastCoding.util.BaseStat;
+import cppFastCoding.util.Result;
+import cppFastCoding.util.StringUtil;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
 import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
@@ -121,7 +122,11 @@ public class CppFileManager {
             }
 
             if (process.exitValue() == 0) {
-                verdict = BaseStat.AC;
+                if (StringUtil.isEqual(output.toString(), nowTestCase.getExpectOutput())) {
+                    verdict = BaseStat.AC;
+                } else {
+                    verdict = BaseStat.WA;
+                }
             } else {
                 verdict = BaseStat.RE;
             }
