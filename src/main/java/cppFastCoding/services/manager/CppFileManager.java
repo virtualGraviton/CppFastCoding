@@ -32,7 +32,6 @@ public class CppFileManager {
     private final RunButton runButton;
     private String cppFilePath;
     private String exeFilePath;
-    private int stat;
     private int finishedTaskCount;
 
     public CppFileManager(RunButton run) {
@@ -58,25 +57,16 @@ public class CppFileManager {
         if (!directory.mkdirs()) {
             System.out.println("Directory already existed, skipping...");
         }
-        stat = ResultStat.PD;
-    }
-
-    private void compilePrepare() {
-        if (exeFilePath == null) {
-            stat = ResultStat.CE;
-            Notice.showBalloon("ERROR", "No file selected.");
-            return;
-        }
-        File file = new File(exeFilePath);
-        if (file.exists()) {
-            boolean deleted = file.delete();
-            if (!deleted) {
-                stat = ResultStat.CE;
-            }
-        }
     }
 
     private Integer compile() {
+        if (exeFilePath == null) {
+            Notice.showBalloon("ERROR", "No file selected.");
+            return ResultStat.CE;
+        }
+        File file = new File(exeFilePath);
+        if (file.exists() && !file.delete()) return ResultStat.CE;
+
         for (Component comp : tot.getComponents()) {
             if (comp instanceof TestCase now) now.setStat(ResultStat.CPN);
         }
@@ -158,8 +148,6 @@ public class CppFileManager {
     }
 
     public void asyncRunAll() {
-        compilePrepare();
-        if (stat == ResultStat.CE) return;
         SwingWorker<Integer, Void> AsyncCompile = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
