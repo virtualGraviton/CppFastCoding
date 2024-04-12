@@ -23,7 +23,7 @@ public class RunButton extends MyButton {
     private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
     private final TestCasePanel testCasePanel;
 
-    RunButton() {
+    public RunButton() {
         super("Run");
         testCasePanel = MainPanel.getTestCasePanel();
         addMouseListener(new MouseAdapter() {

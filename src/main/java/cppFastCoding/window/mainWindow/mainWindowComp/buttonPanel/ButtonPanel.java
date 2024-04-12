@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ButtonPanel extends MyPanel {
-    ButtonPanel() {
+    public ButtonPanel() {
         super(BoxLayout.Y_AXIS, 7);
         addComp(new NewButton());
         addComp(new RunButton());

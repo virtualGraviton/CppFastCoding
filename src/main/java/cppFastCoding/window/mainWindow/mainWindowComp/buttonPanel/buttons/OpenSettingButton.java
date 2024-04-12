@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class OpenSettingButton extends MyButton {
-    OpenSettingButton() {
+    public OpenSettingButton() {
         super("Setting");
         addMouseListener(new MouseAdapter() {
             @Override

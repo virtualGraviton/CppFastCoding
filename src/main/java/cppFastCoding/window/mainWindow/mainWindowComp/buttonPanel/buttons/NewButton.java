@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 public class NewButton extends MyButton {
     private final TestCasePanel testCasePanel;
 
-    NewButton() {
+    public NewButton() {
         super("New");
         testCasePanel = MainPanel.getTestCasePanel();
         addMouseListener(new MouseAdapter() {
