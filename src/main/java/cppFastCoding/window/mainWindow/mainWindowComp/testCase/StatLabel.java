@@ -1,4 +1,4 @@
-package cppFastCoding.window.mainWindow.mainWindowComp;
+package cppFastCoding.window.mainWindow.mainWindowComp.testCase;
 
 import cppFastCoding.base.MyLabel;
 import cppFastCoding.util.BaseStat;

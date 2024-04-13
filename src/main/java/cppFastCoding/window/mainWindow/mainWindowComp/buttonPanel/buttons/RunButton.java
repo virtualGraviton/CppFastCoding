@@ -10,8 +10,8 @@ import cppFastCoding.util.BaseStat;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.manager.CppFileManager;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
-import cppFastCoding.window.mainWindow.mainWindowComp.TestCase;
-import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
+import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
+import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCasePanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

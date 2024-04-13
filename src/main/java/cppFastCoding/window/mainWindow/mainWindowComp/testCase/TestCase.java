@@ -1,4 +1,4 @@
-package cppFastCoding.window.mainWindow.mainWindowComp;
+package cppFastCoding.window.mainWindow.mainWindowComp.testCase;
 
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.FontPreferences;
@@ -8,6 +8,7 @@ import cppFastCoding.base.MyLabel;
 import cppFastCoding.base.MyPanel;
 import cppFastCoding.base.MyTextArea;
 import cppFastCoding.util.BaseStat;
+import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
