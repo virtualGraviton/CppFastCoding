@@ -3,9 +3,9 @@
 ![Build](https://github.com/virtualGraviton/CppFastCoding/workflows/Build/badge.svg)
 
 <!-- Plugin description -->
-A CLion plugin for ACMers and OIers with the ability to run multiple test case.
+This is a plugin for the CLion IDE, which is mainly dedicated to faster compilation and running of C++source code files,
+as well as multiple sets of sample tests
 <!-- Plugin description end -->
-
 
 ## Installation
 
@@ -19,4 +19,5 @@ A CLion plugin for ACMers and OIers with the ability to run multiple test case.
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
+
 [docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation

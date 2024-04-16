@@ -31,4 +31,11 @@
 
 - Bug fix.
 - Buttons appearance.
-- Input/output and expansion status of test cas will all be recorded.
+- Input/output and expansion status will be recorded.
+
+## [1.0.3] - 2024/04/16
+
+### Added
+
+- Expected output added. Now you will get "WrongAnswer" verdict if your output is different from the expected output.
+  The comparison method will ignore characters like '\n' and '\000'.
