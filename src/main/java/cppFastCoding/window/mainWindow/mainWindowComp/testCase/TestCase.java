@@ -41,7 +41,7 @@ public class TestCase extends MyPanel {
         String fontType = fontPreferences.getFontFamily();
         int fontSize = fontPreferences.getSize(fontType);
 
-        title = new JLabel("TestCase #%d".formatted(num + 1));
+        title = new JLabel("Test #%d".formatted(num + 1));
         title.setFont(new Font(fontType, Font.BOLD, fontSize + 2));
         titleRow.addComp(title);
 
@@ -100,7 +100,7 @@ public class TestCase extends MyPanel {
 
     public void changeTitle(int i) {
         idx = i;
-        title.setText("TestCase #%d".formatted(i + 1));
+        title.setText("Test #%d".formatted(i + 1));
     }
 
     public void setStat(BaseStat stat) {
