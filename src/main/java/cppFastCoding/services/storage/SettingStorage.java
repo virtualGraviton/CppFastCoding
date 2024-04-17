@@ -6,7 +6,7 @@ import com.intellij.openapi.components.Service;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
-import cppFastCoding.util.InitialSetting;
+import cppFastCoding.util.SettingInit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -39,8 +39,7 @@ public final class SettingStorage implements PersistentStateComponent<SettingSto
     }
 
     public String getValue(String key) {
-        String res = BasicSettings.get(key);
-        if (res == null) setKeyValue(key, InitialSetting.get(key));
+        if (!BasicSettings.containsKey(key)) setKeyValue(key, SettingInit.getSettingInit(key).getSettingValue());
         return BasicSettings.get(key);
     }
 }

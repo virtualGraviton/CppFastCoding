@@ -53,7 +53,7 @@ public class MainPanel extends JPanel {
             tcp.addComp(new MyLabel("Please select a cpp file."));
             return;
         }
-        for (int i = 0; i < data.testCaseCount; i++) {
+        for (int i = 0; i < data.getTestCaseCount(); i++) {
             tcp.addTextCase();
             TestCase tc = tcp.getTestCase(i);
             tc.setInput(data.getInput(i));

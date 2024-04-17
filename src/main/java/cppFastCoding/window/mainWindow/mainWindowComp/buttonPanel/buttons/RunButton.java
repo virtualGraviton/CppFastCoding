@@ -8,7 +8,7 @@ import com.intellij.openapi.actionSystem.DataContext;
 import cppFastCoding.base.MyButton;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.manager.CppFileManager;
-import cppFastCoding.util.BaseStat;
+import cppFastCoding.util.stat.Stat;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCasePanel;
@@ -49,7 +49,7 @@ public class RunButton extends MyButton {
         for (Component c : getComponents()) {
             if (c instanceof TestCase t) {
                 t.setOutput("");
-                t.setStat(BaseStat.PD);
+                t.setStat(Stat.PD);
             }
         }
         CppFileManager cppFileManager = new CppFileManager(this);
@@ -60,7 +60,6 @@ public class RunButton extends MyButton {
         ActionManager actionManager = ActionManager.getInstance();
         try {
             AnAction myAction = actionManager.getAction("SaveAll");
-
             DataContext dataContext = DataManager.getInstance().getDataContext(this);
             myAction.actionPerformed(AnActionEvent.createFromDataContext("", null, dataContext));
         } catch (Exception exception) {

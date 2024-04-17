@@ -1,8 +1,8 @@
-package cppFastCoding.util;
+package cppFastCoding.util.stat;
 
 import com.intellij.ui.JBColor;
 
-public enum BaseStat {
+public enum Stat {
     AC("Accepted", JBColor.green),
     WA("Wrong Answer", JBColor.red),
     TLE("TLE", JBColor.yellow),
@@ -16,7 +16,7 @@ public enum BaseStat {
     private final String statString;
     private final JBColor statColor;
 
-    BaseStat(String string, JBColor color) {
+    Stat(String string, JBColor color) {
         statString = string;
         statColor = color;
     }

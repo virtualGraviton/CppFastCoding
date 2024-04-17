@@ -1,8 +1,8 @@
-package cppFastCoding.util;
+package cppFastCoding.util.stat;
 
-public record Result(String output, BaseStat verdict) {
+public record Result(String output, Stat verdict) {
     @Override
-    public BaseStat verdict() {
+    public Stat verdict() {
         return verdict;
     }
 

@@ -7,9 +7,9 @@ import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.storage.SettingStorage;
-import cppFastCoding.util.BaseStat;
-import cppFastCoding.util.Result;
 import cppFastCoding.util.StringUtil;
+import cppFastCoding.util.stat.Result;
+import cppFastCoding.util.stat.Stat;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.RunButton;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
@@ -60,22 +60,22 @@ public class CppFileManager {
         }
     }
 
-    private BaseStat compile() {
+    private Stat compile() {
         //prepare
         if (exeFilePath == null) {
             Notice.showBalloon("ERROR", "No file selected.");
             runButton.setEnabled(true);
-            return BaseStat.CE;
+            return Stat.CE;
         }
         File file = new File(exeFilePath);
         if (file.exists() && !file.delete()) {
             runButton.setEnabled(true);
-            return BaseStat.CE;
+            return Stat.CE;
         }
         //compile
         SwingUtilities.invokeLater(() -> {
             for (Component comp : tcp.getComponents()) {
-                if (comp instanceof TestCase now) now.setStat(BaseStat.CPN);
+                if (comp instanceof TestCase now) now.setStat(Stat.CPN);
             }
         });
         try {
@@ -85,23 +85,23 @@ public class CppFileManager {
 
             int exitCode = process.waitFor();
             if (exitCode == 0)
-                return BaseStat.CPD;
+                return Stat.CPD;
         } catch (IOException | InterruptedException exception) {
             logger.error("CompileFailed", exception);
         }
         SwingUtilities.invokeLater(() -> {
             for (Component comp : tcp.getComponents()) {
-                if (comp instanceof TestCase now) now.setStat(BaseStat.CE);
+                if (comp instanceof TestCase now) now.setStat(Stat.CE);
             }
         });
         runButton.setEnabled(true);
-        return BaseStat.CE;
+        return Stat.CE;
     }
 
     private Result runTestCase(@NotNull TestCase nowTestCase) {
         String input = nowTestCase.getInput();
         StringBuilder output = new StringBuilder();
-        BaseStat verdict;
+        Stat verdict;
         try {
             Process process = new ProcessBuilder(exeFilePath).start();
             process.getOutputStream().write(input.getBytes());
@@ -111,7 +111,7 @@ public class CppFileManager {
 
             if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();
-                verdict = BaseStat.TLE;
+                verdict = Stat.TLE;
                 return new Result(output.toString(), verdict);
             }
 
@@ -123,15 +123,15 @@ public class CppFileManager {
 
             if (process.exitValue() == 0) {
                 if (StringUtil.isEqual(output.toString(), nowTestCase.getExpectOutput())) {
-                    verdict = BaseStat.AC;
+                    verdict = Stat.AC;
                 } else {
-                    verdict = BaseStat.WA;
+                    verdict = Stat.WA;
                 }
             } else {
-                verdict = BaseStat.RE;
+                verdict = Stat.RE;
             }
         } catch (Exception exception) {
-            verdict = BaseStat.RE;
+            verdict = Stat.RE;
             logger.error("FatalError", exception);
         }
         return new Result(output.toString(), verdict);
@@ -166,10 +166,10 @@ public class CppFileManager {
         SwingWorker<Integer, Void> swingWorker = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
-                if (Objects.equals(compile(), BaseStat.CE)) return null;
+                if (Objects.equals(compile(), Stat.CE)) return null;
                 for (Component comp : tcp.getComponents()) {
                     if (comp instanceof TestCase now) {
-                        SwingUtilities.invokeLater(() -> now.setStat(BaseStat.RUN));
+                        SwingUtilities.invokeLater(() -> now.setStat(Stat.RUN));
                         asyncRun(now);
                     }
                 }

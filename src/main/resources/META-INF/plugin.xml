@@ -17,7 +17,7 @@
                 topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
     </projectListeners>
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable displayName="CppFastCoding Settings" groupId="root"
+        <applicationConfigurable displayName="CppFastCoding Settings" groupId="other"
                                  instance="cppFastCoding.window.settingWindow.CFCodingConfigurable"/>
         <toolWindow id="CppFastCodingPlugin" anchor="right"
                     factoryClass="cppFastCoding.window.mainWindow.MainToolWindow"/>

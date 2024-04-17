@@ -7,7 +7,7 @@ import cppFastCoding.base.MyButton;
 import cppFastCoding.base.MyLabel;
 import cppFastCoding.base.MyPanel;
 import cppFastCoding.base.MyTextArea;
-import cppFastCoding.util.BaseStat;
+import cppFastCoding.util.stat.Stat;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 
 import javax.swing.*;
@@ -103,7 +103,7 @@ public class TestCase extends MyPanel {
         title.setText("Test #%d".formatted(i + 1));
     }
 
-    public void setStat(BaseStat stat) {
+    public void setStat(Stat stat) {
         statLabel.setStat(stat);
         updateUI();
     }
