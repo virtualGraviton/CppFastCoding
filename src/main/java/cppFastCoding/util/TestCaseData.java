@@ -9,14 +9,13 @@ import java.util.ArrayList;
 
 public class TestCaseData {
     @XCollection
-    public ArrayList<String> inputs;
+    private ArrayList<String> inputs;
     @XCollection
-    public ArrayList<String> outputs;
-
-    public ArrayList<String> expectOutput;
+    private ArrayList<String> outputs;
     @XCollection
-    public ArrayList<Boolean> isExpand;
+    private ArrayList<String> expectOutput;
     @XCollection
+    private ArrayList<Boolean> isExpand;
     public int testCaseCount;
 
     public TestCaseData(TestCasePanel tcp) {
@@ -33,6 +32,22 @@ public class TestCaseData {
                 isExpand.add(tc.isExpanded());
             }
         }
+    }
+
+    public String getInput(int index) {
+        return inputs.get(index);
+    }
+
+    public String getOutput(int index) {
+        return outputs.get(index);
+    }
+
+    public String getExpectOutput(int index) {
+        return expectOutput.get(index);
+    }
+
+    public boolean isExpand(int index) {
+        return isExpand.get(index);
     }
 
     public TestCaseData() {

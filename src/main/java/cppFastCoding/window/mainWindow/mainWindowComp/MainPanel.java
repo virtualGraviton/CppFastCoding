@@ -56,10 +56,10 @@ public class MainPanel extends JPanel {
         for (int i = 0; i < data.testCaseCount; i++) {
             tcp.addTextCase();
             TestCase tc = tcp.getTestCase(i);
-            tc.setInput(data.inputs.get(i));
-            tc.setOutput(data.outputs.get(i));
-            tc.setExpectOutput(data.expectOutput.get(i));
-            tc.setExpanded(data.isExpand.get(i));
+            tc.setInput(data.getInput(i));
+            tc.setOutput(data.getOutput(i));
+            tc.setExpectOutput(data.getExpectOutput(i));
+            tc.setExpanded(data.isExpand(i));
         }
     }
 }
