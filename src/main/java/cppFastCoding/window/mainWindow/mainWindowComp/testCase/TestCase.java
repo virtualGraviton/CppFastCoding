@@ -138,6 +138,10 @@ public class TestCase extends MyPanel {
         return expectOutputField.getText();
     }
 
+    public void setExpectOutput(String expectOutput) {
+        expectOutputField.setText(expectOutput);
+    }
+
     public boolean isExpanded() {
         return isExpanded;
     }

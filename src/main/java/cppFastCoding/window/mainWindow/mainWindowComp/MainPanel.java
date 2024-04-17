@@ -1,6 +1,7 @@
 package cppFastCoding.window.mainWindow.mainWindowComp;
 
 import com.intellij.ui.components.JBScrollPane;
+import cppFastCoding.base.MyLabel;
 import cppFastCoding.util.TestCaseData;
 import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.ButtonPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
@@ -18,8 +19,7 @@ public class MainPanel extends JPanel {
     private final ButtonPanel buttonpanel;
 
     public MainPanel() {
-        if (testCasePanel == null)
-            testCasePanel = new TestCasePanel();
+        if (testCasePanel == null) testCasePanel = new TestCasePanel();
         scrollPane = new JBScrollPane(testCasePanel);
         buttonpanel = new ButtonPanel();
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
@@ -45,14 +45,20 @@ public class MainPanel extends JPanel {
 
     public static void setTestCasePanel(TestCaseData data) {
         TestCasePanel tcp = getTestCasePanel();
-        while (tcp.getTestCaseCount() > 0) {
-            tcp.removeTextCase(0);
+        for (Component component : tcp.getComponents()) {
+            tcp.remove(component);
+        }
+        tcp.setTestCaseCount(0);
+        if (data == null) {
+            tcp.addComp(new MyLabel("Please select a cpp file."));
+            return;
         }
         for (int i = 0; i < data.testCaseCount; i++) {
             tcp.addTextCase();
             TestCase tc = tcp.getTestCase(i);
             tc.setInput(data.inputs.get(i));
             tc.setOutput(data.outputs.get(i));
+            tc.setExpectOutput(data.expectOutput.get(i));
             tc.setExpanded(data.isExpand.get(i));
         }
     }

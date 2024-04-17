@@ -45,4 +45,8 @@ public class TestCasePanel extends MyPanel {
     public int getTestCaseCount() {
         return testCaseCount;
     }
+
+    public void setTestCaseCount(int testCaseCount) {
+        this.testCaseCount = testCaseCount;
+    }
 }

@@ -12,6 +12,8 @@ public class TestCaseData {
     public ArrayList<String> inputs;
     @XCollection
     public ArrayList<String> outputs;
+
+    public ArrayList<String> expectOutput;
     @XCollection
     public ArrayList<Boolean> isExpand;
     @XCollection
@@ -20,12 +22,14 @@ public class TestCaseData {
     public TestCaseData(TestCasePanel tcp) {
         inputs = new ArrayList<>();
         outputs = new ArrayList<>();
+        expectOutput = new ArrayList<>();
         isExpand = new ArrayList<>();
         testCaseCount = tcp.getTestCaseCount();
         for (Component c : tcp.getComponents()) {
             if (c instanceof TestCase tc) {
                 inputs.add(tc.getInput());
                 outputs.add(tc.getOutput());
+                expectOutput.add(tc.getExpectOutput());
                 isExpand.add(tc.isExpanded());
             }
         }
