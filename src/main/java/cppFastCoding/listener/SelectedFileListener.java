@@ -9,8 +9,6 @@ import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import org.jetbrains.annotations.NotNull;
 
 public class SelectedFileListener implements FileEditorManagerListener {
-
-
     public SelectedFileListener() {
     }
 

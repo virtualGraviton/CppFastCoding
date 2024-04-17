@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class CFCodingConfigurable implements Configurable {
     public static boolean SettingModified = false;
-    SettingPanel bottom;
+    private SettingPanel bottom;
 
     @Nullable
     @Override

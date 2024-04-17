@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class TestCaseData {
     @XCollection
+    private int testCaseCount;
+    @XCollection
     private ArrayList<String> inputs;
     @XCollection
     private ArrayList<String> outputs;
@@ -16,7 +18,6 @@ public class TestCaseData {
     private ArrayList<String> expectOutput;
     @XCollection
     private ArrayList<Boolean> isExpand;
-    public int testCaseCount;
 
     public TestCaseData(TestCasePanel tcp) {
         inputs = new ArrayList<>();
@@ -34,6 +35,9 @@ public class TestCaseData {
         }
     }
 
+    public TestCaseData() {
+    }
+
     public String getInput(int index) {
         return inputs.get(index);
     }
@@ -46,10 +50,11 @@ public class TestCaseData {
         return expectOutput.get(index);
     }
 
-    public boolean isExpand(int index) {
-        return isExpand.get(index);
+    public int getTestCaseCount() {
+        return testCaseCount;
     }
 
-    public TestCaseData() {
+    public boolean isExpand(int index) {
+        return isExpand.get(index);
     }
 }
