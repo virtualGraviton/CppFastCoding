@@ -1,5 +1,10 @@
 package cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons;
 
+import com.intellij.openapi.fileEditor.FileEditor;
+import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.vfs.VirtualFile;
 import cppFastCoding.base.MyButton;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCasePanel;
@@ -22,6 +27,14 @@ public class NewButton extends MyButton {
     }
 
     private void AddTestCase() {
-        testCasePanel.addTextCase();
+        Project project = ProjectManager.getInstance().getOpenProjects()[0];
+        FileEditorManager editorManager = FileEditorManager.getInstance(project);
+        FileEditor fileEditor = editorManager.getSelectedEditor();
+        if (fileEditor == null) {
+            return;
+        }
+        VirtualFile focusedFile = fileEditor.getFile();
+        if ("cpp".equals(focusedFile.getExtension()))
+            testCasePanel.addTextCase();
     }
 }
