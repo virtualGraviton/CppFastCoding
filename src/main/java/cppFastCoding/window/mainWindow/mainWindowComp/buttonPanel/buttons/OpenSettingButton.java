@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 
 public class OpenSettingButton extends MyButton {
     public OpenSettingButton() {
-        super("Setting");
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

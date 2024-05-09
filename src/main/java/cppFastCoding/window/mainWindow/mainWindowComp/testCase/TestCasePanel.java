@@ -1,5 +1,6 @@
 package cppFastCoding.window.mainWindow.mainWindowComp.testCase;
 
+import cppFastCoding.action.SaveTestCaseAction;
 import cppFastCoding.base.MyPanel;
 
 import javax.swing.*;
@@ -20,17 +21,17 @@ public class TestCasePanel extends MyPanel {
     public void addTextCase() {
         TestCase testCase = new TestCase(testCaseCount++);
         addComp(testCase);
-        revalidate();
-        repaint();
+        updateUI();
+        SaveTestCaseAction.actionPerformed();
     }
 
     public void removeTextCase(int idx) {
         testCaseCount--;
         remove(idx * 2);
         remove(idx * 2);
-        revalidate();
-        repaint();
         titleUdt();
+        updateUI();
+        SaveTestCaseAction.actionPerformed();
     }
 
     private void titleUdt() {

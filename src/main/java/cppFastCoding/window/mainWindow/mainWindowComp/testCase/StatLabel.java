@@ -14,11 +14,12 @@ public class StatLabel extends MyLabel {
         int minWidth = 0;
         int minHeight = 0;
         for (Stat stat : Stat.values()) {
-            minWidth = Math.max(minWidth, textManager.getWidth(stat.getStatString()));
-            minHeight = Math.max(minHeight, textManager.getHeight(stat.getStatString()));
+            minWidth = Math.max(minWidth, (int) textManager.getWidth(stat.getStatString()));
+            minHeight = Math.max(minHeight, (int) textManager.getHeight(stat.getStatString()));
         }
         setMinimumSize(new Dimension(minWidth, minHeight));
         setPreferredSize(new Dimension(minWidth, minHeight));
+        setMaximumSize(new Dimension(minWidth, minHeight));
     }
 
     public void setStat(Stat stat) {

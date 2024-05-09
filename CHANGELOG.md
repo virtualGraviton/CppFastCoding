@@ -39,3 +39,13 @@
 
 - Expected output added. Now you will get "WrongAnswer" verdict if your output is different from the expected output.
   The comparison method will ignore characters like '\n' and '\000'.
+
+## [1.0.4] - 2024/05/17
+
+### Added
+
+- Button icon.
+
+### Changed
+
+- Bug fix.

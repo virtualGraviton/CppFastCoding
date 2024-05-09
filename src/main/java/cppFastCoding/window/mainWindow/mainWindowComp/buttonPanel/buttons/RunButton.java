@@ -5,9 +5,11 @@ import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataContext;
+import cppFastCoding.action.SaveTestCaseAction;
 import cppFastCoding.base.MyButton;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.manager.CppFileManager;
+import cppFastCoding.util.ObjGetter;
 import cppFastCoding.util.stat.Stat;
 import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
@@ -21,11 +23,8 @@ import java.awt.event.MouseEvent;
 
 public class RunButton extends MyButton {
     private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
-    private final TestCasePanel testCasePanel;
 
     public RunButton() {
-        super("Run");
-        testCasePanel = MainPanel.getTestCasePanel();
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -34,6 +33,11 @@ public class RunButton extends MyButton {
                     return;
                 }
                 setEnabled(false);
+                TestCasePanel tcp = ObjGetter.getMainPanel().getTestCasePanel();
+                for (int i = 0; i < tcp.getTestCaseCount(); i++) {
+                    TestCase tc = tcp.getTestCase(i);
+                    tc.getDeleteButton().setEnabled(false);
+                }
                 run();
             }
         });
@@ -41,17 +45,18 @@ public class RunButton extends MyButton {
 
     private void run() {
         save();
-        if (testCasePanel.getTestCaseCount() == 0) {
+        if (ObjGetter.getMainPanel().getTestCasePanel().getTestCaseCount() == 0) {
             setEnabled(true);
             Notice.showBalloon("ERROR", "No test case.");
             return;
         }
-        for (Component c : getComponents()) {
+        for (Component c : ObjGetter.getMainPanel().getTestCasePanel().getComponents()) {
             if (c instanceof TestCase t) {
-                t.setOutput("");
+                t.setOutput(null);
                 t.setStat(Stat.PD);
             }
         }
+
         CppFileManager cppFileManager = new CppFileManager(this);
         cppFileManager.asyncRunAll();
     }
@@ -65,5 +70,6 @@ public class RunButton extends MyButton {
         } catch (Exception exception) {
             logger.error("Save Failed", exception);
         }
+        SaveTestCaseAction.actionPerformed();
     }
 }

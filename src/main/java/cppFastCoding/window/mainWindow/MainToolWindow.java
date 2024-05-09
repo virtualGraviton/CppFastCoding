@@ -7,9 +7,14 @@ import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import org.jetbrains.annotations.NotNull;
 
 public class MainToolWindow implements ToolWindowFactory {
+    public static boolean available = false;
+
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        toolWindow.getComponent().add(new MainPanel());
-        toolWindow.getComponent().revalidate();
+        if (toolWindow.getComponent().getComponentCount() == 0) {
+            toolWindow.getComponent().add(new MainPanel());
+            available = true;
+            toolWindow.getComponent().updateUI();
+        }
     }
 }

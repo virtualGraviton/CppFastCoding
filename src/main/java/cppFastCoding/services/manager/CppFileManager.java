@@ -7,10 +7,10 @@ import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.storage.SettingStorage;
+import cppFastCoding.util.ObjGetter;
 import cppFastCoding.util.StringUtil;
 import cppFastCoding.util.stat.Result;
 import cppFastCoding.util.stat.Stat;
-import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.RunButton;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCasePanel;
@@ -37,7 +37,7 @@ public class CppFileManager {
 
     public CppFileManager(RunButton run) {
         runButton = run;
-        tcp = MainPanel.getTestCasePanel();
+        tcp = ObjGetter.getMainPanel().getTestCasePanel();
         taskCount = tcp.getTestCaseCount();
         finishedTaskCount = 0;
         Project project = ProjectManager.getInstance().getOpenProjects()[0];
@@ -51,12 +51,12 @@ public class CppFileManager {
         if (focusedFile != null && "cpp".equals(focusedFile.getExtension())) {
             cppFilePath = focusedFile.getPath();
             int len = focusedFile.getName().length();
-            exeFilePath = project.getBasePath() + "/_cppCompile/" + focusedFile.getName().substring(0, len - 4) + ".exe";
+            exeFilePath = project.getBasePath() + "/.CppCompile/" + focusedFile.getName().substring(0, len - 4) + ".exe";
         }
 
-        File directory = new File(project.getBasePath() + "/_cppCompile");
+        File directory = new File(project.getBasePath() + "/.CppCompile");
         if (!directory.mkdirs()) {
-            System.out.println("Directory already existed, skipping...");
+            System.err.println("Failed to create directory " + directory.getAbsolutePath());
         }
     }
 
@@ -64,12 +64,10 @@ public class CppFileManager {
         //prepare
         if (exeFilePath == null) {
             Notice.showBalloon("ERROR", "No file selected.");
-            runButton.setEnabled(true);
             return Stat.CE;
         }
         File file = new File(exeFilePath);
         if (file.exists() && !file.delete()) {
-            runButton.setEnabled(true);
             return Stat.CE;
         }
         //compile
@@ -79,7 +77,7 @@ public class CppFileManager {
             }
         });
         try {
-            Process process = Runtime.getRuntime().exec("g++ %s %s -o %s".formatted(SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
+            Process process = Runtime.getRuntime().exec("%s %s %s -o %s".formatted("g++", SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             reader.close();
 
@@ -94,7 +92,6 @@ public class CppFileManager {
                 if (comp instanceof TestCase now) now.setStat(Stat.CE);
             }
         });
-        runButton.setEnabled(true);
         return Stat.CE;
     }
 
@@ -103,12 +100,12 @@ public class CppFileManager {
         StringBuilder output = new StringBuilder();
         Stat verdict;
         try {
-            Process process = new ProcessBuilder(exeFilePath).start();
+            ProcessBuilder processBuilder = new ProcessBuilder(exeFilePath);
+            Process process = processBuilder.start();
             process.getOutputStream().write(input.getBytes());
             process.getOutputStream().close();
 
-            int maxWaitTime = Integer.parseInt(SettingStorage.getInstance().getValue("MaxWaitTime"));
-
+            long maxWaitTime = Integer.parseInt(SettingStorage.getInstance().getValue("MaxWaitTime"));
             if (!process.waitFor(maxWaitTime, java.util.concurrent.TimeUnit.MILLISECONDS)) {
                 process.destroy();
                 verdict = Stat.TLE;
@@ -151,8 +148,11 @@ public class CppFileManager {
                     SwingUtilities.invokeLater(() -> {
                         now.setStat(result.verdict());
                         now.setOutput(result.output());
+                        now.getDeleteButton().setEnabled(true);
                         finishedTaskCount += 1;
-                        if (finishedTaskCount == taskCount) runButton.setEnabled(true);
+                        if (finishedTaskCount == taskCount) {
+                            runButton.setEnabled(true);
+                        }
                     });
                 } catch (Exception e) {
                     logger.error("FatalError", e);
@@ -166,7 +166,15 @@ public class CppFileManager {
         SwingWorker<Integer, Void> swingWorker = new SwingWorker<>() {
             @Override
             protected Integer doInBackground() {
-                if (Objects.equals(compile(), Stat.CE)) return null;
+                if (Objects.equals(compile(), Stat.CE)) {
+                    runButton.setEnabled(true);
+                    for (Component comp : tcp.getComponents()) {
+                        if (comp instanceof TestCase now) {
+                            now.getDeleteButton().setEnabled(true);
+                        }
+                    }
+                    return null;
+                }
                 for (Component comp : tcp.getComponents()) {
                     if (comp instanceof TestCase now) {
                         SwingUtilities.invokeLater(() -> now.setStat(Stat.RUN));

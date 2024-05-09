@@ -6,18 +6,14 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import cppFastCoding.base.MyButton;
-import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
-import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCasePanel;
+import cppFastCoding.util.ObjGetter;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class NewButton extends MyButton {
-    private final TestCasePanel testCasePanel;
 
     public NewButton() {
-        super("New");
-        testCasePanel = MainPanel.getTestCasePanel();
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -35,6 +31,6 @@ public class NewButton extends MyButton {
         }
         VirtualFile focusedFile = fileEditor.getFile();
         if ("cpp".equals(focusedFile.getExtension()))
-            testCasePanel.addTextCase();
+            ObjGetter.getMainPanel().getTestCasePanel().addTextCase();
     }
 }

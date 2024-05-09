@@ -2,6 +2,7 @@ package cppFastCoding.window.mainWindow.mainWindowComp;
 
 import com.intellij.ui.components.JBScrollPane;
 import cppFastCoding.base.MyLabel;
+import cppFastCoding.util.ObjGetter;
 import cppFastCoding.util.TestCaseData;
 import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.ButtonPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
@@ -30,21 +31,20 @@ public class MainPanel extends JPanel {
             public void componentResized(ComponentEvent e) {
                 int w = e.getComponent().getWidth();
                 int h = e.getComponent().getHeight();
-                scrollPane.setPreferredSize(new Dimension(w - buttonpanel.getW() - 15, h - 10));
-                buttonpanel.setPreferredSize(new Dimension(buttonpanel.getW(), h - 10));
-                scrollPane.updateUI();
-                buttonpanel.updateUI();
+                scrollPane.setPreferredSize(new Dimension(w - 34 - 15, h - 10));
+                buttonpanel.setPreferredSize(new Dimension(34, h - 10));
+                SwingUtilities.invokeLater(() -> updateUI());
             }
         });
     }
 
-    public static TestCasePanel getTestCasePanel() {
+    public TestCasePanel getTestCasePanel() {
         if (testCasePanel == null) testCasePanel = new TestCasePanel();
         return testCasePanel;
     }
 
-    public static void setTestCasePanel(TestCaseData data) {
-        TestCasePanel tcp = getTestCasePanel();
+    public void setTestCasePanel(TestCaseData data) {
+        TestCasePanel tcp = ObjGetter.getMainPanel().getTestCasePanel();
         for (Component component : tcp.getComponents()) {
             tcp.remove(component);
         }
