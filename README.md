@@ -1,6 +1,10 @@
 # CppFastCoding (For CLion)
 
 ![Build](https://github.com/virtualGraviton/CppFastCoding/workflows/Build/badge.svg)
+![download](https://img.shields.io/jetbrains/plugin/d/24495-cppfastcoding.svg)
+![version](https://img.shields.io/jetbrains/plugin/v/24495-cppfastcoding.svg)
+
+## Description
 
 <!-- Plugin description -->
 This is a plugin for the CLion IDE, which is mainly dedicated to faster compilation and running of C++source code files,
@@ -9,7 +13,11 @@ as well as multiple sets of sample tests
 
 ## Installation
 
-- This plugin is not on the market, please:
+<a href="https://plugins.jetbrains.com/plugin/24495-cppfastcoding">
+  <img src="https://user-images.githubusercontent.com/12044174/123105697-94066100-d46a-11eb-9832-338cdf4e0612.png" width="300" alt=""/>
+</a>
+
+- You can also:
 
   Download the [latest release](https://github.com/virtualGraviton/CppFastCoding/releases/latest) and install it
   manually using
