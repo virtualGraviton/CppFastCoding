@@ -49,3 +49,9 @@
 ### Changed
 
 - Bug fix.
+
+## [1.0.4-hotfix0528] - 2024/05/28
+
+### Fixed
+
+- The text area is displayed in a incorrect size after switching files.
