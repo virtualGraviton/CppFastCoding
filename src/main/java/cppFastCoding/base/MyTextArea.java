@@ -47,9 +47,8 @@ public class MyTextArea extends JBTextArea {
         setBackground(JBColor.lightGray);
     }
 
-    public void setMinWidth(int width){
+    public void setMinWidth(int width) {
         minWidth = width;
-        setPreferredSize(new Dimension(minWidth, (int) textManager.getRowHeight()));
-        setMaximumSize(new Dimension(minWidth, (int) textManager.getRowHeight()));
+        setMinimumSize(new Dimension(minWidth, (int) textManager.getRowHeight()));
     }
 }
