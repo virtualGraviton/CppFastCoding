@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 public enum SettingInit {
     CompileStd("CompileStandard", "-std=c++20", "Compile Standard:", SettingText.class),
     MaxWaitTime("MaxWaitTime", "5000", "Max Wait Time(ms):", SettingText.class),
+    DefaultDataTextAreaWidth("DefaultDataTextAreaWidth", "200", "Default Data TextArea Width(px):", SettingText.class),
     StrictMod("StrictJudgeMod", "false", "Strict Judge Mod", SettingCheck.class),
     UnknownKey("UnknownKey", null, "Unknown Key:", null);
     private final String SettingKey;

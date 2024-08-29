@@ -52,5 +52,4 @@ public class SettingCheck extends MyPanel implements SettingBase, SettingCompone
             addActionListener(e -> CFCodingConfigurable.SettingModified = true);
         }
     }
-
 }

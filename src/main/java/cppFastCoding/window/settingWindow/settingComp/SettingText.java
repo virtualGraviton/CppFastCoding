@@ -56,9 +56,7 @@ public class SettingText extends MyPanel implements SettingBase, SettingComponen
             addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        e.consume();
-                    }
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) e.consume();
                 }
             });
             getDocument().addDocumentListener(new DocumentAdapter() {

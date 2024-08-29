@@ -6,6 +6,7 @@ import com.intellij.ui.DocumentAdapter;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBTextArea;
 import cppFastCoding.services.manager.TextManager;
+import cppFastCoding.services.storage.SettingStorage;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.event.DocumentEvent;
@@ -13,6 +14,7 @@ import javax.swing.text.BadLocationException;
 import java.awt.*;
 
 public class MyTextArea extends JBTextArea {
+    private final SettingStorage settingStorage = SettingStorage.getInstance();
     private int minWidth = 200;
     private TextManager textManager;
 
@@ -28,7 +30,8 @@ public class MyTextArea extends JBTextArea {
                     throw new RuntimeException(ex);
                 }
 
-                int w = (int) textManager.getWidth(s) + 10, h = (int) textManager.getHeight(s);
+                int w = (int) (Math.ceil(textManager.getWidth(s)) + Math.ceil(textManager.getWidth("a"))),
+                        h = (int) textManager.getHeight(s);
                 setPreferredSize(new Dimension(Math.max(w, minWidth), h));
                 setMaximumSize(new Dimension(Math.max(w, minWidth), h));
             }
@@ -41,14 +44,17 @@ public class MyTextArea extends JBTextArea {
         int fontSize = fontPreferences.getSize(fontType);
 
         setFont(new Font(fontType, Font.PLAIN, fontSize));
-        textManager = new TextManager(getFont());
-        setPreferredSize(new Dimension(minWidth, (int) textManager.getRowHeight()));
-        setMaximumSize(new Dimension(minWidth, (int) textManager.getRowHeight()));
+        textManager = new TextManager(getFontMetrics(getFont()));
+
+        minWidth = Integer.parseInt(settingStorage.getValue("DefaultDataTextAreaWidth"));
+        setPreferredSize(new Dimension(minWidth, (int) textManager.getHeight("a")));
+        setMaximumSize(new Dimension(minWidth, (int) textManager.getHeight("a")));
         setBackground(JBColor.lightGray);
     }
 
     public void setMinWidth(int width) {
         minWidth = width;
-        setMinimumSize(new Dimension(minWidth, (int) textManager.getRowHeight()));
+        settingStorage.setKeyValue("DefaultDataTextAreaWidth", String.valueOf(width));
+        setMinimumSize(new Dimension(minWidth, (int) textManager.getHeight("a")));
     }
 }

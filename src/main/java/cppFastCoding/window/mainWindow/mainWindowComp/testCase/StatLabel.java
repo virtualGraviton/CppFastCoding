@@ -10,7 +10,7 @@ public class StatLabel extends MyLabel {
     public StatLabel(String text) {
         super(text);
         setFont(new Font(getFontType(), Font.BOLD, getFontSize() + 2));
-        TextManager textManager = new TextManager(getFont());
+        TextManager textManager = new TextManager(getFontMetrics(getFont()));
         int minWidth = 0;
         int minHeight = 0;
         for (Stat stat : Stat.values()) {
