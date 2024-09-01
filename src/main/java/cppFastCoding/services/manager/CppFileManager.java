@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class CppFileManager {
@@ -56,7 +57,8 @@ public class CppFileManager {
 
         File directory = new File(project.getBasePath() + "/.CppCompile");
         if (!directory.mkdirs()) {
-            System.err.println("Failed to create directory " + directory.getAbsolutePath());
+            System.err.println("Failed to create directory " + directory.getAbsolutePath()
+                    + ",directory already exists.");
         }
     }
 
@@ -76,8 +78,14 @@ public class CppFileManager {
                 if (comp instanceof TestCase now) now.setStat(Stat.CPN);
             }
         });
+        ArrayList<String> commands = new ArrayList<>();
+        commands.add("g++");
+        commands.add(SettingStorage.getInstance().getValue("CompileStandard"));
+        commands.add(cppFilePath);
+        commands.add("-o");
+        commands.add(exeFilePath);
         try {
-            Process process = Runtime.getRuntime().exec("%s %s %s -o %s".formatted("g++", SettingStorage.getInstance().getValue("CompileStandard"), cppFilePath, exeFilePath));
+            Process process = new ProcessBuilder(commands).start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             reader.close();
 
