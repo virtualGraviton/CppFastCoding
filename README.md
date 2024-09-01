@@ -7,8 +7,11 @@
 ## Description
 
 <!-- Plugin description -->
+这是一个专为算法竞赛选手设计的CLion插件，实现了多组样例的运行测试。
+
 This is a plugin for the CLion IDE, which is mainly dedicated to faster compilation and running of C++source code files,
 as well as multiple sets of sample tests
+
 <!-- Plugin description end -->
 
 ## Installation

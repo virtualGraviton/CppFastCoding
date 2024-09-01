@@ -59,5 +59,12 @@
 ## [1.1.0] - 2024/08/29
 
 ### Changed
+
 - Appearance & Code optimization.
 - Adapt CL242.
+
+## [1.1.0] - 2024/09/02
+
+### Changed
+
+- UI overhaul.
