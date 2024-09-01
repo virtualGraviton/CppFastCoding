@@ -27,9 +27,9 @@ public class ButtonPanel extends MyPanel {
     }
 
     public void setIcon() {
-        newButton.setIcon(Icons.Add.getIcon(new Dimension(30, 30)));
-        runButton.setIcon(Icons.Run.getIcon(new Dimension(30, 30)));
-        openSettingButton.setIcon(Icons.Settings.getIcon(new Dimension(30, 30)));
+        newButton.setIcon(Icons.Add.dark);
+        runButton.setIcon(Icons.Run.dark);
+        openSettingButton.setIcon(Icons.Setting.dark);
     }
 
     public void addComp(JComponent comp) {

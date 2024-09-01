@@ -9,9 +9,9 @@ import cppFastCoding.action.SaveTestCaseAction;
 import cppFastCoding.base.MyButton;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.manager.CppFileManager;
+import cppFastCoding.util.Icons;
 import cppFastCoding.util.ObjGetter;
 import cppFastCoding.util.stat.Stat;
-import cppFastCoding.window.mainWindow.mainWindowComp.MainPanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCasePanel;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RunButton extends MyButton {
-    private static final Logger logger = LoggerFactory.getLogger(MainPanel.class);
+    private static final Logger logger = LoggerFactory.getLogger(RunButton.class);
 
     public RunButton() {
         addMouseListener(new MouseAdapter() {
@@ -41,6 +41,7 @@ public class RunButton extends MyButton {
                 run();
             }
         });
+        setDisabledIcon(Icons.Run.dark);
     }
 
     private void run() {

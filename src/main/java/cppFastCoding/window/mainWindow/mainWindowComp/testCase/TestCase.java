@@ -29,7 +29,6 @@ public class TestCase extends MyPanel {
     private boolean isExpanded = true;
     private int idx;
     private MyLabel title;
-    private Dimension iconSize = new Dimension(20, 20);
 
     public TestCase(int testCaseNum) {
         super(BoxLayout.Y_AXIS, 7);
@@ -52,6 +51,7 @@ public class TestCase extends MyPanel {
                     ObjGetter.getMainPanel().getTestCasePanel().removeTextCase(idx);
             }
         });
+        deleteButton.setDisabledIcon(Icons.Delete.dark);
         expandButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -67,9 +67,7 @@ public class TestCase extends MyPanel {
             public void componentResized(ComponentEvent e) {
                 Component component = e.getComponent();
                 int width = component == null ? 0 : component.getSize().width;
-                int height = component == null ? 0 : component.getHeight();
-                iconSize = new Dimension(height - 6, height - 6);
-                deleteButton.setIcon(Icons.Delete.getIcon(iconSize));
+                deleteButton.setIcon(Icons.Delete.dark);
                 setExpanded(isExpanded);
                 inputField.setMinWidth(width);
                 outputField.setMinWidth(width);
@@ -149,7 +147,7 @@ public class TestCase extends MyPanel {
                 }
             }
         }
-        if (isExpanded) expandButton.setIcon(Icons.Collapse.getIcon(iconSize));
-        else expandButton.setIcon(Icons.Expand.getIcon(iconSize));
+        if (isExpanded) expandButton.setIcon(Icons.Collapse.dark);
+        else expandButton.setIcon(Icons.Expand.dark);
     }
 }
