@@ -1,73 +1,66 @@
 package cppFastCoding.window.mainWindow.mainWindowComp.testCase;
 
-import com.intellij.openapi.editor.colors.EditorColorsManager;
-import com.intellij.openapi.editor.colors.FontPreferences;
 import com.intellij.ui.JBColor;
+import com.intellij.util.ui.JBUI;
 import cppFastCoding.base.MyButton;
 import cppFastCoding.base.MyLabel;
-import cppFastCoding.base.MyPanel;
 import cppFastCoding.util.Icons;
 import cppFastCoding.util.ObjGetter;
+import cppFastCoding.util.RoundedBorder;
 import cppFastCoding.util.stat.Stat;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
+import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TestCase extends MyPanel {
+public class TestCase extends JPanel {
     private final StatLabel statLabel = new StatLabel("Pending...");
     private final MyButton deleteButton = new MyButton();
     private final MyButton expandButton = new MyButton();
-    private final MyPanel titleRow = new MyPanel(BoxLayout.X_AXIS, 10);
     private final DataTextArea inputField = new DataTextArea();
     private final DataTextArea outputField = new DataTextArea();
     private final DataTextArea expectOutputField = new DataTextArea();
+    private final MyLabel title = new MyLabel();
     private boolean isExpanded = true;
     private int idx;
-    private MyLabel title;
 
     public TestCase(int testCaseNum) {
-        super(BoxLayout.Y_AXIS, 7);
-        init(testCaseNum);
-    }
-
-    private void init(int num) {
-        idx = num;
-        FontPreferences fontPreferences = EditorColorsManager.getInstance().getGlobalScheme().getFontPreferences();
-        String fontType = fontPreferences.getFontFamily();
-        int fontSize = fontPreferences.getSize(fontType);
-
-        title = new MyLabel("Test #%d".formatted(num + 1));
-        title.setFont(new Font(fontType, Font.BOLD, fontSize + 4));
-        titleRow.addComp(title);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        idx = testCaseNum;
+        title.setText("Test Case #" + idx);
+        title.setFontSize(title.getFontSize() + 4);
         deleteButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getComponent().isEnabled())
-                    ObjGetter.getMainPanel().getTestCasePanel().removeTextCase(idx);
+                    ObjGetter.getMainPanel().getTestCasePanel().removeTextCase(idx - 1);
             }
         });
-        deleteButton.setDisabledIcon(Icons.Delete.dark);
+        deleteButton.setDisabledIcon(Icons.Delete.getIcon());
         expandButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 setExpanded(!isExpanded);
             }
         });
-        titleRow.addComp(statLabel);
-        titleRow.addComp(expandButton);
-        titleRow.addComp(deleteButton);
-        addComp(titleRow);
+        JPanel titleRow = new JPanel();
+        titleRow.setLayout(new BoxLayout(titleRow, BoxLayout.X_AXIS));
+        titleRow.add(title);
+        titleRow.add(statLabel);
+        titleRow.add(expandButton);
+        titleRow.add(deleteButton);
+        titleRow.setAlignmentX(Component.LEFT_ALIGNMENT);
+        add(titleRow);
         titleRow.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 Component component = e.getComponent();
                 int width = component == null ? 0 : component.getSize().width;
-                deleteButton.setIcon(Icons.Delete.dark);
+                deleteButton.setIcon(Icons.Delete.getIcon());
                 setExpanded(isExpanded);
                 inputField.setMinWidth(width);
                 outputField.setMinWidth(width);
@@ -75,25 +68,23 @@ public class TestCase extends MyPanel {
                 SwingUtilities.invokeLater(() -> updateUI());
             }
         });
-
-        addComp(new MyLabel("Input:"));
-        addComp(inputField);
-        addComp(new MyLabel("Output:"));
-        addComp(outputField);
-        addComp(new MyLabel("Expected Output:"));
-        addComp(expectOutputField);
-        setBorder(new LineBorder(JBColor.lightGray, 5));
-    }
-
-    public void addComp(JComponent c) {
-        c.setAlignmentX(Component.LEFT_ALIGNMENT);
-        add(c);
-        add(Box.createVerticalStrut(7));
+        MyLabel inputLabel = new MyLabel("Input:");
+        MyLabel outputLabel = new MyLabel("Output:");
+        MyLabel expectLabel = new MyLabel("Expected Output:");
+        add(inputLabel);
+        add(inputField);
+        add(outputLabel);
+        add(outputField);
+        add(expectLabel);
+        add(expectOutputField);
+        setBorder(new CompoundBorder(JBUI.Borders.empty(3),
+                new CompoundBorder(new RoundedBorder(16, 1.5F, JBColor.BLACK),
+                        JBUI.Borders.empty(7, 7, 10, 7))));
     }
 
     public void changeTitle(int i) {
         idx = i;
-        title.setText("Test #%d".formatted(i + 1));
+        title.setText("Test Case #" + idx);
     }
 
     public void setStat(Stat stat) {
@@ -139,15 +130,11 @@ public class TestCase extends MyPanel {
 
             boolean flag = false;
             for (Component c : getComponents()) {
-                if (flag) {
-                    c.setVisible(isExpanded);
-                }
-                if (!(c instanceof Box.Filler)) {
-                    flag = true;
-                }
+                if (flag) c.setVisible(isExpanded);
+                if (!(c instanceof Box.Filler)) flag = true;
             }
         }
-        if (isExpanded) expandButton.setIcon(Icons.Collapse.dark);
-        else expandButton.setIcon(Icons.Expand.dark);
+        if (isExpanded) expandButton.setIcon(Icons.Collapse.getIcon());
+        else expandButton.setIcon(Icons.Expand.getIcon());
     }
 }

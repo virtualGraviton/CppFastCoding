@@ -41,7 +41,8 @@ public class RunButton extends MyButton {
                 run();
             }
         });
-        setDisabledIcon(Icons.Run.dark);
+        setIcon(Icons.Run.getIcon());
+        setDisabledIcon(Icons.Run.getIcon());
     }
 
     private void run() {

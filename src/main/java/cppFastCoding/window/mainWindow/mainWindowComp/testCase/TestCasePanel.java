@@ -1,34 +1,34 @@
 package cppFastCoding.window.mainWindow.mainWindowComp.testCase;
 
+import com.intellij.ui.JBColor;
 import cppFastCoding.action.SaveTestCaseAction;
-import cppFastCoding.base.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class TestCasePanel extends MyPanel {
+public class TestCasePanel extends JPanel {
     private int testCaseCount;
 
     public TestCasePanel() {
-        super(BoxLayout.Y_AXIS, 7);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         testCaseCount = 0;
+        setBorder(BorderFactory.createLineBorder(JBColor.RED, 2));
     }
 
     public TestCase getTestCase(int idx) {
-        return (TestCase) getComponent(idx * 2);
+        return (TestCase) getComponent(idx);
     }
 
     public void addTextCase() {
-        TestCase testCase = new TestCase(testCaseCount++);
-        addComp(testCase);
+        TestCase testCase = new TestCase(++testCaseCount);
+        add(testCase);
         updateUI();
         SaveTestCaseAction.actionPerformed();
     }
 
     public void removeTextCase(int idx) {
         testCaseCount--;
-        remove(idx * 2);
-        remove(idx * 2);
+        remove(idx);
         titleUdt();
         updateUI();
         SaveTestCaseAction.actionPerformed();
@@ -38,7 +38,7 @@ public class TestCasePanel extends MyPanel {
         int count = 0;
         for (Component c : getComponents()) {
             if (c instanceof TestCase t) {
-                t.changeTitle(count++);
+                t.changeTitle(++count);
             }
         }
     }

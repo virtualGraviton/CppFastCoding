@@ -1,5 +1,6 @@
 package cppFastCoding.window.mainWindow.mainWindowComp.testCase;
 
+import com.intellij.util.ui.JBUI;
 import cppFastCoding.base.MyLabel;
 import cppFastCoding.services.manager.TextManager;
 import cppFastCoding.util.stat.Stat;
@@ -20,6 +21,7 @@ public class StatLabel extends MyLabel {
         setMinimumSize(new Dimension(minWidth, minHeight));
         setPreferredSize(new Dimension(minWidth, minHeight));
         setMaximumSize(new Dimension(minWidth, minHeight));
+        setBorder(JBUI.Borders.empty(3));
     }
 
     public void setStat(Stat stat) {

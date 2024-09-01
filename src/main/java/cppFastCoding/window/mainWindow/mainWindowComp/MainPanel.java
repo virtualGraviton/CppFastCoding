@@ -1,6 +1,7 @@
 package cppFastCoding.window.mainWindow.mainWindowComp;
 
 import com.intellij.ui.components.JBScrollPane;
+import com.intellij.util.ui.JBUI;
 import cppFastCoding.base.MyLabel;
 import cppFastCoding.util.ObjGetter;
 import cppFastCoding.util.TestCaseData;
@@ -22,8 +23,10 @@ public class MainPanel extends JPanel {
     public MainPanel() {
         if (testCasePanel == null) testCasePanel = new TestCasePanel();
         scrollPane = new JBScrollPane(testCasePanel);
+        scrollPane.setBorder(JBUI.Borders.empty());
+        testCasePanel.setBorder(JBUI.Borders.empty());
         buttonpanel = new ButtonPanel();
-        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
         add(scrollPane);
         add(buttonpanel);
         addComponentListener(new ComponentAdapter() {
@@ -31,8 +34,8 @@ public class MainPanel extends JPanel {
             public void componentResized(ComponentEvent e) {
                 int w = e.getComponent().getWidth();
                 int h = e.getComponent().getHeight();
-                scrollPane.setPreferredSize(new Dimension(w - 34 - 15, h - 10));
-                buttonpanel.setPreferredSize(new Dimension(34, h - 10));
+                scrollPane.setPreferredSize(new Dimension(w - 50 - 15, h - 10));
+                buttonpanel.setPreferredSize(new Dimension(50, h - 10));
                 SwingUtilities.invokeLater(() -> updateUI());
             }
         });
@@ -45,12 +48,10 @@ public class MainPanel extends JPanel {
 
     public void setTestCasePanel(TestCaseData data) {
         TestCasePanel tcp = ObjGetter.getMainPanel().getTestCasePanel();
-        for (Component component : tcp.getComponents()) {
-            tcp.remove(component);
-        }
+        for (Component component : tcp.getComponents()) tcp.remove(component);
         tcp.setTestCaseCount(0);
         if (data == null) {
-            tcp.addComp(new MyLabel("Please select a cpp file."));
+            tcp.add(new MyLabel("Please select a cpp file."));
             return;
         }
         for (int i = 0; i < data.getTestCaseCount(); i++) {

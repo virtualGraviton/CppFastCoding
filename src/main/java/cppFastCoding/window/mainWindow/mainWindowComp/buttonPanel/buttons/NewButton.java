@@ -6,6 +6,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import cppFastCoding.base.MyButton;
+import cppFastCoding.util.Icons;
 import cppFastCoding.util.ObjGetter;
 
 import java.awt.event.MouseAdapter;
@@ -20,6 +21,7 @@ public class NewButton extends MyButton {
                 AddTestCase();
             }
         });
+        setIcon(Icons.Add.getIcon());
     }
 
     private void AddTestCase() {
