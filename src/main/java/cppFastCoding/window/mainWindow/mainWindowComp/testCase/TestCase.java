@@ -5,9 +5,9 @@ import com.intellij.util.ui.JBUI;
 import cppFastCoding.base.MyButton;
 import cppFastCoding.base.MyLabel;
 import cppFastCoding.util.Icons;
-import cppFastCoding.util.ObjGetter;
 import cppFastCoding.util.RoundedBorder;
 import cppFastCoding.util.stat.Stat;
+import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -37,7 +37,7 @@ public class TestCase extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getComponent().isEnabled())
-                    ObjGetter.getMainPanel().getTestCasePanel().removeTextCase(idx - 1);
+                    TestCasePanel.getInstance().removeTextCase(idx - 1);
             }
         });
         deleteButton.setDisabledIcon(Icons.Delete.getIcon());

@@ -25,4 +25,10 @@ public class MyButton extends JLabel {
         setBorder(JBUI.Borders.empty(2));
         setAlignmentX(LEFT_ALIGNMENT);
     }
+
+    public MyButton(Icon icon) {
+        this();
+        setIcon(icon);
+        setDisabledIcon(icon);
+    }
 }

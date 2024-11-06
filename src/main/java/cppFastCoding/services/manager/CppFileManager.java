@@ -5,15 +5,15 @@ import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
+import cppFastCoding.listener.RunFinishNotifier;
 import cppFastCoding.services.Notice;
 import cppFastCoding.services.storage.SettingStorage;
-import cppFastCoding.util.ObjGetter;
+import cppFastCoding.util.ObjUtil;
 import cppFastCoding.util.StringUtil;
 import cppFastCoding.util.stat.Result;
 import cppFastCoding.util.stat.Stat;
-import cppFastCoding.window.mainWindow.mainWindowComp.buttonPanel.buttons.RunButton;
+import cppFastCoding.window.mainWindow.mainWindowComp.TestCasePanel;
 import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCase;
-import cppFastCoding.window.mainWindow.mainWindowComp.testCase.TestCasePanel;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,14 +31,12 @@ public class CppFileManager {
     private static final Logger logger = LoggerFactory.getLogger(CppFileManager.class);
     private final TestCasePanel tcp;
     private final int taskCount;
-    private final RunButton runButton;
     private String cppFilePath;
     private String exeFilePath;
     private int finishedTaskCount;
 
-    public CppFileManager(RunButton run) {
-        runButton = run;
-        tcp = ObjGetter.getMainPanel().getTestCasePanel();
+    public CppFileManager() {
+        tcp = TestCasePanel.getInstance();
         taskCount = tcp.getTestCaseCount();
         finishedTaskCount = 0;
         Project project = ProjectManager.getInstance().getOpenProjects()[0];
@@ -92,8 +90,7 @@ public class CppFileManager {
             int exitCode = process.waitFor();
             if (exitCode == 0)
                 return Stat.CPD;
-        } catch (IOException | InterruptedException exception) {
-            logger.error("CompileFailed", exception);
+        } catch (IOException | InterruptedException ignored) {
         }
         SwingUtilities.invokeLater(() -> {
             for (Component comp : tcp.getComponents()) {
@@ -159,7 +156,10 @@ public class CppFileManager {
                         now.getDeleteButton().setEnabled(true);
                         finishedTaskCount += 1;
                         if (finishedTaskCount == taskCount) {
-                            runButton.setEnabled(true);
+                            Project project = ObjUtil.getProject();
+                            RunFinishNotifier publish = project.getMessageBus()
+                                    .syncPublisher(RunFinishNotifier.RUN_FINISH_TOPIC);
+                            publish.afterAction();
                         }
                     });
                 } catch (Exception e) {
@@ -175,7 +175,10 @@ public class CppFileManager {
             @Override
             protected Integer doInBackground() {
                 if (Objects.equals(compile(), Stat.CE)) {
-                    runButton.setEnabled(true);
+                    Project project = ObjUtil.getProject();
+                    RunFinishNotifier publish = project.getMessageBus()
+                            .syncPublisher(RunFinishNotifier.RUN_FINISH_TOPIC);
+                    publish.afterAction();
                     for (Component comp : tcp.getComponents()) {
                         if (comp instanceof TestCase now) {
                             now.getDeleteButton().setEnabled(true);
