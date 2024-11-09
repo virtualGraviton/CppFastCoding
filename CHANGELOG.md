@@ -63,8 +63,14 @@
 - Appearance & Code optimization.
 - Adapt CL242.
 
-## [1.1.0] - 2024/09/02
+## [1.1.1] - 2024/09/02
 
 ### Changed
 
 - UI overhaul.
+
+## [1.2.0] - 2024/11/09
+
+### Changed
+
+- Code optimization
