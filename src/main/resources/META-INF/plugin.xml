@@ -6,30 +6,26 @@
 
     <depends>com.intellij.modules.platform</depends>
     <actions>
-        <action id="ShowMainWindow" class="cppFastCoding.action.InitToolWindowAction" text="ShowMainWindow"
+        <action id="ShowMainWindow" class="action.InitToolWindowAction" text="ShowMainWindow"
                 description="Show main window">
             <add-to-group group-id="MainMenu" anchor="last"/>
         </action>
     </actions>
     <projectListeners>
         <listener
-                class="cppFastCoding.listener.SelectedFileListener"
+                class="listener.SelectedFileListener"
                 topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
         <listener
-                class="cppFastCoding.listener.SaveActionListener"
-                topic="cppFastCoding.listener.SaveActionNotifier"/>
-        <listener
-                class="cppFastCoding.listener.SaveFileListener"
-                topic="cppFastCoding.listener.SaveFileNotifier"/>
-        <listener
-                class="cppFastCoding.window.mainWindow.mainWindowComp.ButtonPanel"
-                topic="cppFastCoding.listener.RunFinishNotifier"/>
+                class="listener.SaveTestCaseListenerImpl"
+                topic="listener.SaveTestCaseListener"/>
+        <listener class="listener.RunFileListenerImpl"
+                  topic="listener.RunFileListener"/>
     </projectListeners>
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable displayName="CppFastCoding Settings" groupId="other"
-                                 instance="cppFastCoding.window.settingWindow.CFCodingConfigurable"/>
+                                 instance="window.settingWindow.CFCodingConfigurable"/>
         <toolWindow id="CppFastCodingPlugin" anchor="right"
-                    factoryClass="cppFastCoding.window.mainWindow.MainToolWindow"/>
+                    factoryClass="window.mainWindow.MainToolWindow"/>
         <notificationGroup displayType="BALLOON" id="MyNoticeGroup"/>
     </extensions>
 
