@@ -67,10 +67,17 @@
 
 ### Changed
 
-- UI overhaul.
+- UI upgrade.
 
 ## [1.2.0] - 2024/11/09
 
 ### Changed
 
 - Code optimization
+
+## [1.3.0] - 2025/03/07
+
+### Changed
+
+- Code optimization
+- UI upgrade.
